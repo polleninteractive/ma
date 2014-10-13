@@ -1,0 +1,1220 @@
+/* MDM 20.03.2012 : Should this be here? Maybe we need another stylesheet for this??? */
+html, body {
+    font-family: "Times New Roman", serif !important;
+}
+
+table {
+    /*background-color: #f8c95a !important;*/
+    font-size: 0.8em !important;
+    line-height: 1em !important;
+}
+
+td {
+    border-bottom: 1px solid #d1d1d1 !important;
+}
+
+td .tableheader {
+    vertical-align:bottom;
+}
+
+/* style disabled text fields
+input[disabled='disabled'] {
+  background:yellow;
+  color:blue;
+  cursor:default;
+}
+*/
+
+/*
+input {
+    border-bottom: 1px solid #DDD !important;
+}
+*/
+
+.x-html {
+    padding: 0 !important;
+}
+
+/* Top toolbar */
+.x-toolbar {
+    height: 36px !important;
+    border-bottom: 0 !important;
+    background-color: black !important;
+}
+
+
+/* Back button */
+.x-button.x-button-back.x-button-pressing,
+.x-button.x-button-back.x-button-pressing::after
+{
+    background-color: #4f5865;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#4f5865), to(black));
+    background-image: -webkit-linear-gradient(top, #4f5865, black) !important; 
+    border-color: #4f5865 !important;
+    /*border: 0px !important;*/
+} 
+
+
+.dictionaryEntryButton, .phraseEntryButton {
+    background-image:  none !important;
+	background-color: #f5a200 !important;
+    margin-right: 1px !important;
+    /* min height doesn't work in css. had to set this in code
+     min-height: 1em !important;
+     */
+    min-width: 32px !important;
+    text-shadow: none !important;
+	border-color: white !important;
+    -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -webkit-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -webkit-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.toolbarButtonPressed {
+    background-color: #ea8816 !important;
+}
+
+.plusSignIcon {
+    background-image:url('images/add.png') !important;
+    background-size: 14px 14px !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.dictionaryEntryButton span, .phraseEntryButton span {
+    line-height: 1.0em;
+}
+
+.engDictionaryButton, .iwaDictionaryButton, .engPhraseButton, .iwaPhraseButton {
+	/*background-image:  none !important;*/
+	background-color: black !important;
+	border-color:  white !important;
+    -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -webkit-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -webkit-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    width: 42px !important;
+    height: 21px !important;
+    margin-left: 3px !important;
+}
+
+.toggleButtonOff {
+    background-color: #6d6e71 !important;
+}
+
+/* Contains searchfield and english and iwaidja search filter buttons padding creates space for these */
+.dictionaryToolBar {
+    padding-right: 99px !important;
+}
+
+.dictionarySearchField {
+    position: relative !important;
+    float: left !important;
+    width: 100% !important;
+    margin: 0 3px 0 0 !important;
+}
+
+/* toolbar (search field + eng & iwa button). Occupy padding space of parent element (see above) */
+.iwaDictionaryButton, .iwaPhraseButton {
+    background-image:url('images/iwaDictButton@2x.png') !important;
+    background-size: 27px 21px !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    position: relative !important;
+    float: right !important;
+    padding-right: 3px !important;
+}
+
+
+.engDictionaryButton, .engPhraseButton {
+    background-image:url('images/engDictButton@2x.png') !important;
+    background-size: 27px 21px !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    position: relative !important;
+    float: right !important;
+}
+
+
+/* FOR SEARCH BAR */
+/* x-field x-field-search */
+/*
+.x-field-search, x-field, x-toolbar {
+    width: auto !important;
+}
+*/
+
+
+.x-toolbar-dark{
+	background-image:  none !important;
+	background-color:  black !important;
+}
+
+/* DICTIONARY NAVIGATION BAR */
+#dictionarynavigationbar {
+    background-image:none !important;
+	background-color: #f5a200 !important;
+	height: 40px !important;
+}
+
+/*
+#ext-dictionarysourcenavigationview-1 > .x-docking-vertical > .x-navigation-bar, #ext-informationnavigationview-1 > .x-docking-vertical > .x-navigation-bar {
+	background-image:none !important;
+	background-color: #f5a200 !important;
+	height: 40px !important;
+}
+
+
+#ext-dictionarysourcenavigationview-1 > .x-docking-vertical > .x-body > .x-inner, #ext-informationnavigationview-1 > .x-docking-vertical > .x-body > .x-inner{
+    padding: 0px;
+}
+*/
+ 
+ 
+/* Navigation Bar Title */
+.x-title {
+    line-height: 1.65em !important;
+    font-weight: 900 !important;
+    font-size: 1.2em !important;
+    text-shadow: none !important;
+    letter-spacing: -0.05em;
+}
+
+
+.x-container > .x-docking-vertical > .x-docked-bottom {
+	background-image: none !important;
+	background-color: black !important;
+	height:  60px !important;
+}
+
+.x-container > .x-docking-vertical > .x-docked-bottom > x.tabbar-inner {
+	height:  60px !important;
+}
+
+.x-list-header{
+	background-image: none !important;
+	background-color: black !important;
+	height:  20px !important;
+	color:  white !important;
+	
+}
+
+/* Alphabet Indexbar */
+.x-indexbar-alphabet {
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.x-indexbar-vertical {
+    margin-right: 6px !important;
+}
+
+
+/* DICTIONARY LIST VIEW ROW */
+
+/*
+.x-list-item-body {
+    padding: 0 !important;
+}
+*/
+
+.x-html #dictionarylistview {
+    font-size: 1.2em !important;
+}
+
+/*
+#dictionarylistview .x-list-item-label  {
+    min-height: 65px !important;
+    padding-top: 0px !important;
+    padding-left: 10px !important;
+    padding-bottom: 0px !important;
+    bottom: 0 !important;
+}
+*/
+
+/*
+ #dictionarylistview .x-list-normal .x-list-item .x-dock-horizontal {
+min-height: 65px !important;
+padding-left: 0.5em !important;
+padding-right: 0.5em !important;
+}
+*/
+ 
+#dictionarylistview .x-dock-horizontal {
+    min-height: 75px !important;
+    /*padding-left: 0.5em !important;
+    padding-right: 0.5em !important;*/
+}
+
+/* Dictionary List sourceWord  */
+.dictlistfirstline {
+    margin-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dictListSourceWord, .dictDetailTargetWord {
+    font-weight: 900;
+    font-size: 1.25em;
+}
+
+.inflection {
+    font-size: 1.25em;
+}
+
+
+.dictListSourceWord {
+    margin-top: 0px !important;
+}
+
+.dictListPartOfSpeech {
+    font-style:italic;
+}
+
+/* Dictionary List part of speech and disambiguation  
+.dictListByline {
+    font-size: 0.9em;
+}
+*/
+
+/* Dictionary List targetWord  */
+.dictListTargetWord {
+    /*font-size: 1.25em;*/
+    padding-left: 1em;
+    float: left;
+    margin-top: -2px;
+}
+
+.audioIcon {
+    float: left;
+}
+
+
+/* Dictionary Detail View */
+.contributionStatus, .moderatorComments {
+	color: red;
+}
+
+.dictionarydetailpage .x-html {
+    font-size: 1.0em !important;
+}
+
+.dictionarydetailheader {
+    min-height: 75px;
+    margin-top: 3px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.dictionaryspeakerbutton {
+    margin-left: -2px;
+    margin-top: 2px;
+}
+
+.dictionaryDetail {
+    /*margin: -7px -5px;*/
+    line-height: normal;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+sup {
+    font-size: 0.5em;
+}
+
+.dictImageThumb {
+    float: left;
+    margin-top: 3px;
+    margin-left: 0px;
+    /*margin-right: 15px;*/
+    margin-right: 10px;
+    margin-bottom: 4px;
+    padding-right: 0;
+    border: 0px;
+    width: 65px;
+    height: 65px;
+    /*background-color: #e7e7e8;*/
+}
+
+/* scale image so that is approx 480:320 ie. 1.5 times bigger than original image so
+ portrait and landscape images take up full thumb.*/
+.dictImageThumb img {
+    width: 100px;
+    margin-left: -17px;
+    margin-top: -17px;
+}
+
+.dictImageThumb div{
+	position:absolute;
+	clip:rect(0px,65px,65px,0px);
+}
+
+.dictDetailHeadline {
+    min-height: 2.0em;
+    /*font-size: 1.25em;*/
+    /*margin: -10px 0px;*/
+    line-height: normal;
+    
+}
+
+/*
+.inflection {
+    padding-top: 0.3em;
+}
+*/
+
+.dictDetailViewDetailEntry {
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-bottom: 6px;
+}
+
+.clear {
+    clear:both;
+}
+
+.EntryParagraph, .BlockParagraph {
+    /*text-indent: -40pt;
+    padding-left: 40pt;*/
+    font-size: 1.25em;
+}
+
+.dictDetailTargetWord {
+    font-size: 1.5em;
+}
+
+.Lexeme {   
+    font-weight: 900;
+}
+
+/*
+ .Phoneticform {
+ font-style: italic;
+ }
+ */
+
+.Partofspeech {
+    font-style: italic;
+}
+
+.Examplev, .fvernacular {
+    font-weight: 900;
+}
+
+
+/* image close-up view */
+.dictImage {
+    line-height: 100%;
+    background-color: #000000;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    height: 100%;
+}
+
+.dictImage img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+
+
+/* selected item for list item */
+.x-list .x-list-item.x-item-selected .x-dock-horizontal, .x-list .x-list-item.x-item-selected.x-list-item-tpl {
+	background-image:none !important;
+	background-color: #f9c86a !important;
+	border-top-color: transparent !important;
+	color: black !important;
+    text-shadow: none !important;
+}
+
+.x-list-normal .x-list-item.x-item-selected .x-dock-horizontal {
+	border-bottom: none !important;
+}
+
+.x-button-label{
+	font-family: Helvetica, Arial, sans-serif !important;
+	color:  white !important;
+}
+
+
+/* Wordmaker Inflection text (and speaker icon) */
+
+.inflectionbox {
+    /*margin: -17px, -10px;*/
+    margin-top: 5px;
+    margin-left: 7px;
+}
+
+/* speaker button */
+.wordmakerspeakerbutton {
+    margin-left: -2px;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+/* text on right of speaker icon */
+.inflectiontextholder {
+    margin-top: 0px;
+}
+
+/* 2nd line */
+.sourceinflection {
+    font-size: 1.5em;
+    line-height: 140%;
+}
+
+/* 1st line */
+.targetinflection {
+    font-size: 1.5em;
+    margin-top: 0px;
+    line-height: 100%;
+    margin-right: 40px !important;
+}
+
+
+
+
+
+
+
+/* PHRASES */
+
+/* NAVIGATION BAR */
+#phrasenavigationbar {
+    background-image:none !important;
+	background-color: #f5a200 !important;
+	height: 40px !important;
+}
+
+#phrasenavigationview .x-html  {
+    font-size: 1.2em !important;
+}
+
+/* SEARCH BAR */
+.phraseSearchField {
+    /*font-size: 0.8em;*/
+    position: relative !important;
+    /*float: left !important;*/
+    width: 100% !important;
+    margin: 0 3px 0 0 !important;
+}
+
+
+
+/* LIST ITEM */
+.x-list-item {
+    -webkit-transition : height 300ms ease-in;
+}
+
+
+.hideit {
+    /*visibility: hidden;*/
+    display: none !important;
+    position: relative;
+}
+
+.showit {
+    /*visibility: visible;*/
+    display: block !important;
+    position: relative;
+    z-index: 1000;
+}
+
+
+.phrasedetail {
+    background-image:url('images/speaker.png');
+    background-repeat: no-repeat;
+    background-position: -2px 4px;
+}
+
+/*
+.phraserow {
+    display: block !important;
+    background: #ff0000 !important;
+   
+}
+*/
+
+/*
+.phraserow {
+    margin-right: 0px !important;
+    padding-bottom: 10px !important;
+}
+*/
+.sourcephrase, .targetphrase, .orthography {
+    line-height: 110%;
+    /* padding-top: 5px; */
+    
+    margin-right: 0px;
+    
+}
+
+.targetphrase, .orthography {
+    margin-left: 40px;
+}
+
+/* Source phrase */
+.sourcephrase {
+    font-weight: 900;
+}
+
+
+/* row in list view
+ #phraselistview .x-list-item-label {
+ min-height: 25px !important;
+ padding-top: 5px !important;
+ padding-left: 10px !important;
+ padding-bottom: 0px !important;
+ bottom: 0 !important;
+ }
+ */
+
+
+
+
+
+
+
+/* Phrase category list (for both parent and child lists) */
+
+/* Row height for phrase categories, sub categories and phrase list */
+#phrasecategorylistview .x-list-item .x-list-item-label, #phrasesubcategorylistview .x-list-item .x-list-item-label, #phraselistview .x-list-item .x-list-item-label {
+    min-height: 32px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    font-size: 1.4em !important;
+}
+
+.phrasecategoryicon {
+    float: left;
+    width: 40px;
+    margin-right: 10px;
+    margin-top: 1px;
+}
+
+.phrasecategoryicon img {
+    width: 35px;
+    height: 26px;
+}
+
+
+
+/*
+phrasecategorylist {
+    float: left;
+    background-color: #00ff00;
+}
+*/
+
+
+
+/* Tab Bar */
+.x-tabbar-dark{
+	border: 0px !important;
+}
+
+.x-tabbar-dark.x-docked-bottom .x-tab {
+    text-shadow: none !important;
+    /*margin-top: -1px !important;*/
+}
+
+.x-tabbar-dark.x-docked-bottom .x-tab-active {
+    text-shadow: none !important;
+}
+
+.x-tab {
+    background-color: black !important;
+    height: 60px !important;
+}
+
+.x-tab, .x-tab-normal { 
+    width: 34%;
+    -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -webkit-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -webkit-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    
+}
+
+.x-tab-active{
+	/*padding-top: 0px !important;
+	padding-bottom: 3px !important;*/
+	background-color: #f5a200 !important;
+	background-image:none !important;
+	border:none !important;
+	/*height: 60px !important;*/
+	
+}
+
+.x-tab-active > .dictionarytab, .x-tab-active > .phrasestab, .x-tab-active > .wordmakertab, .x-tab-active > .informationtab {
+	background-color: #f5a200 !important;
+}
+
+/* logo button on tab bar */ 
+.logoButton{
+    width: 34% !important;
+    height: 60px !important;
+    border:none !important;
+    overflow: visible !important;
+    display: block !important;
+    /*padding: 0.2em 0 0 0 !important;*/
+    padding: 0 !important;
+    margin: 0 !important;
+   
+    background-image: none !important;
+    background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -webkit-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    -webkit-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+
+.logoButton .x-button-icon{
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:40px 30px !important;
+    width: 40px !important;
+	height: 43px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.logoButton .x-button-label {
+    margin: 0 !important;
+    padding: .1em 0 .2em 0 !important;
+    font-size: 9px !important;
+    line-height: 12px !important;
+    overflow: visible !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* dictionary tab */
+/*
+.dictionary {
+	background-image:url('images/dictionaryIcon@2x.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:60px 42px !important;
+    width: 60px !important;
+	height: 42px !important;
+}
+*/
+.dictionarytab {
+	background-image:url('images/Dictionary.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:40px 30px !important;
+    width: 40px !important;
+	height: 40px !important;
+}
+
+.phrasestab {
+	background-image:url('images/Phrases.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:40px 30px !important;
+    width: 40px !important;
+	height: 40px !important;
+    
+}
+
+/* phrasebook tab */
+/*
+.phrasebook {
+	background-image:url('images/dictionaryIcon@2x.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:60px 42px !important;
+    width: 60px !important;
+	height: 42px !important;
+}
+*/
+
+/* word mixer tab */
+.wordmakertab {
+	background-image:url('images/WordMixer.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:40px 30px !important;
+    width: 40px !important;
+	height: 40px !important;
+}
+
+
+/* information tab */
+.informationtab {
+	background-image:url('images/Information.png') !important;
+	background-color: black !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important; 
+    background-size:40px 30px !important;
+    width: 40px !important;
+	height: 40px !important;
+}
+
+
+.x-list .x-list-disclosure:before {
+  content: '' !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* disclosure button in list view */
+.x-list-disclosure{
+	-webkit-mask-image: none  !important;	
+	background-image: url('images/disclosure.png') !important;	
+	/*bottom: 12px !important;*/
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+	background-color: transparent !important;
+	width: 40px !important;
+	height: 40px !important;
+    /*margin-right: -15px !important;*/
+    padding-top: 0px !important;
+    margin-top: 10px !important;
+}
+
+
+/* disabled for field*/
+.x-item-disabled .x-form-label span,
+.x-item-disabled input,
+.x-item-disabled .x-input-el,
+.x-item-disabled .x-spinner-body,
+.x-item-disabled select,
+.x-item-disabled textarea,
+.x-item-disabled .x-field-clear-container {
+    color: #333333 !important;
+    -webkit-text-fill-color: #333333 !important;
+    pointer-events: none;
+}
+
+.x-button.x-item-disabled .x-button-label, .x-button.x-item-disabled .x-hasbadge .x-badge, .x-hasbadge .x-button.x-item-disabled .x-badge, .x-button.x-item-disabled .x-button-icon {
+    opacity: 0 !important;
+}
+
+
+#dicMetadataButton, #phraseMetadataButton, #collectorButton, #speakerButton {
+    background-image: url('images/disclosure.png') !important;	
+	/*bottom: 12px !important;*/
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+	background-color: transparent !important;
+	width: 40px !important;
+	height: 40px !important;
+    margin-right: -15px !important;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+.malecollector {
+    border-bottom: none !important;
+    margin-bottom: -10px !important;
+}
+
+.metadatacontainer {
+    padding-top: 0px !important;
+    line-height: 40px !important;
+}
+
+#imagecapturecontainer {
+    border-bottom: 1px solid #DDD;
+}
+
+.addImageButtonCls .x-button-label {
+    /*
+    width: 50px !important;
+    height: 50px !important;
+    padding-bottom: 30px !important;
+    */
+    
+    font-size: 0.8em !important;
+    white-space: normal !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+    
+}
+
+.addPhotoButtonHolder
+{
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 58px !important;
+	height: 58px !important;
+	border:0 !important;
+	border-radius:7px !important;
+	overflow: hidden !important;
+}
+
+
+.addPhotoButtonImage {
+	width: 100px !important;
+    padding: 0;
+}
+
+/*
+.buttonIconsCls {
+
+	padding: -10px !important;
+	
+	width: 100px !important;
+	height: 100px !important;
+}
+*/ 
+
+.soundrecordercontainer {
+    /*margin: 6px, 7px;
+    border-bottom: 2px solid #DDD;*/
+    padding: 0 !important;
+}
+
+#dictionarySourceFormFieldSet, #dictionaryTargetFormFieldSet, #dictionaryCommentsFormFieldSet {
+	/*border-bottom: 1.5px solid #FDD;*/
+}
+
+targetWordField {
+	text-overflow:ellipsis;
+}
+
+.speakercontainer, .collectorcontainer {
+    border-bottom: 1px solid #DDD;
+    padding: 0 !important;
+    line-height: 40px !important;
+}
+
+
+.recordnewentrytitle, #metadataformtitle, #collectorformtitle, #speakerformtitle {
+    font-weight: 900;
+}
+
+.audioRecordButtonCls, .audioStopButtonCls, .audioPlayButtonCls, .recordButtonCls, .stopButtonCls, .playButtonCls {
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 40px 30px;
+    background-repeat: no-repeat;
+    background-color:  transparent !important;
+    border: none !important;
+    background-position:center; 
+}
+
+.audioRecordButtonCls, .recordButtonCls {
+    background-image: url('images/record.png') !important;
+}
+
+.audioStopButtonCls, .stopButtonCls {
+    background-image: url('images/Stop.png') !important;
+}
+
+.audioPlayButtonCls, .playButtonCls {
+    background-image: url('images/play.png') !important;
+}
+
+/* edit form's delete button */
+.deletecontainer {
+    border-top: 1px solid #DDD;
+}
+
+#deletebutton {
+    background-color: #d4201d;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f0cac9), to(#d4201d)) !important;
+    background-image: -webkit-linear-gradient(top, #f0cac9, #d4201d) !important; 
+    border-color: #4f5865 !important;
+    /*border: 0px !important;*/
+} 
+
+
+
+/* Form fieldset - generic changes */
+.metadataFieldset {
+	
+}
+
+
+.formview .x-html {
+    font-size: 1.2em !important;
+    background-color: white !important;
+}
+
+.formview .x-form-label {
+    background-color: white !important;
+}
+
+.formview .x-form-label span {
+    font-size: 1.0em !important;
+    /*background-color: white !important;*/
+}
+
+.x-form-fieldset {
+    margin-bottom: 0px !important;
+}
+
+.x-form-fieldset .x-form-fieldset-inner {
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+/*
+.x-form-fieldset .x-field {
+    /*border-bottom: 0px;*/
+    border-bottom-color: #DDD !important;
+     border-bottom-style: solid !important;
+     border-bottom-width: 1px !important;
+}
+*/
+
+.x-form-label {
+    text-shadow: none !important;
+    border-top: none !important;
+}
+
+/*
+ .x-list .x-list-item .x-list-item-label {
+ padding: auto !important;
+ }
+ */
+
+
+/* Data entry form */
+
+/*.x-form-fieldset .x-form-fieldset-inner {
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    margin: -1.5em !important;  
+    font-size: medium !important;
+    font-weight: normal !important;
+}*/
+
+#sourceWordField .x-label {
+    font-weight: 900;
+    
+    /*color: #ff0000;*/
+}
+
+
+/* Pickers */
+
+.x-sheet.x-picker .x-sheet-inner {
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+
+.x-picker-slot .x-dataview-item {
+    /*height: 2.5em;
+    line-height: 2.5em;*/
+    font-weight: normal !important; 
+}
+
+/* selected item for list item */
+.x-picker-slot .x-item-selected, .x-picker-slot .x-item-pressed{
+	background-color: transparent !important;
+}
+
+
+
+
+
+.x-picker-slot .x-picker-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip !important;
+    /*font-size: 1.2em;*/
+}
+
+.x-sheet.x-picker .x-sheet-inner {
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* bottom part of picker (beneath bar)? */
+/*
+.x-sheet.x-picker .x-sheet-inner:before {
+    -webkit-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #bbbbbb), color-stop(100%, #555555)) !important;
+    background-image: -webkit-linear-gradient(#ffffff, #bbbbbb, #555555) !important;
+    background-image: linear-gradient(#ffffff, #bbbbbb, #555555) !important;
+    height: 35% !important; 
+}
+*/
+
+/* top part of picker (above bar)? */
+/*
+.x-sheet.x-picker .x-sheet-inner:after {
+    -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    -webkit-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(5%, #555555), color-stop(50%, #bbbbbb), color-stop(100%, #ffffff)) !important;
+    background-image: -webkit-linear-gradient(top, #555555 5%, #bbbbbb, #ffffff) !important;
+    background-image: linear-gradient(#555555, #bbbbbb, #ffffff) !important;
+    /*height: 45% !important;*/
+}
+*/
+
+.x-sheet.x-picker .x-sheet-inner .x-picker-slot .x-body {
+    border-left: 0px solid #ff0000 !important;
+    border-right: 0px solid #00ff00 !important;
+}
+
+.x-sheet.x-picker .x-sheet-inner .x-picker-slot:first-child .x-body {
+    border-left: 0 solid #0000ff !important;
+}
+
+.x-sheet.x-picker .x-sheet-inner .x-picker-slot:last-child .x-body {
+    border-left: 0 solid #00ffff !important;
+    border-right: 0 solid #000000 !important;
+}
+
+.x-picker-bar {
+    margin-left: -25px !important;
+    margin-right: -25px !important;
+    /*margin-top: 28px !important;*/
+    border-top: 0.2em solid #b8bfca !important;
+    border-bottom: 0.2em solid #797f96 !important;
+    background-image: -webkit-linear-gradient(top, rgba(110,133,219,0.1), rgba(110,133,219,0.5) 50%, rgba(0,33,199,0.3) 50%, rgba(0,44,201,0.1)) !important;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0.4em 0.8em !important;
+}
+
+/*
+.x-picker-slot-title {
+    margin: 0 !important;
+    height: 25px !important;
+    line-height: 20px !important;
+    background-color: #a2a3ab !important;
+    background-image: none !important;
+    border-top: 1px solid #67676d !important;
+    border-bottom: 0px !important;
+    -webkit-box-shadow: none !important;
+    padding: 0em 10px !important;
+}
+
+.x-picker-slot-title > div {
+    font-size: 1.2em !important;
+    font-weight: 400 !important;
+}
+
+.x-picker-slot-title > div {
+    color: #1a1919 !important;
+    text-shadow: none !important;
+}
+*/
+
+/* INFORMATION NAVIGATION BAR */
+#informationnavigationbar {
+    background-image:none !important;
+	background-color: #f5a200 !important;
+	height: 40px !important;
+}
+
+
+/* INFORMATION LIST */
+.infocontainer .x-html {
+    font-size: 1.2em !important;
+}
+.infolistview .x-container .x-list-item .x-stretched {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.infolisticon {
+    float: left;
+}
+.infolisticon img {
+    margin: 10px 10px 0px 5px;
+    width: 40px;
+    height: 30px;
+}
+.infolisttitle {
+    margin-left: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 120%;
+}
+.soundURL {
+    color: #e58200;
+}
+
+
+
+/* Header at top of info page */
+.header {
+    font-weight: 900;
+    margin-bottom: 1em;
+}
+
+/* titles within info page */
+.infotitle {
+    font-weight: 900;
+    margin-bottom: -0.25px !important;
+}
+
+.infosection {
+    /*font-size: 1.25em;*/
+    margin: 6px 7px;
+    line-height: 120%;
+    letter-spacing: 0em;
+    font-size: 0.8em !important;
+}
+
+.infosection p {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.75em !important;
+}
+
+/* speace between title in page and paragraph text below it */
+.infosection .infotitle p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+/* How to use this app section */
+.partofspeechabrev {
+	float: left;
+	width: 80px;
+}
+
+.partofspeechdesc {
+    margin-left: 80px;
+}
+
+/* Reducing your language footprint section */
+.languagemap img {
+    width: 100%;
+    max-width:787px;
+}
+
