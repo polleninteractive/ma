@@ -11,34 +11,17 @@ Ext.define('Sencha.controller.DictionaryFormController', {
     	
     	// properties
     	lastButtonPressedId: null, // used after callback so we know deduce parameter gets assigned recorded audio
-    	//audioURLinTFS: null, // used to temporarily store URL until assigned to dedicated temp field
-    	 
-		sourceWordURLinTFS: null, // used to store URL to audio file just recorded and saved in temporary store
+    	// used to store URLs to audio files just recorded and saved in temporary store
+		sourceWordURLinTFS: null, 
 		targetWordURLinTFS: null,
 		commentsURLinTFS: null,
-		
-		
-		mediaPtr: null, // *** delete this?
-        //audioURLinTFS: null, // used to store URL to audio file just recorded ans saved in temporary store
-        imageURLinTFS: null,
-		
-		// *** delete many of these?
-		// Dictionary Target & Source property
-        //sourceWordfield : "",
-        //partOfSpeechField : "",
-        //inflectionField : "",
-        //disambiguationField : "",
-        //targetWordField : "",
-        //detailedEntryField : "",
+		imageURLinTFS: null,
         sourceWordURL: '',
         audioURL: '',
         commentsURL: '',
         commentsMediaType: null, // 0 = audio (default), 1 = video
         imageURL: '',
-        //noteField : "",
-        //metadata form
         currentDate: "",
-        //currentTime: "",
         currentLatitude: "",
         currentLongitude: "",
         recordingDevice: "",
@@ -47,15 +30,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
         speakerDOB: 0,
         speakerGender: "",
         speakerComment: "",
-        /* Delete depending on we want to handle collector info for edits
-        collector form
-        collectorName: "",
-        collectorDOB: "",
-        collectorGender: "",
-        collectorComment: "",
-		*/
-		
-		//id collection 
+		//id's
 		sourceId: "",
         targetId: "",
         collectorId: "",
@@ -63,7 +38,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 		
         
         refs: {
-        	main: 'dictionarynavigationview', // *** change to 'nav'
+        	main: 'dictionarynavigationview', 
         	dictionaryListView: 'dictionarylistview',
         	dictionaryEntryButton: 'dictionarynavigationview button[id=dictionaryEntryButton]',
 			dictionaryDetailView: 'dictionarytargetdetailview',
@@ -78,35 +53,22 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 			 
 			dictionarySourceWordForm: 'fieldset[id="dictionarySourceFormFieldSet"]', 
 			dictionaryTargetWordForm: 'fieldset[id="dictionaryTargetFormFieldSet"]',
-			//audioRecordButtonRef: 'button[id=targetWordRecordButton]',
-			//audioPlayButtonRef: 'button[id=targetWordPlayButton]',
 			dictionaryCommentsForm: 'fieldset[id="dictionaryCommentsFormFieldSet"]',
-			//addImageButtonRef: 'dictionarynavigationview button[cls=addImageButtonCls]',
 			addImageButtonRef: 'button[id=addImageButton]',
-			//addImageButtonRef: 'dictionarynavigationview image[id="addImageButton"]',
-			
 			
 			photoSourceSelectView: 'photosourceselectview',
 			dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
-			//deleteContainer: 'dictionarynavigationview container[cls=deletecontainer]', // *** do we need this?
 			dictionaryDeleteButton: 'button[id=deletebutton]',
 			dictionaryMetadataContainer: 'dictionarynavigationview container[cls=metadatacontainer]',
 			dictionaryMetadataButton: 'button[id=dicMetadataButton]',
 			
 			//speaker
 			speakerFieldSet: 'fieldset[id="speakerFieldset"]',
-			//speakerNameField: 'dictionarynavigationview fieldset[id="speakerNameFieldset"]',
 			speakerNameField: 'dictionarynavigationview textfield[id="speakerNameField"]',
 			speakerGenderField: 'dictionarynavigationview radiofield[name="speakerGender"]',
-			//speakerCommentField: 'dictionarynavigationview fieldset[id="speakerCommentFieldset"]',
 			speakerCommentField: 'dictionarynavigationview textfield[id="speakerCommentField"]',
 			speakerDOBField: 'dictionarynavigationview datepickerfield[id="speakerDOBField"]',
            
-			//collector *** delete these
-			collectorNameField: 'fieldset[id="collectorNameFieldset"]',
-			collectorGenderField: 'radiofield[name="collectorGender"]',
-			collectorCommentField: 'fieldset[id="collectorCommentFieldset"]',
-			
 			videoPlayerRef: 'video[id="videoPlayer"]'
         },
         control: {
@@ -160,6 +122,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 	},
 	
 
+
 	//	Play temporary media (audio or video) just recorded
 	//
 	playMedia: function(button, mediaURL) {
@@ -187,6 +150,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
         	Sencha.app.playAudioAssetAndRelease(mediaURL);
         }
 	},
+
 
 
 	// Media Play (from form)
@@ -277,13 +241,15 @@ Ext.define('Sencha.controller.DictionaryFormController', {
         this.assignAudio( path );   
     },
      
-           
+
+
     // AudioEncode error callback
     //
     failedAudioEncode: function(statusCode) {
         console.log("failed successfulAudioEncode because:" + statusCode);
     },
     
+
 
     // Media capture
     // Records audio or video to temporary file system. 
@@ -296,9 +262,9 @@ Ext.define('Sencha.controller.DictionaryFormController', {
     	var me = this; // remember me
     
     	// filesystem error callback
-        function errorCB(evt) {
-           console.log(evt.target.error.code);
-           var msg = 'An error occurred during media capture: ' + evt.target.error.code;
+        function errorCB(error) {
+           console.log('An error occurred during media capture: ' + error.code);
+           var msg = 'An error occurred during media capture: ' + error.code;
            navigator.notification.alert(msg, null, 'Capture error');
         }
     
@@ -312,7 +278,9 @@ Ext.define('Sencha.controller.DictionaryFormController', {
            		//me.assignAudio( mediaFiles[0].name );
            		me.assignAudio( mediaFiles[0].fullPath );
            		console.log('media filename = ' + mediaFiles[0].fullPath);
-        	} else { // else iOS
+			
+			// else iOS
+        	} else { 
         		if ( me.getCommentsMediaType() == 1 ) {
         			console.log('Video recorded. No need to rename, encode etc.');
                     me.assignAudio( mediaFiles[0].fullPath );
@@ -320,15 +288,21 @@ Ext.define('Sencha.controller.DictionaryFormController', {
         			return;
         		}
      
+	 			console.log('mediaFiles[0].fullPath = ' + mediaFiles[0].fullPath );
+				console.log('mediaFiles[0].fullPath = ' + mediaFiles[0].name );
+	 			console.log('requesting tfs...');
+				
+				
                 // rename with unique filename (date and time)
                	window.requestFileSystem(
                    	LocalFileSystem.TEMPORARY, 
                    	0, 
                    	// Request file system success callback
                    	function(fileSystem){
+						console.log('tfs requested.');
                         fileSystem.root.getFile(
-							//mediaFiles[0].name,
-                            mediaFiles[0].fullPath,
+							mediaFiles[0].name,
+                            //mediaFiles[0].fullPath,
                            	{ create: false, exclusive: false }, 
                            	// FileSystem Success callback (found file) 
                             function success(entry) {
@@ -347,10 +321,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 											function success(renamedEntry) {
 												var pathToRenamedFile = mediaFiles[0].fullPath.replace(mediaFiles[0].name, newFilename);
                                                 						console.log('encoding audio...');
-												/*
-												window.plugins.AudioEncode.encodeAudio(pathToRenamedFile, "Sencha.app.getController('DictionaryFormController').audioEncodeSuccessCB", "Sencha.app.getController('DictionaryFormController').failedAudioEncode");
-                                                */
-                                                window.encodeAudio(
+												window.encodeAudio(
                                                     pathToRenamedFile,
                                                     function (filename) {
 							
@@ -426,16 +397,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         this.setSourceWordURL(null); // make sure audio URLs are null so we dont try to play them
         this.setAudioURL(null); 
         this.setCommentsURL(null);
-          
-        // clear it
-        //this.setSourceWordfield("");
-        //this.setPartOfSpeechField("");
-        //this.setInflectionField("");
-        //this.setDisambiguationField("");
-        //this.setTargetWordField("");
-        //this.setDetailedEntryField("");
-        //this.setNoteField("");
-        
         this.setTargetId("");
            
         //metadata form
@@ -449,8 +410,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         navigator.geolocation.getCurrentPosition(
             // Success callback
             function(position) {
-            	console.log('in gps success');
-            	console.log('setting lat and long. Lat = ' + position.coords.latitude);
                 thisPtr.setCurrentLatitude( position.coords.latitude );
                 thisPtr.setCurrentLongitude( position.coords.longitude ); 
             }, 
@@ -464,23 +423,13 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         );
          
         this.setRecordingDevice( device.model );
-        //console.log('device.name = ' + device.name);
-        //console.log('this.getRecordingDevice() = ' + this.getRecordingDevice() );
         
         //speaker form
         this.setSpeakerName("");
         this.setSpeakerDOB(0);
         this.setSpeakerGender("");
         this.setSpeakerComment("");
-         
-        //collector form
-        /*
-        this.setCollectorName("");
-        this.setCollectorDOB("");
-        this.setCollectorGender("");
-        this.setCollectorComment("");
-   		*/
-   		
+       
     	this.getMain().push({
     		xtype: 'dictionaryformview'			                    
         });
@@ -488,12 +437,11 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         this.getDictionaryDeleteButton().hide();
    	},
    	           
-           
+          
+		  
     // Display dictionary edit entry form and pre-populate
     //
    	editForm: function(){
-        //this.setAudioURLinTFS(null);
-       // this.setImageURLinTFS(null);
 		this.setSourceWordURLinTFS(null); 		
 		this.setTargetWordURLinTFS(null);
 		this.setCommentsURLinTFS(null);
@@ -505,34 +453,21 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         var dictionaryTargetId = curRecord.get('dictionaryTargetId');
         var dictionarySourceId = curRecord.get('id');
            
-        // Get Dictionary relevant records
-           console.log('dictionaryTargetId = ' + dictionaryTargetId);
-           console.log('available records in DictionaryTargets = ' + Ext.getStore("DictionaryTargets").getCount() );
-   		var dictionaryTargetStore = Ext.getStore("DictionaryTargets").getById(dictionaryTargetId);
-        
-        // Get collector
-   		if ( curRecord.get('collectorId') != null ) {
-   			var collectorStore = Ext.getStore("Collectors").getById( curRecord.get('collectorId') );
-		}
-   		
-   		// Get speaker
+        // Get speaker
    		if ( curRecord.get('speakerId') != null ) {
    			var speakerStore = Ext.getStore("Speakers").getById( curRecord.get('speakerId') );
 		}
 		
-
         // create form
    		this.getMain().push({
    			xtype: 'dictionaryformview',
             title: 'Edit Entry'
    		});
            
-        console.log('retrieved comments = ' + curRecord.get('comments') );
         // populate it
         this.getDictionarySourceWordForm().getComponent('sourceWordField').setValue( curRecord.get('sourceWord') );
         this.getDictionaryTargetWordForm().getComponent('targetWordField').setValue( curRecord.get('targetWord') );
    		this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').setValue( curRecord.get('comments') );
-   		//this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').setValue( dictionaryTargetStore.get('comments') );
    
         // store id's for convenience later (when saving)
         this.setSourceId(dictionarySourceId);
@@ -568,9 +503,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         
         // set image URL and show it on button
         var imageURL = curRecord.get('imageURL');
-        console.log('imageURL = ' + imageURL);
         if ( imageURL ) {
-        	console.log('in if(imageURL)...');
 			if ( device.platform == "Android" ) {
         			var fullImagePath = Sencha.app.getPersistentFileStoreVar().replace("file://", "") + "/" + Sencha.app.androidFilesPath + "assets/" + imageURL;
     			} // else iOS
@@ -589,35 +522,10 @@ console.log('in encodeAudio success callback. filename = ' + filename );
    		this.setCurrentLongitude( curRecord.get('longitude') );
    		this.setRecordingDevice( curRecord.get('recordingDevice') );
    		
-   		
-   		/* MDM don't change meta data for an edit
-   		//Getting the current date and time
-   		var d = new Date();
-        this.setCurrentDate( d.getTime() );
-        // Get location   
-        var thisPtr = this;
-        navigator.geolocation.getCurrentPosition(
-            // Success callback
-            function(position) {
-                thisPtr.setCurrentLatitude( position.coords.latitude );
-                thisPtr.setCurrentLongitude( position.coords.longitude ); 
-            }, 
-            // Error callback
-            function(error) {
-                console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-                thisPtr.setCurrentLatitude('');
-                thisPtr.setCurrentLongitude('');
-            }
-        );    
-        this.setRecordingDevice( device.name );
-   	    */ 
-   	    
    	    //speaker form
    	    if ( speakerStore != null ) { 
    	    	this.setSpeakerName(speakerStore.get('name'));
    	    	this.setSpeakerDOB( speakerStore.get('birthDate') );
-   	    	console.log('speaker bithdate = ' + speakerStore.get('birthDate') );
-   	    	
    	    	this.setSpeakerGender(speakerStore.get('gender'));
    	    	this.setSpeakerComment(speakerStore.get('comments'));
    	    }  
@@ -630,13 +538,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 			this.getTargetWordRecordButtonRef().disable();
 			this.getDictionaryDeleteButton().hide();
    		} else {
-			//this.getDeleteContainer().setHidden(false); 
 			this.getDictionaryDeleteButton().show();
 		}
    	},
    	
    	
-   	// MDM 20.05.2013 Checks for target and source word, if none provided these are autofilled and 
+   	// Checks for target and source word, if none provided these are autofilled and 
    	// a confirmation alert displayed
    	//
    	validateForm: function() {
@@ -686,8 +593,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         var sourceWord = this.getDictionarySourceWordForm().getComponent('sourceWordField').getValue();
         var targetWord = this.getDictionaryTargetWordForm().getComponent('targetWordField').getValue();
         var comments = this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').getValue();   
-        console.log('form comments = ' + comments);
-        console.log('saving speaker date: ' + this.getSpeakerDOB() );
           
         var db = window.sqlitePlugin.openDatabase({name: "0000000000000001.db"});
         
@@ -761,7 +666,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newSourceFilename = newSourceWordURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												//var destDir = Sencha.app.androidFilesPath + "assets/words";
 												var destDir = Sencha.app.getWordsFolder();
 											} 
 											// else iOS
@@ -777,15 +681,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newAudioFilename = newAudioURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												//var destDir = Sencha.app.androidFilesPath + "assets/words";
-												//var destDir = Sencha.app.getWordsFolder();
-												var destDir = "assets/words";
+												var destDir = Sencha.app.getWordsFolder();
 											} // else iOS
 											else {
 												var destDir = 'assets/words';
 											} 
-                                              console.log('destDir = ' + destDir );
-                                              console.log('currentObj.getTargetWordURLinTFS() = ' + currentObj.getTargetWordURLinTFS() );
+                                           
 											currentObj.moveFileToPersistentStorage(currentObj.getTargetWordURLinTFS(), destDir, newAudioFilename, currentObj);
 										}
                                         
@@ -794,7 +695,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newCommentsFilename = newCommentsURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												var destDir = Sencha.app.androidFilesPath + "assets/words";
+												var destDir = Sencha.app.getWordsFolder();
 											} // else iOS
 											else {
 												var destDir = 'assets/words';
@@ -802,42 +703,22 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                                                     
 											currentObj.moveFileToPersistentStorage(currentObj.getCommentsURLinTFS(), destDir, newCommentsFilename, currentObj);
 										}
-                                         
-                                        console.log('just before phot if...');       
+                                              
 										// if a photo was taken, save it
 										if ( newImageURL ) {
-											console.log('a photo was taken, saving it...');
 											var newImageFilename = newImageURL.replace(/^.*[\\\/]/, '');
 											if ( device.platform == "Android" ) {
-												/*
-												var destDir = Sencha.app.androidFilesPath + "assets/images";
-												//var tempImageURL = "DCIM/Camera/" + currentObj.getImageURLinTFS();
-												var tempImageURL = Sencha.app.androidFilesPath + '../cache/' + currentObj.getImageURLinTFS();
-												console.log('about to move file. tempImageURL = ' + tempImageURL);
-												*/
-												var destDir = Sencha.app.androidFilesPath + "assets/images";
-												
+												var destDir = Sencha.app.getImagesFolder();
 											} 
 											// else iOS
 											else {
 												var destDir = 'assets/images';
-												//var tempImageURL = currentObj.getImageURLinTFS();
 											}
-                                                    
-											//currentObj.moveFileToPersistentStorage(tempImageURL, destDir, newImageFilename, currentObj);
-                                              console.log('currentObj.getImageURLinTFS() = ' + currentObj.getImageURLinTFS() );
+ 
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
-										//currentObj.getDictionaryListView().getStore().load(); // filtered dictionary source list
-										currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();
-										
-										/*
-										Ext.getStore("DictionarySources").load(); // unfiltered full dictionary source list
-										Ext.getStore("DictionaryTargets").load();
-										//Ext.getStore("Collectors").load();
-										Ext.getStore("Speakers").load();
-										*/		
+										currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();	
 									},
 									errorCB          
 								);
@@ -851,173 +732,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 			errorCB
 		);
    	},
+ 
    	
-   	
-   	/*
-   	// MDM 16.08.2012 
-    // Update form by Eldwin - used to resave an existing dictionary entry to db
-    // MDM Consider implementing with direct SQL calls
-    //
-   	updateForm : function(){
-   		this.validateForm();
-   		
-   		var sourceWord = this.getDictionarySourceWordForm().getComponent('sourceWordField').getValue();
-        var targetWord = this.getDictionaryTargetWordForm().getComponent('targetWordField').getValue();
-        var comments = this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').getValue();   
-        
-		// Get records that need to be updated
-   		var dictionaryTargetStore = Ext.getStore("DictionaryTargets").getById( this.getTargetId() );
-   		var dictionarySourceStore = Ext.getStore("DictionarySources").getById( this.getSourceId() );
-   		//var speakerStore = Ext.getStore("Speakers").getById( this.getSpeakerId() );
-   		// var collectorStore = Ext.getStore("Collectors").getById(collectorId);
-   		var speakerStore = Ext.getStore("Speakers").findRecord("id", this.getSpeakerId() ); 
-   		 
-   		console.log('this.getSourceId() = ' + this.getSourceId() );
-   		console.log('dictionarySourceStore = ' + dictionarySourceStore);
-   		 
-   		// Update dictionary source table
-   		dictionarySourceStore.set('sourceWord', sourceWord);
-   		dictionarySourceStore.set('targetWord', targetWord);
-   		dictionarySourceStore.set('status', this.getAWAITINGUPLOADSTATUS() );
-		console.log('this.getAWAITINGUPLOADSTATUS() = ' + this.getAWAITINGUPLOADSTATUS() );
-		// Update dictionary target table
-        dictionaryTargetStore.set('targetWord', targetWord);
-        dictionaryTargetStore.set('comments', comments);
-   		dictionaryTargetStore.set('savedDate', this.getCurrentDate());
-   		dictionaryTargetStore.set('latitude', this.getCurrentLatitude());
-   		dictionaryTargetStore.set('longitude', this.getCurrentLongitude());
-   		dictionaryTargetStore.set('recordingDevice', this.getRecordingDevice());
-   		
-   		// if new source word audio has been recorded
-		if ( this.getSourceWordURLinTFS() ) {
-			// create new audio url
-			var d1 = new Date();
-			var newAudioURL = 'words/' + Sencha.app.getUsername() + d1.getTime() + 'src' + '.' + this.getSourceWordURLinTFS().split('.').pop(); // the last bit gets the file extension;
-			var oldAudioURL = dictionaryTargetStore.get('audioURL'); // remember for deleting later
-           
-			// Move new file to permanent file store           
-			var newAudioFilename = newAudioURL.replace(/^.*[\\\/]/, '');
-			if ( device.platform == "Android" ) {
-				var audioDestDir = Sencha.app.androidFilesPath + "assets/words";
-			} // else iOS
-			else {
-				var audioDestDir = 'assets/words';
-			}
-			this.moveFileToPersistentStorage( this.getSourceWordURLinTFS(), audioDestDir, newAudioFilename);
-           
-			// delete old file
-			this.deleteFileFromPersistentStorage(oldAudioURL);
-           
-			// store new audio URL
-			dictionarySourceStore.set('sourceWordURL', newAudioURL ); 
-        }
-   		
-		// if new (target/translation) audio has been recorded
-		if ( this.getTargetWordURLinTFS() ) {
-			// create new audio url
-			var d = new Date();
-			var newAudioURL = 'words/' + Sencha.app.getUsername() + d.getTime() + 'tgt' + '.' + this.getTargetWordURLinTFS().split('.').pop(); // the last bit gets the file extension;
-			var oldAudioURL = dictionaryTargetStore.get('audioURL'); // remember for deleting later
-           
-			// Move new file to permanent file store           
-			var newAudioFilename = newAudioURL.replace(/^.*[\\\/]/, '');
-			if ( device.platform == "Android" ) {
-				var audioDestDir = Sencha.app.androidFilesPath + "assets/words";
-			} // else iOS
-			else {
-				var audioDestDir = 'assets/words';
-			}
-			this.moveFileToPersistentStorage( this.getTargetWordURLinTFS(), audioDestDir, newAudioFilename);
-           
-			// delete old file
-			this.deleteFileFromPersistentStorage(oldAudioURL);
-           
-			// store new audio URL
-			dictionaryTargetStore.set('audioURL', newAudioURL ); 
-        }
-        
-        // if new comments audio has been recorded
-		if ( this.getCommentsURLinTFS() ) {
-			// create new audio url
-			var d3 = new Date();
-			var newAudioURL = 'words/' + Sencha.app.getUsername() + d3.getTime() + 'cmt' + '.' + this.getCommentsURLinTFS().split('.').pop(); // the last bit gets the file extension;
-			var oldAudioURL = dictionaryTargetStore.get('commentsURL'); // remember for deleting later
-           
-			// Move new file to permanent file store           
-			var newAudioFilename = newAudioURL.replace(/^.*[\\\/]/, '');
-			if ( device.platform == "Android" ) {
-				var audioDestDir = Sencha.app.androidFilesPath + "assets/words";
-			} // else iOS
-			else {
-				var audioDestDir = 'assets/words';
-			}
-			this.moveFileToPersistentStorage( this.getCommentsURLinTFS(), audioDestDir, newAudioFilename);
-           
-			// delete old file
-			this.deleteFileFromPersistentStorage(oldAudioURL);
-           
-			// store new audio URL and commentsMediaType
-			dictionaryTargetStore.set('commentsURL', newAudioURL );
-			dictionaryTargetStore.set('commentsMediaType', this.getCommentsMediaType() );
-        }
-        
-        // if new photo has been taken
-        if ( this.getImageURLinTFS() ) {
-           // create new url
-           var d = new Date();
-           var newImageURL = 'images/' + Sencha.app.getUsername() + d.getTime() + 'img' + '.jpg';
-           var oldImageURL = dictionaryTargetStore.get('imageURL'); // remember for deleting later
-           
-           // Move new file to permanet file store and delete old one            
-           var newImageFilename = newImageURL.replace(/^.*[\\\/]/, '');
-           if ( device.platform == "Android" ) {
-           		var imageDestDir = Sencha.app.androidFilesPath + "assets/images";
-           		var imageSrcDir = "DCIM/Camera/" + this.getImageURLinTFS();
-           }  
-           // else iOS
-           else {
-				var imageDestDir = 'assets/images';
-				var imageSrcDir = this.getImageURLinTFS();
-			}
-           this.moveFileToPersistentStorage( imageSrcDir, imageDestDir, newImageFilename);
-
-           // delete old file
-           this.deleteFileFromPersistentStorage(oldImageURL);
-           
-           // store new URL
-           dictionaryTargetStore.set('imageURL', newImageURL ); 
-        }
-           
-        if ( speakerStore != null ) {
-   			speakerStore.set('name', this.getSpeakerName());
-   			speakerStore.set('birthDate', this.getSpeakerDOB());
-   	 		speakerStore.set('gender', this.getSpeakerGender());
-   	 		speakerStore.set('comments', this.getSpeakerComment());
-   	 	} else {
-   	 		console.log('speakerStore = null, this.getSpeakerId()=' + this.getSpeakerId() );
-   	 	}
-
-		// how do we handle this? overwrite or leave??
-   		//collectorStore.set('name', this.getCollectorName());
-   		//collectorStore.set('birthDate', this.getCollectorDOB());
-   		//collectorStore.set('gender', this.getCollectorGender());
-   		//collectorStore.set('comments', this.getCollectorComment());
-   		
-   		
-   		Ext.getStore("DictionarySources").sync();
-   		Ext.getStore("DictionaryTargets").sync();
-   		Ext.getStore("Speakers").sync();
-   		//Ext.getStore("Collectors").sync();
-   	},
-   	*/
-   	
-   	
-   	// Update form
-   	// Updates an existing dictionary entry with details in form 
+   	// Update form - updates an existing dictionary entry with details in form 
    	//
    	updateForm : function(){
    		var currentObj = this;
-		console.log('in updateForm...');
 		
         function errorCB(tx, e) {
            var msg = 'An error occurred upadating the dictionary entry: ' + e.message;
@@ -1030,27 +750,17 @@ console.log('in encodeAudio success callback. filename = ' + filename );
         var sourceWord = this.getDictionarySourceWordForm().getComponent('sourceWordField').getValue();
         var targetWord = this.getDictionaryTargetWordForm().getComponent('targetWordField').getValue();
         var comments = this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').getValue(); 
-        console.log('comments = ' + comments);  
-        console.log('saving speaker date: ' + this.getSpeakerDOB() );
           
         var db = window.sqlitePlugin.openDatabase({name: "0000000000000001.db"});
         db.transaction(
             function(tx){
-            	// Store speaker details
-            	//*********** Need to work on this - if no speaker, then need to insert (not update)
-            	//*********** or could just leave? 
         		tx.executeSql( 
     				'UPDATE SPEAKER SET name=?, birthDate=?, gender=?, comments=? WHERE id=?;',
     				[currentObj.getSpeakerName(), currentObj.getSpeakerDOB(), currentObj.getSpeakerGender(), currentObj.getSpeakerComment(), currentObj.getSpeakerId() ],
     				function(tx,results){
-    					console.log('succesful SPEAKER insert...');
-    					
     					// Store speaker id
-                        //currentObj.setSpeakerId(results.insertId);
                         var dictionarySpeakerId = currentObj.getSpeakerId();
-                        // Collector id is always 1
-                        var dictionaryCollectorId = 1;
-                     
+                        var dictionaryCollectorId = 1; // Collector id is always 1
                      
 						// Create unique source word audioURL
 						var newSourceWordURL = '';
@@ -1079,26 +789,15 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 							var d4 = new Date();
 							newImageURL = 'images/' + Sencha.app.getUsername() + d4.getTime() + 'img' + '.jpg';
 						}
-                        console.log('newImageURL = ' + newImageURL);
-                         
-                        console.log('dictionarySpeakerId = ' + dictionarySpeakerId );  
-                        //dictionaryTargetQuery = 'INSERT INTO DICTIONARYTARGET (id, speakerId, collectorId, targetWord, audioURL, imageURL, comments, commentsURL, commentsMediaType, savedDate, latitude, longitude, recordingDevice) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                        
                         dictionaryTargetQuery = 'UPDATE DICTIONARYTARGET SET speakerId=?, collectorId=?, targetWord=?, audioURL=?, imageURL=?, comments=?, commentsURL=?, commentsMediaType=?, savedDate=?, latitude=?, longitude=?, recordingDevice=? WHERE id=?';
-                        // *** insert escape chars
-						//dictionaryTargetParams = [null, dictionarySpeakerId, dictionaryCollectorId, targetWord, newAudioURL, newImageURL, comments, newCommentsURL, currentObj.getCommentsMediaType(), currentObj.getCurrentDate(), currentObj.getCurrentLatitude(), currentObj.getCurrentLongitude(), currentObj.getRecordingDevice() ];
 						dictionaryTargetParams = [dictionarySpeakerId, dictionaryCollectorId, targetWord, newAudioURL, newImageURL, comments, newCommentsURL, currentObj.getCommentsMediaType(), currentObj.getCurrentDate(), currentObj.getCurrentLatitude(), currentObj.getCurrentLongitude(), currentObj.getRecordingDevice(), currentObj.getTargetId() ];
-						console.log('dictionaryTargetQuery = ' + dictionaryTargetQuery);
-						console.log('dictionaryTargetParams[12] = ' + dictionaryTargetParams[12] );
 						 
 						tx.executeSql(
 							dictionaryTargetQuery,
 							dictionaryTargetParams,
 							function(tx, results) {
-								console.log('succesful dictionarytarget insert');
-								//currentObj.setTargetId(results.insertId); /* Get id of inserted dict. target record */
 								var dictionaryTargetId = currentObj.getTargetId();
-    					        
-								//var queryDictionarySource = 'INSERT INTO DICTIONARYSOURCE (id, dictionaryTargetId, sourceWord, sourceWordURL, targetWord, isEditable, status) VALUES (null, ' + dictionaryTargetId + ', "' + sourceWord + '", "' + newSourceWordURL + '", "' + targetWord + '", 1, "' + currentObj.getAWAITINGUPLOADSTATUS() + '")';
 								var queryDictionarySource = 'UPDATE DICTIONARYSOURCE SET dictionaryTargetId=?, sourceWord=?, sourceWordURL=?, targetWord=?, isEditable=?, status=? WHERE id=?'; 
 								var dictionarySourceParams = [dictionaryTargetId, sourceWord, newSourceWordURL, targetWord, 1, currentObj.getAWAITINGUPLOADSTATUS(), currentObj.getSourceId() ];
 								
@@ -1111,7 +810,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newSourceFilename = newSourceWordURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												var destDir = Sencha.app.androidFilesPath + "assets/words";
+												var destDir = Sencha.app.getWordsFolder();
 											} // else iOS
 											else {
 												var destDir = 'assets/words';
@@ -1125,13 +824,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newAudioFilename = newAudioURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												var destDir = Sencha.app.androidFilesPath + "assets/words";
+												var destDir = Sencha.app.getWordsFolder();
 											} // else iOS
 											else {
 												var destDir = 'assets/words';
 											} 
                                               
-                                              console.log('currentObj.getTargetWordURLinTFS() = ' + currentObj.getTargetWordURLinTFS() );
 											currentObj.moveFileToPersistentStorage(currentObj.getTargetWordURLinTFS(), destDir, newAudioFilename, currentObj);
 										}
                                         
@@ -1140,7 +838,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 											var newCommentsFilename = newCommentsURL.replace(/^.*[\\\/]/, '');
                                                     
 											if ( device.platform == "Android" ) {
-												var destDir = Sencha.app.androidFilesPath + "assets/words";
+												var destDir = Sencha.app.getWordsFolder();
 											} // else iOS
 											else {
 												var destDir = 'assets/words';
@@ -1148,42 +846,23 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                                                     
 											currentObj.moveFileToPersistentStorage(currentObj.getCommentsURLinTFS(), destDir, newCommentsFilename, currentObj);
 										}
-                                         
-                                        console.log('just before phot if...');       
+                                               
 										// if a photo was taken, save it
 										if ( newImageURL ) {
 											console.log('a photo was taken, saving it...');
 											var newImageFilename = newImageURL.replace(/^.*[\\\/]/, '');
 											if ( device.platform == "Android" ) {
-												/*
-												var destDir = Sencha.app.androidFilesPath + "assets/images";
-												//var tempImageURL = "DCIM/Camera/" + currentObj.getImageURLinTFS();
-												var tempImageURL = Sencha.app.androidFilesPath + '../cache/' + currentObj.getImageURLinTFS();
-												console.log('about to move file. tempImageURL = ' + tempImageURL);
-												*/
-												var destDir = Sencha.app.androidFilesPath + "assets/images";
-												
+												var destDir = Sencha.app.getImagesFolder();
 											} 
 											// else iOS
 											else {
 												var destDir = 'assets/images';
-												//var tempImageURL = currentObj.getImageURLinTFS();
 											}
-                                                    
-											//currentObj.moveFileToPersistentStorage(tempImageURL, destDir, newImageFilename, currentObj);
-                                              console.log('currentObj.getImageURLinTFS() = ' + currentObj.getImageURLinTFS() );
+
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
 										currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();
-										
-										/*
-										// Load stores to reflect database updates
-										currentObj.getDictionaryListView().getStore().load(); // filtered dictionary source list
-        								Ext.getStore("DictionarySources").load(); // unfiltered full dictionary source list
-        								Ext.getStore("DictionaryTargets").load();
-       									Ext.getStore("Speakers").load();
-       									*/
 									},
 									errorCB          
 								);
@@ -1200,26 +879,17 @@ console.log('in encodeAudio success callback. filename = ' + filename );
    	
    	
    	
-   	// Remember speaker values for saving later
-    // MDM 20.05.2013 Called from other controllers when back/OK button pressed
+   	// Remember speaker values for saving later - called from other controllers when back/OK button pressed
     //
    	rememberNewSpeakerDetails: function() {
-   		console.log('remembering SPEAKER....');
 		this.setSpeakerName(this.getSpeakerNameField().getComponent('speakerNameField').getValue());
-		//this.setSpeakerDOB(this.getSpeakerNameField().getComponent('speakerDOBField').getFormattedValue());
-		//this.setSpeakerDOB( this.getSpeakerFieldSet().getComponent('speakerDOBField').getFormattedValue() );
-		//this.setSpeakerDOB( this.getSpeakerDOBField().getValue() );
 		this.setSpeakerDOB( this.getSpeakerDOBField().getFormattedValue('U') );
-		//var d = new Date;
-		//console.log('current time = ' + d.getTime() );
-		//console.log('remembering speaker dob of: ' + this.getSpeakerDOB() );
 		this.setSpeakerGender( this.getSpeakerGenderField().getGroupValue() );
 		this.setSpeakerComment( this.getSpeakerCommentField().getComponent('speakerCommentField').getValue() );    
    	},
    	 
    	
-   	// Remember meta data values for saving later
-   	// MDM 20.05.2013 Called from other controllers when back/OK button pressed
+   	// Remember meta data values for saving later - called from other controllers when back/OK button pressed
     //
    	rememberNewMetaData: function() {
 		this.setCurrentDate( this.getDicMetadaForm().getComponent('dateField').getValue() );
@@ -1254,18 +924,11 @@ console.log('in encodeAudio success callback. filename = ' + filename );
     		xtype: 'metadataformview'			                    
     	});
   
-        //var d = new Date();
-        //d.setTime( this.getCurrentDate() );
-    	//this.getDicMetadaForm().getComponent('dateField').setValue( d.toDateString() );
-    	//var d = new Date( this.getCurrentDate() );
     	var d = new Date();
-    	//this.getDicMetadaForm().getComponent('dateField').setValue( d );
         this.getDicMetadaForm().getComponent('dateField').setValue( d.toDateString() );
     	this.getDicMetadaForm().getComponent('latitudeField').setValue( this.getCurrentLatitude() );
     	this.getDicMetadaForm().getComponent('longitudeField').setValue( this.getCurrentLongitude() );
     	this.getDicMetadaForm().getComponent('recordingDeviceField').setValue( this.getRecordingDevice() );
-    	
-    	console.log('this.getRecordingDevice() = ' + this.getRecordingDevice() );
     },
     
     
@@ -1291,33 +954,13 @@ console.log('in encodeAudio success callback. filename = ' + filename );
     		xtype: 'speakerformview'			                    
     	});
     	
-    	/*
-    	var tempDate = "";
-        if (this.getSpeakerDOB() != ""){
-            //tempDate = this.getSpeakerDOB().split("/");
-            //this.getSpeakerNameField().getComponent('speakerDOBField').setValue({day  : tempDate[0], month: tempDate[1], year : tempDate[2]});
-        	var d = new Date();
-        	this.getSpeakerNameField().getComponent('speakerDOBField').setValue( d );
-     
-        }
-    	*/
-    	
-    	//var d = new Date();
-    	console.log('date = ' + this.getSpeakerDOB() );
-        //this.getSpeakerNameField().getComponent('speakerDOBField').setValue( d );
-    	//this.getSpeakerDOBField().setValue( this.getSpeakerDOB() );
     	var d = new Date( this.getSpeakerDOB()*1000 );
-    	console.log('d = ' + d);
-    	this.getSpeakerDOBField().setValue( d );
-    		
+    	this.getSpeakerDOBField().setValue( d );	
         this.getSpeakerNameField().getComponent('speakerNameField').setValue(this.getSpeakerName());
         this.getSpeakerGenderField().setGroupValue(this.getSpeakerGender());
         this.getSpeakerCommentField().getComponent('speakerCommentField').setValue(this.getSpeakerComment());
         
         // Disable speaker fields if the dictionary entry this speaker is associated with is not editable
-        //var innerItems = this.getMain().getInnerItems();
-        //var secondViewInStack = innerItems[1].xtype;
-        
         // if this is an edit (ie. if dictionaryformview is second item in stack, then we must be adding a new entry)
         if ( this.getMain().getInnerItems()[1].xtype != "dictionaryformview" ) {
 			var dictionarySourceRecord = Ext.getStore("DictionarySources").getById( this.getSourceId() );
@@ -1333,7 +976,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
            
            
     // Move file from temporary storage to persistent storage. Uses PhoneGap File API
-    // MDM 17.04.2012
+    // Parameters:
     // srcPath - path to the file we want to move that is located on the temporary file system
     // destDir - sub directory on permanent file system (optional)
     // destFilename - new name of file (optional - otherwise uses current filename)
@@ -1395,7 +1038,7 @@ console.log('in encodeAudio success callback. filename = ' + filename );
     // destDir - sub dir on PERMANENT file system (optional)
     // destFilename - new filename (optional)
     // thisObj - current superclass ie. 'this' (optional)
-    // MDM 17.04.2012
+	// Algorithm
     // 1. Request persistent file system (may need to get a directory here?)
     // 2. Get file from temporary file system using newly encoded filename (ie. ending in m4a)
     // 3. Move file entry from temporary file system to persistent file system
@@ -1429,18 +1072,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
             	
             	console.log('destDir = ' + destDir);
             	
-                window.requestFileSystem (
-                    LocalFileSystem.PERSISTENT, 
-                    0,
+            	window.resolveLocalFileSystemURL(
+            		//cordova.file.dataDirectory+destDir, 
+            		Sencha.app.getPersistenStorgeRootFolder()+destDir,
+            		
                     // Success callback - get/create sub directory if required else just move file
-                    function (fsp) {
-                        console.log('succesfuly persistent file system found');
-                        if ( destDir ) {
-                            console.log('1');
-                            fsp.root.getDirectory(
-                                destDir,
-                                {create: true},
-                                // Success callback -  move file entry to persistent store 
+                    
                                 function(fspDestDir) {
                                     console.log('succesful get directory (destDir)');
                                     fileEntry.moveTo(
@@ -1453,25 +1090,9 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                                         },
                                         onFileSystemFail
                                     );
-                                },
-                                onFileSystemFail
-                            );
-                        } else {
-                        	// just move file entry to persistent store root directory
-                        	if ( device.platform == "Android" ) {
-        						fspDestDir = fspDestDir.replace("file://", "") + "/" + Sencha.app.androidFilesPath;
-        					} 
-                 
-                            fileEntry.moveTo(
-                                fsp.root,
-                                destFilename ? destFilename : srcFilename,
-                                null,
-                                onFileSystemFail
-                            );              
-                        }
-                    },
-                    onFileSystemFail
-                )
+                                }
+                    
+                );
             }, 
             onFileSystemFail
         );
@@ -1481,16 +1102,13 @@ console.log('in encodeAudio success callback. filename = ' + filename );
     // Displays actionsheet to either take photo or choose photo from gallery
     // 
     onAddImageTap: function() {
-    	console.log('in onAddImageTap');
-        //navigator.camera.getPicture( cameraSuccess, cameraError, { quality: 50, destinationType: Camera.DestinationType.DATA_URL} );
 		this.getPhotoSourceSelectView().show();  
 	},
     
 
     // Add image - stores reference to image taken/chosen
     // Params:
-    //    source - choose or take photo ie. either navigator.camera.PictureSourceType.CAMERA or navigator.camera.PictureSourceType.PHOTOLIBRARY
-	// MDM 20.05.2013
+    // source - choose or take photo ie. either navigator.camera.PictureSourceType.CAMERA or navigator.camera.PictureSourceType.PHOTOLIBRARY
 	//
 	addImage: function(source) {   
 		this.getPhotoSourceSelectView().hide(); // hide image source selector action sheet
@@ -1503,12 +1121,10 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 		
 		// copy photo from gallery to tfs (for iOS)
 		function copyPhoto(fileEntry) {
-            console.log('in copyPhoto. fileEntry.path = ' + fileEntry.fullPath);
     		window.requestFileSystem(
     			LocalFileSystem.TEMPORARY, 
     			0, 
     			function(fileSys) {
-                    console.log('succesfully requested LFS');
     				fileEntry.copyTo(
     					fileSys.root, 
     					null, 
@@ -1521,31 +1137,20 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 		}
 		
         function setImageURL(entry) {
-			console.log('SUCCESS - copied file from gallery to TFS');
 			me.setImageURLinTFS( entry.fullPath ); // remember filename of this file
-    		console.log(entry.fullPath)
     		showImageOnButton(entry.fullPath);
 		}
 		
 		function fail(error) {
-           console.log('copy failed');
-           console.log(error.code);
            navigator.notification.alert('Unable to resolve or copy image to app file store', null, 'Capture error');
 		}
 		
-        // Phonegap device impage capture
-        //navigator.device.capture.captureImage(
         navigator.camera.getPicture(
             // success callback
             function (imageURI) { // Success
             	// If there is already a temporary image, delete it
-            	// if ( getImageURLinTFS() ) { ...
-                console.log('imageURI = ' + imageURI);
-                                    
             	if ( source == navigator.camera.PictureSourceType.PHOTOLIBRARY) {
-            		console.log('A photo selected from the photo lib');
-            		
-                    if ( device.platform == "Android" ) {
+            		if ( device.platform == "Android" ) {
                         // On Android, file has to be copied from outside app bundle to temporary file system
                         window.resolveLocalFileSystemURI(imageURI.replace("file://", ""), copyPhoto, fail);
                     } else {
@@ -1553,12 +1158,8 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                         window.resolveLocalFileSystemURI(imageURI, setImageURL, fail);
                     }
             		
-            	} else {
-                    console.log('photo taken with camera');
-                    console.log('imageURI =' + imageURI);
-                                    
+            	} else {                            
                     if ( device.platform == "Android" ) {
-                        //var srcFilename = imageURI.replace(/^.*[\\\/]/, ''); // just give us the filename
                         me.setImageURLinTFS( imageURI ); // remember filename of this file
                         showImageOnButton( imageURI );
                     } else {
@@ -1575,13 +1176,12 @@ console.log('in encodeAudio success callback. filename = ' + filename );
             	destinationType: Camera.DestinationType.FILE_URI,
             	sourceType: source 
             }
-            //{limit: 1}
         );
     },
     
     
     // Delete file from permanent file system. Uses PhoneGap File API
-    // MDM 20.08.2012
+    // Parameters:
     // fileName - Name of file to delete
     //
     deleteFileFromPersistentStorage: function(fileName) {
@@ -1624,7 +1224,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
            
            
     // Delete dictionary entry
-    // MDM 16.08.2012 
     //
     deleteDictionaryEntry : function(){
         var currentObj = this;
@@ -1641,9 +1240,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                 var dictionarySourceStore = Ext.getStore("DictionarySources");
                 var dictionaryTargetStore = Ext.getStore("DictionaryTargets");
                 var speakerStore = Ext.getStore("Speakers");
-                //var collectorStore = Ext.getStore("Collectors");
-
-				//var sourceModel = dictionarySourceStore.getById(currentObj.getDictionaryForm().getComponent('sourceIdField').getValue());
 				var sourceModel = dictionarySourceStore.getById( currentObj.getSourceId() );
 				// Remove dictionary source record
 				var sourceAudioFilename = sourceModel.get('sourceWordURL');
@@ -1662,9 +1258,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
 					speakerStore.sync();
 				}
         
-                //var dicTargetId = currentObj.getDictionaryForm().getComponent('targetIdField').getValue();
-                //var dictTargetId = currentObj.getTargetId();
-                //if ( dictionarySourceStore.find("dictionaryTargetId", dicTargetId) == -1) {
                 // Remove dictionary target record if no other source words use this target word 
                 console.log('about to remove target record');
                 if ( dictionarySourceStore.find("dictionaryTargetId", currentObj.getTargetId() ) == -1) {
@@ -1696,9 +1289,6 @@ console.log('in encodeAudio success callback. filename = ' + filename );
                 Ext.getStore('DictionarySourcesFiltered').sync();
            
                 // Refresh list to show new item
-                //currentObj.filterDictionarySearch();
-                console.log('calling FILTER');
-                //currentObj.getApplication().getController('DictionaryListController').clearDictionarySearchFilter();
                 
                 // turn on icon image
                 currentObj.getDictionaryEntryButton().setText('');

@@ -183,16 +183,22 @@ Ext.application({
     },
     
     
-    // Utility function to return assets folder
+    // Utility function to get persistent storage folder. On Android currently this is the dataDirectory and on iOS the Documents folder
     //
-    getAssetsFolder: function() {
+    getPersistenStorgeRootFolder: function() {
     	if ( device.platform == "Android" ) {
-			return cordova.file.dataDirectory + "assets/";
+			return cordova.file.dataDirectory;
 		} 
         // else iOS
         else {
-        	return Sencha.app.getPersistentFileStoreVar() + "assets/";
+        	return Sencha.app.getPersistentFileStoreVar();
         }
+    },
+    
+    // Utility function to return assets folder
+    //
+    getAssetsFolder: function() {
+    	return Sencha.app.getPersistenStorgeRootFolder() + "assets/";
     },
     
     
@@ -200,6 +206,12 @@ Ext.application({
     //
     getWordsFolder: function() {
     	return Sencha.app.getAssetsFolder() + "words";
+    },
+	
+	// Utility function to return images folder
+    //
+    getImagesFolder: function() {
+    	return Sencha.app.getAssetsFolder() + "images";
     },
     
     
@@ -254,7 +266,7 @@ Ext.application({
         // else iOS
         else {
         	Sencha.app.playAudioAndRelease( Sencha.app.getPersistentFileStoreVar() + "assets/" + audioFile );
-        }
+        } 
     }
 
 });
