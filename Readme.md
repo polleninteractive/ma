@@ -2,8 +2,9 @@
 
 
 
-The Ma! Dictionary App framework availabe under the MIT license.
+The Ma! Dictionary App framework.
 
+Copyright Pollen Interactive and the Ma-Project.
 
 ####Dependencies
 * Cordova 3.5.0-0.2.7
@@ -21,10 +22,10 @@ The Ma! Dictionary App framework availabe under the MIT license.
 * org.apache.cordova.splashscreen
 * org.apache.cordova.vibration
 * com.brodysoft.sqlitePlugin
+* AudioEncode (iOS only)
 
 
 ####Add-ons
-* AudioEncode (iOS app records audio as uncompressed .wav file. This class by Lyle Pratt and updated by Keenan Wyrobek converts audio at a file path to M4A format)
 * Pull Refresh
 * The Ma! Dictionary app expects a database in
 
