@@ -106,7 +106,8 @@ Ext.define('Sencha.view.DictionaryDetailPageView', {
 			} 
 			// else iOS
 			else {
-				imageThumbURL = Sencha.app.getPersistentFileStoreVar() + '/assets/' + dictTargetResults.rows.item(0).imageURL;
+				//imageThumbURL = Sencha.app.getPersistentFileStoreVar() + '/assets/' + dictTargetResults.rows.item(0).imageURL;
+				imageThumbURL = Sencha.app.getAssetsFolder() + this.getSourceRecord().get('imageURL');
 			} 
 
 			this.getAt(0).getAt(0).setHidden(false);

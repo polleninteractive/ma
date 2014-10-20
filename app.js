@@ -35,6 +35,11 @@ Ext.application({
     TARGET_LANGUAGE_URL: 'put url of target language here/', // target language URL (Ma! web service only)
     SOURCE_LANGUAGE_ID: '1', // source language id (Ma! web service only)
     TARGET_LANGUAGE_ID: '2', // target language id (Ma! web service only)
+            
+	// Constants
+    iOSfilestorePrefix: 'file://', // Prefix required for window.resolvelocalfilesystemURL to work on iOS on audio captured with media plugin
+	dictionaryWordsFolderName: 'words/', // sub-folder where dictionary words are stroed
+	imagesFolderName: 'images/', // sub-folder where images are stored
                 
     // Global variables
     persistentFileStoreVar : "",
@@ -108,6 +113,25 @@ Ext.application({
     },
 
 
+    // Getter for dictionaryWordsFolder
+    //
+    getIOSfilestorePrefix: function() {
+        return this.iOSfilestorePrefix;
+    },
+                
+                
+	// Getter for dictionaryWordsFolder 
+	//
+	getDictionaryWordsFolderName: function() {
+		return this.dictionaryWordsFolderName;
+	},
+	
+	// Getter for imagesFolder 
+	//
+	getImagesFolderName: function() {
+		return this.imagesFolderName;
+	},
+
 
 	// Define global username getters and setters
 	//
@@ -175,7 +199,7 @@ Ext.application({
                 },
                 function(evt) {
                     console.log(evt.target.error.code);
-                    var msg = 'An error occurred accessing persistent file store: ' + evt.target.error.code;
+                    var msg = 'An error occurred accessing temporary file store: ' + evt.target.error.code;
                     navigator.notification.alert(msg, null, 'Capture error');
                 }
             );
@@ -205,13 +229,13 @@ Ext.application({
     // Utility function to return words folder
     //
     getWordsFolder: function() {
-    	return Sencha.app.getAssetsFolder() + "words";
+    	return Sencha.app.getAssetsFolder() + Sencha.app.getDictionaryWordsFolderName();
     },
 	
 	// Utility function to return images folder
     //
     getImagesFolder: function() {
-    	return Sencha.app.getAssetsFolder() + "images";
+    	return Sencha.app.getAssetsFolder() + Sencha.app.getImagesFolderName();
     },
     
     
@@ -226,8 +250,6 @@ Ext.application({
     // audioFile - the full path to the audio file to play
     //
     playAudioAndRelease: function(audioURL) {
-    	console.log ('playing audio from app.playAudioAndRelease. audioURL = ' + audioURL);
-    
     	if ( audioURL ) {
 			// Release the previous media object if there is one
 			if (Sencha.app.mediaPtr) {

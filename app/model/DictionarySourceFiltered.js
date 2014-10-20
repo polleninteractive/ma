@@ -30,7 +30,8 @@ Ext.define('Sencha.model.DictionarySourceFiltered', {
 			{ name: 'latitude', type: 'string'},
 			{ name: 'longitude', type: 'string'},
 			{ name: 'recordingDevice', type: 'string'},
-			{ name: 'detailedEntry', type: 'string'}
+			{ name: 'detailedEntry', type: 'string'},
+			{ name: 'sourceWordURL', type: 'string' }
         ]
     }
     

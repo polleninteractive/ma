@@ -43,7 +43,6 @@ Ext.define('Sencha.controller.PhotoSourceSelectController', {
     // Cancel (hide action sheet)
     //       
     cancelPhotoSourceSelect: function() {
-    	console.log('hide select view');
     	this.getPhotoSourceSelect().hide();
     }
     
