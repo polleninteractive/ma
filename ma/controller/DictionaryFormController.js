@@ -2,7 +2,7 @@
 // Controller to handle adding and editing dictionary entries
 //
 
-Ext.define('Sencha.controller.DictionaryFormController', {
+Ext.define('Ma.controller.DictionaryFormController', {
     extend: 'Ext.app.Controller',
 
     config: {
@@ -605,7 +605,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
-										currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();	
+										currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();	
 									},
 									errorCB          
 								);
@@ -741,7 +741,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
 										}
 										
 										// refresh ditionary search results to show these changes
-										currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();
+										currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
 									},
 									errorCB          
 								);
@@ -1087,7 +1087,7 @@ Ext.define('Sencha.controller.DictionaryFormController', {
            
 															currentObj.getMain().pop(2);
                 
-															currentObj.getApplication().getController('DictionaryListController').filterDictionarySearch();
+															currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
     													},
     													errorCB
     												);

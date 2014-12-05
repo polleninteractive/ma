@@ -1,7 +1,7 @@
 // Sounds of Iwaidja Carousel View
 //
 
-Ext.define('Sencha.view.SoundsOfIwaidjaInfoView', {
+Ext.define('Ma.view.SoundsOfIwaidjaInfoView', {
     extend: 'Ext.Carousel',
     xtype: 'soundsofiwaidjainfoview',
     config: {

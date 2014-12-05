@@ -1,4 +1,4 @@
-Ext.define('Sencha.model.Collector', {
+Ext.define('Ma.model.Collector', {
     extend: 'Ext.data.Model',
     
     config: {
@@ -18,7 +18,7 @@ Ext.define('Sencha.model.Collector', {
            dbConfig: {
            		tablename: 'COLLECTOR',
            		//dbConn: Ext.DbConnection
-           		dbConn: Sencha.util.InitSQLite.getConnection()
+           		dbConn: Ma.util.InitSQLite.getConnection()
            }, 
            reader: {type:'array'}     
         }

@@ -1,4 +1,4 @@
-Ext.define('Sencha.controller.DictionarySyncController', {
+Ext.define('Ma.controller.DictionarySyncController', {
 	extend: 'Ext.app.Controller',
 
 	config: {

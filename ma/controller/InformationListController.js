@@ -1,7 +1,7 @@
 // Information List Controller
 // Controller to display appropriate information section based on selection made in information list view
 
-Ext.define('Sencha.controller.InformationListController', {
+Ext.define('Ma.controller.InformationListController', {
     extend: 'Ext.app.Controller',
 
     config: {

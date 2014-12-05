@@ -1,7 +1,7 @@
 // Metadata For View - form for entering metadata
 //
 
-Ext.define('Sencha.view.MetadataFormView', {
+Ext.define('Ma.view.MetadataFormView', {
     extend: 'Ext.Container',
     xtype: 'metadataformview',
            

@@ -1,7 +1,7 @@
 // Dictionary Navigation View - Navigation view for DictionaryContainerList
 //
 
-Ext.define('Sencha.view.DictionaryNavigationView', {
+Ext.define('Ma.view.DictionaryNavigationView', {
     extend: 'Ext.navigation.View',
     xtype: 'dictionarynavigationview',
 

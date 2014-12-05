@@ -1,7 +1,7 @@
 // TAB BAR CONTROLLER
 // Handles logo button tap (to open web page in browser) and turns off animations for Android because too slow
 
-Ext.define('Sencha.controller.TabBarController', {
+Ext.define('Ma.controller.TabBarController', {
     extend: 'Ext.app.Controller',
 
     config: {

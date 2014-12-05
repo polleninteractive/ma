@@ -1,8 +1,8 @@
-Ext.define('Sencha.store.SystemStates', {
+Ext.define('Ma.store.SystemStates', {
     extend: 'Ext.data.Store',
     
     config: {
-        model: 'Sencha.model.SystemState',
+        model: 'Ma.model.SystemState',
         autoLoad: true,
         autoSync: true
     }

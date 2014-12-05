@@ -1,7 +1,7 @@
 // Dictionary Container List - contains list view, search filter box and language toggle buttons
 //
 
-Ext.define("Sencha.view.DictionaryContainerList", {
+Ext.define("Ma.view.DictionaryContainerList", {
     extend: "Ext.Container",
     xtype: 'dictionarycontainerlist',
 

@@ -1,7 +1,7 @@
 // Image View - used to display dictionary image full size
 //
 
-Ext.define('Sencha.view.ImageView', {
+Ext.define('Ma.view.ImageView', {
     extend: 'Ext.Container',
     xtype: 'imageview',
     config: {

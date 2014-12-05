@@ -1,7 +1,7 @@
 // Dictionary sync confirmation view (actionsheet to confirm/cancel sync)
 //
 
-Ext.define('Sencha.view.DictionarySyncConfirmationView', {
+Ext.define('Ma.view.DictionarySyncConfirmationView', {
     extend: 'Ext.ActionSheet',
     xtype: 'dictionarysyncconfirmationview',
     

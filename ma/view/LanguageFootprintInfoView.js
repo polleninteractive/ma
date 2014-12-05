@@ -1,7 +1,7 @@
 // Language Footprint Carousel View (in Information tab)
 //
 
-Ext.define('Sencha.view.LanguageFootprintInfoView', {
+Ext.define('Ma.view.LanguageFootprintInfoView', {
     extend: 'Ext.Carousel',
     xtype: 'languagefootprintinfoview',
     config: {

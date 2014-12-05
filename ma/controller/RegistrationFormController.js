@@ -1,7 +1,7 @@
 // REGISTRATION FORM CONTROLLER
 // Handles first user registration with web service
 
-Ext.define('Sencha.controller.RegistrationFormController', {
+Ext.define('Ma.controller.RegistrationFormController', {
     extend: 'Ext.app.Controller',
 
     config: {
@@ -45,7 +45,7 @@ Ext.define('Sencha.controller.RegistrationFormController', {
 					me.getDictionaryEntryButton().hide();
 					me.getMain().setMasked(false);
 					me.getDictionaryNav().pop(); // remove registration form
-					me.getApplication().getController('DictionarySyncController').userLogin();
+					me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
 				}, 
 				'Logging in' 
 			);
@@ -89,7 +89,7 @@ Ext.define('Sencha.controller.RegistrationFormController', {
     								me.getDictionaryNav().pop(); // remove registration form
     								
     								// Login
-    								me.getApplication().getController('DictionarySyncController').userLogin();
+    								me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
     							}, 
     							'Registration complete' 
     						);

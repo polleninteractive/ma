@@ -1,7 +1,7 @@
 // Dictionary Detail Page View - displays a dictionary detail entry
 //
 
-Ext.define('Sencha.view.DictionaryDetailPageView', {
+Ext.define('Ma.view.DictionaryDetailPageView', {
     extend: 'Ext.Container',
     xtype: 'dictionarydetailpageview',
     config: {

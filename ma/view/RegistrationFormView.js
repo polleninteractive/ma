@@ -1,7 +1,7 @@
 // Registration Form View - used to register new user with web service
 //
 
-Ext.define('Sencha.view.RegistrationFormView', {
+Ext.define('Ma.view.RegistrationFormView', {
     extend: 'Ext.Container',
     xtype: 'registrationformview',
            

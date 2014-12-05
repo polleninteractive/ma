@@ -4,7 +4,7 @@
 // initiating sync (which is a pull refresh on the list view)
 //
 
-Ext.define('Sencha.controller.DictionaryListController', {
+Ext.define('Ma.controller.DictionaryListController', {
 	extend: 'Ext.app.Controller',
 
 	config: {
@@ -67,7 +67,7 @@ Ext.define('Sencha.controller.DictionaryListController', {
     // Start synchronisation
     //
     startSynchronisation: function() {
-    	if ( this.getApplication().getController('DictionarySyncController').isSynchronising() == true ) {
+    	if ( this.getApplication().getController('Ma.controller.DictionarySyncController').isSynchronising() == true ) {
     		this.getPullToRefresh().setPullRefreshText('Synchronising...');
     	} else { 
     		this.getDictionarySyncConfirmationView().show();

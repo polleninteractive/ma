@@ -1,7 +1,7 @@
 // Information List View - displays list of information sections to choose from
 //
 
-Ext.define('Sencha.view.InformationListView', {
+Ext.define('Ma.view.InformationListView', {
     extend: 'Ext.List',
     xtype: 'informationlistview',
            

@@ -1,11 +1,11 @@
 // Tab View - main tab views of app including dictioanary, info section and button link to website
 //
 
-Ext.define('Sencha.view.TabView', {
+Ext.define('Ma.view.TabView', {
     extend: 'Ext.TabPanel',
     xtype: 'tabview',
     requires: [
-        'Sencha.view.DictionaryNavigationView'
+        'Ma.view.DictionaryNavigationView'
     ],
       
     initialize: function () {

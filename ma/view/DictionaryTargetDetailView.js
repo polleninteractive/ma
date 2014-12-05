@@ -11,11 +11,11 @@
 // selectedItem - the item that was first selected in the list
 //
 
-Ext.define('Sencha.view.DictionaryTargetDetailView', {
+Ext.define('Ma.view.DictionaryTargetDetailView', {
     extend: 'Ext.Carousel',
     xtype: 'dictionarytargetdetailview',
     requires: [
-        'Sencha.view.DictionaryDetailPageView',
+        'Ma.view.DictionaryDetailPageView',
         'Ext.Img'
     ],
     config: {
@@ -84,7 +84,7 @@ Ext.define('Sencha.view.DictionaryTargetDetailView', {
            
                 // If there is a record ie. we haven't reached the end of the list
                 if (record) {
-					var newContainer = Ext.create('Sencha.view.DictionaryDetailPageView', {sourceRecord: record});
+					var newContainer = Ext.create('Ma.view.DictionaryDetailPageView', {sourceRecord: record});
 					this.add(newContainer);
 	            
                     // if there is at least the buffer size to the left
@@ -108,7 +108,7 @@ Ext.define('Sencha.view.DictionaryTargetDetailView', {
                 // if there is a record
                 if (record) {
                     // add new item to start of carousel
-                    var newContainer = Ext.create('Sencha.view.DictionaryDetailPageView', {sourceRecord: record});
+                    var newContainer = Ext.create('Ma.view.DictionaryDetailPageView', {sourceRecord: record});
                     this.insert(0, newContainer);
                 
                     // we've added an item to the start of the array, so we need to reset our variables

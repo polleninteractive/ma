@@ -1,4 +1,4 @@
-Ext.define('Sencha.model.SystemState', {
+Ext.define('Ma.model.SystemState', {
     extend: 'Ext.data.Model',
     
     config: {
@@ -13,7 +13,7 @@ Ext.define('Sencha.model.SystemState', {
            dbConfig: {
            		tablename: 'SYSTEMSTATE',
            		//dbConn: Ext.DbConnection
-           		dbConn: Sencha.util.InitSQLite.getConnection()
+           		dbConn: Ma.util.InitSQLite.getConnection()
            },
            reader: {type:'array'}
         }

@@ -1,7 +1,7 @@
 // How to Use This App Carousel View
 //
 
-Ext.define('Sencha.view.HowToUseAppInfoView', {
+Ext.define('Ma.view.HowToUseAppInfoView', {
     extend: 'Ext.Carousel',
     xtype: 'howtouseappinfoview',
     config: {

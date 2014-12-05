@@ -1,7 +1,7 @@
 // PHOTO SOURCE SELECT CONTROLLER
 // Handles actionsheet (hidden in main viewport - see app.js) that appears for taking/choosing a phot
 
-Ext.define('Sencha.controller.PhotoSourceSelectController', {
+Ext.define('Ma.controller.PhotoSourceSelectController', {
     extend: 'Ext.app.Controller',
 
     config: {
@@ -29,14 +29,14 @@ Ext.define('Sencha.controller.PhotoSourceSelectController', {
 	// Take photo with camera
 	//
 	takePhoto: function() {
-		this.getApplication().getController('DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
+		this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
 	},
 	
 	
 	// Choose photo from album
 	//
 	choosePhoto: function() {
-		this.getApplication().getController('DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+		this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
 	},    
 	
     

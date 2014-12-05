@@ -1,7 +1,7 @@
 // Video Detail View
 //
 
-Ext.define('Sencha.view.VideoView', {
+Ext.define('Ma.view.VideoView', {
     extend: 'Ext.Container',
     xtype: 'videoview',
     config: {

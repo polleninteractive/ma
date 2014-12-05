@@ -3,7 +3,7 @@
 // The database is queried directly with a join between DICTIONARYSOURCE and DICTIONARYTARGET to get all required information not
 // just for the list view, but for the form view (if the entry is edited) so that the database doesn't have to be queried again later
 
-Ext.define('Sencha.model.DictionarySourceFiltered', {
+Ext.define('Ma.model.DictionarySourceFiltered', {
     extend: 'Ext.data.Model',
     config: {
     	 

@@ -2,7 +2,7 @@
 // which overrides the onLatestFetched method to fire our 'pulled' event
 
 
-Ext.define('Sencha.util.PullRefresh', {
+Ext.define('Ma.util.PullRefresh', {
     extend: 'Ext.plugin.PullRefresh',
 	
 	requires: [

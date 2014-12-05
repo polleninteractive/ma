@@ -1,7 +1,7 @@
 // Speaker Form View - used to enter speaker info
 //
 
-Ext.define('Sencha.view.SpeakerFormView', {
+Ext.define('Ma.view.SpeakerFormView', {
     extend: 'Ext.Container',
     xtype: 'speakerformview',
 	requires: [

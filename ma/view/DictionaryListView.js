@@ -1,13 +1,13 @@
 // Dictionary List View - list view for displaying dictionary entries
 //
 
-Ext.define('Sencha.view.DictionaryListView', {
+Ext.define('Ma.view.DictionaryListView', {
     extend: 'Ext.List',
     xtype: 'dictionarylistview',
     
     requires: [
         'Ext.field.Search',
-        'Sencha.util.PullRefresh'
+        'Ma.util.PullRefresh'
     ], 
      
     config: {
@@ -17,7 +17,7 @@ Ext.define('Sencha.view.DictionaryListView', {
         
         plugins: [
         	{
-            	xclass: 'Sencha.util.PullRefresh',
+            	xclass: 'Ma.util.PullRefresh',
 				pullText: 'Pull to share and update (requires internet connection)',
 				releaseText: 'Pull to share and update (requires internet connection)',
 				loadingText: 'Initialising synchronisation...',

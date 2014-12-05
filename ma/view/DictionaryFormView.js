@@ -1,6 +1,6 @@
 // Dictionary Form View - view used add/edit dictionary entries
 
-Ext.define('Sencha.view.DictionaryFormView', {
+Ext.define('Ma.view.DictionaryFormView', {
     extend: 'Ext.Container',
     xtype: 'dictionaryformview',
     requires: [

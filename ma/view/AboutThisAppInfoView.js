@@ -1,7 +1,7 @@
 // About This App Carousel View
 //
 
-Ext.define('Sencha.view.AboutThisAppInfoView', {
+Ext.define('Ma.view.AboutThisAppInfoView', {
     extend: 'Ext.Carousel',
     xtype: 'aboutthisappinfoview',
     config: {

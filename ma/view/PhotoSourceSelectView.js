@@ -1,7 +1,7 @@
 // Actionsheet used to select photo from camera or store
 //
 
-Ext.define('Sencha.view.PhotoSourceSelectView', {
+Ext.define('Ma.view.PhotoSourceSelectView', {
     extend: 'Ext.ActionSheet',
     xtype: 'photosourceselectview',
     

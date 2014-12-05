@@ -1,7 +1,7 @@
 // Information Navigation View - navigation view to hold InformationListView
 //
 
-Ext.define('Sencha.view.InformationNavigationView', {
+Ext.define('Ma.view.InformationNavigationView', {
     extend: 'Ext.navigation.View',
     xtype: 'informationnavigationview',
     config: {

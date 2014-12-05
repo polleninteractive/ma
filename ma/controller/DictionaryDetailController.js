@@ -4,9 +4,9 @@
 // image tap if the detailed dictionary entry includes an image
 //
 
-Ext.define('Sencha.controller.DictionaryDetailController', {
+Ext.define('Ma.controller.DictionaryDetailController', {
     extend: 'Ext.app.Controller',
- 
+  
     config: { 
         refs: {
             main: 'dictionarynavigationview',
@@ -56,7 +56,7 @@ Ext.define('Sencha.controller.DictionaryDetailController', {
                 }
             
                 // Add card to carousel including HTML content
-           		var newContainer = Ext.create('Sencha.view.DictionaryDetailPageView', {sourceRecord: record, navigationView: this.getMain() });
+           		var newContainer = Ext.create('Ma.view.DictionaryDetailPageView', {sourceRecord: record, navigationView: this.getMain() });
 
                 this.getDictionaryDetailView().add(newContainer);
            
@@ -106,7 +106,7 @@ Ext.define('Sencha.controller.DictionaryDetailController', {
         
                 // If there is a record ie. we haven't reached the end of the list
                 if (record) {
-                    var newContainer = Ext.create('Sencha.view.DictionaryDetailPageView', {sourceRecord: record});
+                    var newContainer = Ext.create('Ma.view.DictionaryDetailPageView', {sourceRecord: record});
                     carousel.add(newContainer);
            
                     // if there is at least the buffer size to the left
@@ -130,7 +130,7 @@ Ext.define('Sencha.controller.DictionaryDetailController', {
                 // if there is a record
                 if (record) {
                     // add new item to start of carousel
-                    var newContainer = Ext.create('Sencha.view.DictionaryDetailPageView', {sourceRecord: record});
+                    var newContainer = Ext.create('Ma.view.DictionaryDetailPageView', {sourceRecord: record});
                     this.getDictionaryDetailView().insert(0, newContainer);
                     carousel.setActiveItem( carousel.getActiveIndex()-1 );
     
@@ -172,7 +172,7 @@ Ext.define('Sencha.controller.DictionaryDetailController', {
        		imageDetailURL = Sencha.app.getPersistentFileStoreVar() + '/assets/' + curRecord.get('imageURL');
        	}
         
-        var newImageView = Ext.create('Sencha.view.ImageView');
+        var newImageView = Ext.create('Ma.view.ImageView');
         this.getMain().add(newImageView);
         this.getImageContainer().setHtml('<div class=dictImage><img src="' + imageDetailURL + '" /></div>');
     }

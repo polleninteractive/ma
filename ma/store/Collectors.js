@@ -1,8 +1,8 @@
-Ext.define('Sencha.store.Collectors', {
+Ext.define('Ma.store.Collectors', {
     extend: 'Ext.data.Store',
     
     config: {
-        model: 'Sencha.model.Collector',
+        model: 'Ma.model.Collector',
         autoLoad: true,
         autoSync: true,
         pageSize: -1
