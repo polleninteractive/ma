@@ -2,6 +2,7 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
+    'Ma': 'ma',
     'Sencha': 'app'
 }); 
 //</debug>  
@@ -47,10 +48,10 @@ Ext.application({
     mediaPtr : null,
     username: null,
 
-    controllers: ['DictionaryNavigationController', 'DictionaryListController', 'PhotoSourceSelectController', 'DictionaryFormController', 'RegistrationFormController', 'DictionarySyncController', 'DictionaryDetailController', 'TabBarController', 'InformationListController'],
-    views: ['VideoView', 'PhotoSourceSelectView', 'RegistrationFormView', 'DictionarySyncConfirmationView', 'DictionaryContainerList', 'DictionaryFormView', 'DictionaryListView', 'DictionaryNavigationView', 'DictionaryTargetDetailView', 'TabView', 'SoundRecorder', 'MetadataFormView', 'SpeakerFormView', 'DictionaryDetailPageView', 'ImageView', 'InformationNavigationView', 'InformationListView', 'HowToUseAppInfoView', 'AboutThisAppInfoView', 'LanguageFootprintInfoView', 'SoundsOfIwaidjaInfoView' ],
-    stores: ['SystemStates', 'DictionarySources', 'DictionaryTargets', 'Collectors', 'Speakers', 'DictionarySourcesFiltered'], 
-    models: ['DictionarySourceFiltered', 'SystemState', 'DictionarySource', 'DictionaryTarget', 'Collector', 'Speaker'],
+    controllers: ['Ma.controller.DictionaryNavigationController', 'Ma.controller.DictionaryListController', 'Ma.controller.PhotoSourceSelectController', 'Ma.controller.DictionaryFormController', 'Ma.controller.RegistrationFormController', 'Ma.controller.DictionarySyncController', 'Ma.controller.DictionaryDetailController', 'Ma.controller.TabBarController', 'Ma.controller.InformationListController'],
+    views: ['Ma.view.VideoView', 'Ma.view.PhotoSourceSelectView', 'Ma.view.RegistrationFormView', 'Ma.view.DictionarySyncConfirmationView', 'Ma.view.DictionaryContainerList', 'Ma.view.DictionaryFormView', 'Ma.view.DictionaryListView', 'Ma.view.DictionaryNavigationView', 'Ma.view.DictionaryTargetDetailView', 'Ma.view.TabView', 'Ma.view.SoundRecorder', 'Ma.view.MetadataFormView', 'Ma.view.SpeakerFormView', 'Ma.view.DictionaryDetailPageView', 'Ma.view.ImageView', 'Ma.view.InformationNavigationView', 'Ma.view.InformationListView', 'Ma.view.HowToUseAppInfoView', 'Ma.view.AboutThisAppInfoView', 'Ma.view.LanguageFootprintInfoView', 'Ma.view.SoundsOfIwaidjaInfoView' ],
+    stores: ['Ma.store.SystemStates', 'Ma.store.Collectors', 'Ma.store.DictionarySourcesFiltered'], 
+    models: ['Ma.model.DictionarySourceFiltered', 'Ma.model.SystemState', 'Ma.model.Collector'],
   
     icon: {
         '57': 'resources/icons/Icon.png',
