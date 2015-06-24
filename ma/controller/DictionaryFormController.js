@@ -51,7 +51,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			commentsPlayButtonRef: 'button[id=dictionaryCommentsPlayButton]',
 			commentsVideoToggleRef: 'togglefield[id=dictionaryCommentsVideoToggle]',
 			 
-			dictionarySourceWordForm: 'fieldset[id="dictionarySourceFormFieldSet"]', 
+			dictionarySourceWordForm: 'fieldset[id=dictionarySourceFormFieldSet]', 
 			dictionaryTargetWordForm: 'fieldset[id="dictionaryTargetFormFieldSet"]',
 			dictionaryCommentsForm: 'fieldset[id="dictionaryCommentsFormFieldSet"]',
 			addImageButtonRef: 'button[id=addImageButton]',
@@ -231,7 +231,6 @@ Ext.define('Ma.controller.DictionaryFormController', {
     	function successCB(mediaFiles) { 
     		// remember whether audio or video was captured
     		me.setCommentsMediaType( me.getCommentsVideoToggleRef().getValue() );
-    	 	console.log('me.getCommentsMediaType() = ' + me.getCommentsMediaType() );
     	 
             if ( device.platform == "Android" ) {
            		me.assignMedia( mediaFiles[0].fullPath.replace('file:/', 'file:///' ) );
@@ -384,6 +383,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
            
         // Get speaker
    		if ( curRecord.get('speakerId') != null ) {
+   			console.log('curRecord.get(speakerId) = ' + curRecord.get('speakerId') );
    			var speakerStore = Ext.getStore("Speakers").getById( curRecord.get('speakerId') );
 		}
 		
@@ -393,10 +393,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
             title: 'Edit Entry'
    		});
            
+		console.log('curRecord.get(sourceWord)=' + curRecord.get('sourceWord'));
+		   
         // populate it
         this.getDictionarySourceWordForm().getComponent('sourceWordField').setValue( curRecord.get('sourceWord') );
         this.getDictionaryTargetWordForm().getComponent('targetWordField').setValue( curRecord.get('targetWord') );
    		this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').setValue( curRecord.get('comments') );
+		
    
         // store id's for convenience later (when saving)
         this.setSourceId(dictionarySourceId);
@@ -458,6 +461,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
    	    	this.setSpeakerComment(speakerStore.get('comments'));
    	    }  
    		
+		/*
    		// if this is not an editable record, then disable all fields except comments
    		if ( curRecord.get('isEditable')==0 || curRecord.get('isEditable')==null ) {
    			this.getDictionarySourceWordForm().getComponent('sourceWordField').disable();
@@ -468,6 +472,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
    		} else {
 			this.getDictionaryDeleteButton().show();
 		}
+		*/
    	},
    	
    	

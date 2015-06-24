@@ -12,8 +12,7 @@ Ext.define('Ma.view.DictionaryNavigationView', {
            id: 'dictionarynavigationbar',
            items: [
                 {xtype : 'button',
-                text : '',
-                minHeight: '32px',
+                text : ' ',
                 align : 'right',
                 id: 'dictionaryEntryButton',
                 cls: 'dictionaryEntryButton',

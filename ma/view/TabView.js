@@ -14,6 +14,7 @@ Ext.define('Ma.view.TabView', {
         var logoButton = {
             xtype: "button",
             cls: 'logoButton',
+			id: 'logoButton',
             icon: 'images/websiteTabButton.png',
             text: 'Ma!'
         };

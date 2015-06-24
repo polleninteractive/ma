@@ -7,7 +7,8 @@ Ext.define('Ma.controller.TabBarController', {
     config: {
         refs: {
             main: 'tabview',
-            logoButton: 'button[cls=logoButton]'
+            /*logoButton: 'button[cls=logoButton]'*/
+			logoButton: 'button[id=logoButton]'
         },
         
         control: {
@@ -30,7 +31,7 @@ Ext.define('Ma.controller.TabBarController', {
     // Handle tap event on logo button located on TabPanel tab bar
     //
     onLogoButtonTap : function() {
-        var ref = window.open(encodeURI('http://www.iwaidja.org/'), '_system', 'location=yes');
+        var ref = window.open(encodeURI('http://www.yynac.com.au'), '_system', 'location=yes');
         
     }
            

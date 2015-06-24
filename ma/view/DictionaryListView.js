@@ -27,10 +27,10 @@ Ext.define('Ma.view.DictionaryListView', {
     	],
         
         indexBar: false,
-        itemTpl: '<div class="dictlistfirstline"><span class="dictListSourceWord">{sourceWord}</span><span class="dictListByline"> <span class="dictListPartOfSpeech">{partOfSpeech}</span> {disambiguation}</span></div><tpl if="audioURL !== \'\' && audioURL !== null"><div class="audioIcon"><img src="images/speaker.png"/></div></tpl><div class="dictListTargetWord">{targetWord}</div>',
+        itemTpl: '<div class="audioIcon"><tpl if="audioURL !== \'\' && audioURL !== null"><img src="images/speaker.png"/></tpl></div><div class="dictListDefinition"><div class="dictlistfirstline"><span class="dictListSourceWord">{sourceWord}</span> <span class="dictListPartOfSpeech">{partOfSpeech}</span> <span class="dictListByline">{disambiguation}</span></div><div class="dictListTargetWord">{targetWord}</div></div>',
         store: 'DictionarySourcesFiltered',
         onItemDisclosure: true,
-        itemHeight: 80,
+        itemHeight: 60,
         variableHeights: true,
         infinite: true,
         scrollToTopOnRefresh: true

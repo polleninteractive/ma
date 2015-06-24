@@ -84,15 +84,16 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
     	 
     	// Display Header text
 		var inflection = this.getSourceRecord().get('inflection') ? this.getSourceRecord().get('inflection') : '';
-		this.getAt(0).getAt(1).setHtml('<div class=dictDetailHeadline><div class=dictDetailTargetWord>' + this.getSourceRecord().get('sourceWord') + '</div><div class=inflection>' + inflection + '</div></div>');
+		this.getAt(0).getAt(1).setHtml('<div class=dictDetailHeadline><div class=dictDetailSourceWord>' + this.getSourceRecord().get('sourceWord') + '</div><div class=inflection>' + inflection + '</div></div>');
                      
 		// Display main dictionary entry text
 		var detailedEntry = ( this.getSourceRecord().get('detailedEntry')!=null && this.getSourceRecord().get('detailedEntry')!=undefined ) ? this.getSourceRecord().get('detailedEntry') : '';
+		var targetWord = ( this.getSourceRecord().get('targetWord')!=null && this.getSourceRecord().get('targetWord')!=undefined ) ? '<span class="dictDetailTargetWord">' + this.getSourceRecord().get('targetWord') + '</span>' : '';
 		var moderatorComments = ( this.getSourceRecord().get('moderatorComments') != null) ? ('Moderator says: '+this.getSourceRecord().get('moderatorComments') ) : '';
 		var status = this.getSourceRecord().get('status');
 		var statusReport = (status==null || status==undefined) ? '' : this.getDictionaryStatus()[status];						
 		this.setAudioURL( this.getSourceRecord().get('audioURL') ); // Store audioURL for later
-		this.getAt(1).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
+		this.getAt(1).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + targetWord + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
 									
 		// Hide speaker icon if no audio
 		if ( !this.getSourceRecord().get('audioURL') ) {

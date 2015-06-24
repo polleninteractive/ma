@@ -29,11 +29,10 @@ Ext.define('Ma.view.DictionaryFormView', {
 	            {
 	                xtype: 'textfield',
 	                name : 'sourceword',
-	                label: 'English',
+	                placeHolder: 'English',
                     id: 'sourceWordField',
                     value: '',
-                    autoCapitalize: false,
-                    labelWidth: this.getCustomLabelWidth()
+                    autoCapitalize: false
 	            }
         	]
 		};
@@ -44,11 +43,13 @@ Ext.define('Ma.view.DictionaryFormView', {
            layout: 'vbox',
            cls: 'soundrecordercontainer',
            items:[
+		   /*
 				{
 					cls: 'recordnewentrytitle',
 					html: 'Record (English)',
 					margin: '6px 0 0 7px'
 				},
+			*/
 				{
 					xtype: 'container',
 					margin: '0px 10px 7px 10px',
@@ -88,11 +89,10 @@ Ext.define('Ma.view.DictionaryFormView', {
 				{
 	                xtype: 'textfield',
 	                name : 'targetword',
-	                label: 'Iwaidja',
+	                placeHolder: 'Iwaidja',
 	                id: 'targetWordField',
                     value: '',
-                    autoCapitalize: false,
-                    labelWidth: this.getCustomLabelWidth()
+                    autoCapitalize: false
 				}
 	        ]
 		};
@@ -103,11 +103,13 @@ Ext.define('Ma.view.DictionaryFormView', {
            layout: 'vbox',
            cls: 'soundrecordercontainer',
            items:[
+		   /*
 				{
 					cls: 'recordnewentrytitle',
 					html: 'Record (Iwaidja)',
 					margin: '6px 0 0 7px'
                 },
+			*/
 				{
 					xtype: 'container',
 					id: 'audiobuttonscontainer',
@@ -148,11 +150,10 @@ Ext.define('Ma.view.DictionaryFormView', {
 	            {
 	                xtype: 'textfield',
 	                name : 'sourceword',
-	                label: 'Comments',
                     id: 'dictionaryCommentsField',
+					placeHolder: 'Comments',
                     value: '',
-                    autoCapitalize: false,
-                    labelWidth: this.getCustomLabelWidth()
+                    autoCapitalize: false
 	            }
         	]
 		};
@@ -163,11 +164,13 @@ Ext.define('Ma.view.DictionaryFormView', {
 			layout: 'vbox',
 			cls: 'soundrecordercontainer',
 			items:[
+			/*
 				{
 					cls: 'recordnewentrytitle',
 					html: 'Record comment',
 					margin: '6px 0 0 7px'
 				},
+			*/
 				{
 					xtype: 'container',
 					margin: '0px 10px 7px 10px',
@@ -267,7 +270,8 @@ Ext.define('Ma.view.DictionaryFormView', {
 			]
 		};
            
-		this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, metadataContainer, deleteContainer]);
+		//this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, metadataContainer, deleteContainer]);
+		this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, deleteContainer]);
 	}
 
 });

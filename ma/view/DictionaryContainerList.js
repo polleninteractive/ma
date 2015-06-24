@@ -25,13 +25,17 @@ Ext.define("Ma.view.DictionaryContainerList", {
     	var engButton = {
 			xtype: "button",
 			cls: 'engDictionaryButton',
-			id: 'engDictionaryButtonId1'
+			id: 'engDictionaryButtonId1',
+			text : 'EN',
+			ui: 'round'
     	};
     	
     	var iwaButton = {
     	    xtype: "button",
     	    cls: 'iwaDictionaryButton',
-			id: 'iwaDictionaryButtonId1'
+			id: 'iwaDictionaryButtonId1',
+			text : 'IW',
+			ui: 'round'
     	};
     	
     	var searchToolbar = {
