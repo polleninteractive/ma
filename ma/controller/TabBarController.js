@@ -31,8 +31,7 @@ Ext.define('Ma.controller.TabBarController', {
     // Handle tap event on logo button located on TabPanel tab bar
     //
     onLogoButtonTap : function() {
-        var ref = window.open(encodeURI('http://www.yynac.com.au'), '_system', 'location=yes');
-        
+        var ref = window.open(encodeURI( Sencha.app.getMoreTabURL() ), '_system', 'location=yes');
     }
            
 });

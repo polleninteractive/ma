@@ -26,7 +26,7 @@ Ext.define("Ma.view.DictionaryContainerList", {
 			xtype: "button",
 			cls: 'engDictionaryButton',
 			id: 'engDictionaryButtonId1',
-			text : 'EN',
+			text : Sencha.app.getFirstLanguageAbbreviation(),
 			ui: 'round'
     	};
     	
@@ -34,7 +34,7 @@ Ext.define("Ma.view.DictionaryContainerList", {
     	    xtype: "button",
     	    cls: 'iwaDictionaryButton',
 			id: 'iwaDictionaryButtonId1',
-			text : 'IW',
+			text : Sencha.app.getSecondLanguageAbbreviation(),
 			ui: 'round'
     	};
     	

@@ -15,8 +15,8 @@ Ext.define('Ma.view.TabView', {
             xtype: "button",
             cls: 'logoButton',
 			id: 'logoButton',
-            icon: 'images/websiteTabButton.png',
-            text: 'Ma!'
+            icon: 'images/More.png',
+            text: 'More'
         };
         
         this.getTabBar().add(logoButton);

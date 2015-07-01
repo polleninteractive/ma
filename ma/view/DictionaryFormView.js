@@ -29,7 +29,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 	            {
 	                xtype: 'textfield',
 	                name : 'sourceword',
-	                placeHolder: 'English',
+	                placeHolder: Sencha.app.getFirstLanguageName(),
                     id: 'sourceWordField',
                     value: '',
                     autoCapitalize: false
@@ -43,13 +43,6 @@ Ext.define('Ma.view.DictionaryFormView', {
            layout: 'vbox',
            cls: 'soundrecordercontainer',
            items:[
-		   /*
-				{
-					cls: 'recordnewentrytitle',
-					html: 'Record (English)',
-					margin: '6px 0 0 7px'
-				},
-			*/
 				{
 					xtype: 'container',
 					margin: '0px 10px 7px 10px',
@@ -89,7 +82,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 				{
 	                xtype: 'textfield',
 	                name : 'targetword',
-	                placeHolder: 'Iwaidja',
+	                placeHolder: Sencha.app.getSecondLanguageName(),
 	                id: 'targetWordField',
                     value: '',
                     autoCapitalize: false
@@ -103,13 +96,6 @@ Ext.define('Ma.view.DictionaryFormView', {
            layout: 'vbox',
            cls: 'soundrecordercontainer',
            items:[
-		   /*
-				{
-					cls: 'recordnewentrytitle',
-					html: 'Record (Iwaidja)',
-					margin: '6px 0 0 7px'
-                },
-			*/
 				{
 					xtype: 'container',
 					id: 'audiobuttonscontainer',

@@ -79,7 +79,7 @@ div#iwaDictionaryButtonId1.x-button.x-button-round.x-stretched.iwaDictionaryButt
 	color: #6185c4 !important;
 }
 
-.engDictionaryButton, .engDictionaryButton {
+.engDictionaryButton, .iwaDictionaryButton {
 	width: 26px !important;
     position: relative !important;
     float: right !important;
@@ -109,7 +109,6 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 
 
 /* TAB BAR (BOTTOM) */
-
 .x-tabbar {
 	background-color: #6185c4 !important;
 	border-top: none !important;
@@ -117,7 +116,7 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 }
 
 .x-tab, .x-tab-normal { 
-    width: 25% !important;
+    width: 33% !important;
 	margin: 0 !important;
 }
 
@@ -153,7 +152,6 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 	background: none !important;	
 }
 
-
 .x-tab.x-tab-active .dictionarytab, .x-tab.x-tab-active .pictionarytab, .x-tab.x-tab-active .informationtab {
 	background-color: #9fb0ce !important;
 }
@@ -162,15 +160,13 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 	color: #9fb0ce !important;
 }
 
-
 /* logo button on tab bar */ 
 .logoButton{
-    width: 25% !important;
+    width: 34% !important;
     height: 2.9em !important;
     border:none !important;
     overflow: visible !important;
     display: block !important;
-    /*padding: 0.2em 0 0 0 !important;*/
     padding-top: 2px !important;
     background-image: none !important;
     background-color: #6185c4 !important;

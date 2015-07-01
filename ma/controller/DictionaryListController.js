@@ -33,8 +33,7 @@ Ext.define('Ma.controller.DictionaryListController', {
 			},
 			'dictionaryListView': {
 				disclose: 'showDetail',
-				itemtap: 'playAudio',
-				initialize: 'onListViewInit'
+				itemtap: 'playAudio'
 			},
 			'dictionarySearchField':{        
 				keyup:'filterDictionarySearch',
@@ -57,12 +56,7 @@ Ext.define('Ma.controller.DictionaryListController', {
     onInit: function() {
         this.initFilterButtons();
     },
-    
-    
-    onListViewInit: function() {
-    	this.filterDictionarySearch();
-    },
-    
+
    
     // Start synchronisation
     //
@@ -183,6 +177,8 @@ Ext.define('Ma.controller.DictionaryListController', {
         } else {
            this.getEngDictionaryButton().addCls('toggleButtonOff');
         }
+		
+		this.filterDictionarySearch();
     },
            
            
