@@ -48,25 +48,29 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
             case "dictionarycontainerlist":
                 this.getDictionaryEntryButton().setText('DONE');
                 this.getDictionaryEntryButton().setIconCls(null); // turn off icon image used for + sign
-                this.getApplication().getController('Ma.controller.DictionaryFormController').showForm();
+				
+				Sencha.app.fireEvent('showdictionaryentryform');
                 break;
                 
             // if this is the dictionary detail view then edit entry
             case "dictionarytargetdetailview":
                 this.getDictionaryEntryButton().setText('DONE');
-           		this.getApplication().getController('Ma.controller.DictionaryFormController').editForm();
+				
+				Sencha.app.fireEvent('editdictionaryentryform');
                 break;
                 
             // if this is the metadata form then remember metadata details
             case "metadataformview":
-            	this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewMetaData();
+				Sencha.app.fireEvent('remembernewmetadataformdetails');
+            	//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewMetaData();
             	this.getDictionaryEntryButton().setText('DONE');
             	this.getMain().pop();
             	break;
             
             // if this is the speaker form view, remember speaker details
             case "speakerformview":
-            	this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewSpeakerDetails();
+				Sencha.app.fireEvent('remembernewspeakerformdetails');
+            	//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewSpeakerDetails();
                 this.getDictionaryEntryButton().setText('OK');
             	this.getMain().pop();
             	break;
@@ -78,7 +82,8 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
                 // if an ADD dictionary entry
                 if (previousItem == "dictionarycontainerlist") {
                     // call fn to save new entry
-                    this.getApplication().getController('Ma.controller.DictionaryFormController').saveDictEntryForm();
+					Sencha.app.fireEvent('savenewdictionaryentry');
+                    //this.getApplication().getController('Ma.controller.DictionaryFormController').saveDictEntryForm();
            			
                     // Change dictionary entry button back to add
            			this.getDictionaryEntryButton().setText('');
@@ -87,7 +92,8 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
            			
            		// else an EDIT dictionary entry
                 } else { 
-                    this.getApplication().getController('Ma.controller.DictionaryFormController').updateForm(); // call fn to save existing entry
+					Sencha.app.fireEvent('updateexistingdictionaryentry');
+                    //this.getApplication().getController('Ma.controller.DictionaryFormController').updateForm(); // call fn to save existing entry
                     
                     // Change dictionary entry button back to add and exit
                     this.getDictionaryEntryButton().setText('');

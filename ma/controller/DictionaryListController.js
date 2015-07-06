@@ -51,7 +51,19 @@ Ext.define('Ma.controller.DictionaryListController', {
 			}
         }
     },
-        
+	
+	
+	init: function (application) {
+ 		// listen for fired events
+        application.on([
+			{
+            	event: 'refreshdictionarylist',
+            	fn: this.filterDictionarySearch,
+            	scope: this
+        	}
+		]);
+    },
+    
         
     onInit: function() {
         this.initFilterButtons();

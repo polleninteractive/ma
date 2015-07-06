@@ -106,6 +106,43 @@ Ext.define('Ma.controller.DictionaryFormController', {
     },
 
 
+	init: function (application) {
+ 		// listen for fired events (from DictionaryFormController)
+        application.on([
+			{
+            	event: 'showdictionaryentryform',
+            	fn: this.showForm,
+            	scope: this
+        	},
+			{
+            	event: 'editdictionaryentryform',
+            	fn: this.editForm,
+            	scope: this
+        	},
+			{
+            	event: 'remembernewmetadataformdetails',
+            	fn: this.rememberNewMetaData,
+            	scope: this
+        	},
+			{
+            	event: 'remembernewspeakerformdetails',
+            	fn: this.rememberNewSpeakerDetails,
+            	scope: this
+        	},
+			{
+            	event: 'savenewdictionaryentry',
+            	fn: this.saveDictEntryForm,
+            	scope: this
+        	},
+			{
+            	event: 'updateexistingdictionaryentry',
+            	fn: this.updateForm,
+            	scope: this
+        	}
+		]);
+    },
+
+
 	// Create video view and play video
 	//
 	showVideo: function(videoURL) {
@@ -383,7 +420,6 @@ Ext.define('Ma.controller.DictionaryFormController', {
            
         // Get speaker
    		if ( curRecord.get('speakerId') != null ) {
-   			console.log('curRecord.get(speakerId) = ' + curRecord.get('speakerId') );
    			var speakerStore = Ext.getStore("Speakers").getById( curRecord.get('speakerId') );
 		}
 		
@@ -610,7 +646,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
-										currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();	
+										//currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+										Sencha.app.fireEvent('refreshdictionarylist');
 									},
 									errorCB          
 								);
@@ -746,7 +783,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
 										}
 										
 										// refresh ditionary search results to show these changes
-										currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+										//currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+										Sencha.app.fireEvent('refreshdictionarylist');
 									},
 									errorCB          
 								);
@@ -1092,7 +1130,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
            
 															currentObj.getMain().pop(2);
                 
-															currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+															//currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+															Sencha.app.fireEvent('refreshdictionarylist');
     													},
     													errorCB
     												);
