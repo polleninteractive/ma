@@ -205,8 +205,12 @@ display: block !important;
 
 
 /* DICTIONARY LIST ITEM */
+.x-list .x-list-item {
+	font-size: 1.2em !important;
+}
+
 .x-list .x-list-disclosure {
-	margin-top: 17px !important;	
+	margin-top: 22px !important;	
 }
 
 .audioIcon {
