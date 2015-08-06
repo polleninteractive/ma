@@ -29,14 +29,16 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 	// Take photo with camera
 	//
 	takePhoto: function() {
-		this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
+		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
+		Sencha.app.fireEvent('addimage', navigator.camera.PictureSourceType.CAMERA);
 	},
 	
 	
 	// Choose photo from album
 	//
 	choosePhoto: function() {
-		this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+		Sencha.app.fireEvent('addimage', navigator.camera.PictureSourceType.PHOTOLIBRARY);
 	},    
 	
     

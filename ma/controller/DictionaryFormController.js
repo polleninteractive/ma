@@ -138,6 +138,11 @@ Ext.define('Ma.controller.DictionaryFormController', {
             	event: 'updateexistingdictionaryentry',
             	fn: this.updateForm,
             	scope: this
+        	},
+			{
+            	event: 'addimage',
+            	fn: this.addImage,
+            	scope: this
         	}
 		]);
     },
