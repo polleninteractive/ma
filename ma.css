@@ -354,7 +354,7 @@ sup {
 }
 
 
-.soundrecordercontainer {
+.soundrecordercontainer, div#imagecapturecontainer.x-container.x-unsized {
 	border-bottom:1px solid #000 !important;
 	margin:0px -20px 20px !important;
 	padding: 10px 20px !important;
@@ -380,6 +380,16 @@ sup {
 
 .audioPlayButtonCls, .playButtonCls {
     background-image: url('images/play.png') !important;
+}
+
+/* photo button, and photo source select buttons */
+.x-button-round#addImageButton, .x-button-normal#choosePhotoButton, .x-button-normal#takePhotoButton {
+	border-color: #808284 !important;
+}
+
+/* labels for photo button and photo source selct buttons */
+.x-button-round .x-button-label, .x-button-normal .x-button-label {
+	color: #808284 !important;
 }
 
 

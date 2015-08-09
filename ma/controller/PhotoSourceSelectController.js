@@ -30,7 +30,7 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 	//
 	takePhoto: function() {
 		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
-		Sencha.app.fireEvent('addimage', navigator.camera.PictureSourceType.CAMERA);
+		Sencha.app.fireEvent('addimage', Camera.PictureSourceType.CAMERA);
 	},
 	
 	
@@ -38,7 +38,7 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 	//
 	choosePhoto: function() {
 		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
-		Sencha.app.fireEvent('addimage', navigator.camera.PictureSourceType.PHOTOLIBRARY);
+		Sencha.app.fireEvent('addimage', Camera.PictureSourceType.PHOTOLIBRARY);
 	},    
 	
     
