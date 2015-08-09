@@ -21,6 +21,7 @@ Copyright Pollen Interactive and the Ma-Project.
 * org.apache.cordova.media-capture
 * org.apache.cordova.splashscreen
 * org.apache.cordova.vibration
+* org.apache.cordova.camera
 * com.brodysoft.sqlitePlugin
 * AudioEncode (iOS only)
 
