@@ -244,6 +244,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 			xtype: 'container',
 			layout: 'hbox',
 			cls: 'deletecontainer',
+			itemId: 'deletecontainer',
 			items:[
 				{
 					id: 'deletebutton',

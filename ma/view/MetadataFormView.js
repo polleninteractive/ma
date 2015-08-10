@@ -4,13 +4,17 @@
 Ext.define('Ma.view.MetadataFormView', {
     extend: 'Ext.Container',
     xtype: 'metadataformview',
+	requires: [
+    	'Ext.Label',
+    	'Ext.form.FieldSet'
+    ],
            
     config: {
         title: 'Metadata',
         styleHtmlContent: true,
         scrollable: 'vertical',
         cls: 'formview',
-        customLabelWidth: '50%'
+        customLabelWidth: '40%'
     },   
 	
     initialize: function () {

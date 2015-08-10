@@ -57,10 +57,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			addImageButtonRef: 'button[id=addImageButton]',
 			
 			photoSourceSelectView: 'photosourceselectview',
-			dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
 			dictionaryDeleteButton: 'button[id=deletebutton]',
+			dictionaryDeleteContainer: 'container #deletecontainer', 
 			dictionaryMetadataContainer: 'dictionarynavigationview container[cls=metadatacontainer]',
 			dictionaryMetadataButton: 'button[id=dicMetadataButton]',
+			
+			/* metadata form */
+			dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
 			
 			//speaker
 			speakerFieldSet: 'fieldset[id="speakerFieldset"]',
@@ -381,6 +384,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
         navigator.geolocation.getCurrentPosition(
             // Success callback
             function(position) {
+				console.log('success get coords');
+				console.log('position.coords.latitude = ' + position.coords.latitude);
                 thisPtr.setCurrentLatitude( position.coords.latitude );
                 thisPtr.setCurrentLongitude( position.coords.longitude ); 
             }, 
@@ -391,7 +396,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
                 thisPtr.setCurrentLatitude('');
                 thisPtr.setCurrentLongitude('');
             }
-        );
+        ); 
          
         this.setRecordingDevice( device.model );
         
@@ -405,7 +410,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
     		xtype: 'dictionaryformview'			                    
         });
         
-        this.getDictionaryDeleteButton().hide();
+        this.getDictionaryDeleteContainer().hide();
    	},
    	           
           
@@ -434,14 +439,11 @@ Ext.define('Ma.controller.DictionaryFormController', {
             title: 'Edit Entry'
    		});
            
-		console.log('curRecord.get(sourceWord)=' + curRecord.get('sourceWord'));
-		   
-        // populate it
+		// populate it
         this.getDictionarySourceWordForm().getComponent('sourceWordField').setValue( curRecord.get('sourceWord') );
         this.getDictionaryTargetWordForm().getComponent('targetWordField').setValue( curRecord.get('targetWord') );
    		this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').setValue( curRecord.get('comments') );
 		
-   
         // store id's for convenience later (when saving)
         this.setSourceId(dictionarySourceId);
         this.setTargetId(dictionaryTargetId);
@@ -829,18 +831,22 @@ Ext.define('Ma.controller.DictionaryFormController', {
    	// Display meta data form
     //
     showMetadataForm: function(){
+		console.log('in showMetadataForm...');
+		
         // Sencha bug allows the disclosure arrow to be clicked more than once, so check for this
         var innerItems = this.getMain().getInnerItems();
         var secondViewInStack = innerItems[1].xtype;
         // if dictionaryformview is second item in stack, then we must be adding a new entry
         if ( secondViewInStack == "dictionaryformview" ) {
            if ( innerItems.length > 2 ) {
+			   console.log('second view, butgging out');
                 return;
            }
         }
         // else must be editing the entry instead
         else {
            if ( innerItems.length > 3 ) {
+			   console.log('third view, butgging out');
                 return;
            }
         }
@@ -851,6 +857,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
     		xtype: 'metadataformview'			                    
     	});
   
+  		console.log('setting meta data values');
     	var d = new Date();
         this.getDicMetadaForm().getComponent('dateField').setValue( d.toDateString() );
     	this.getDicMetadaForm().getComponent('latitudeField').setValue( this.getCurrentLatitude() );

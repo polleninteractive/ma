@@ -241,11 +241,6 @@ display: block !important;
 }
 
 
-
-
-
-
-
 /* DICTIONARY DETAIL VIEW */
 .dictionarySpeakerButton {
 	width: 24px !important;
@@ -350,9 +345,8 @@ sup {
 
 /* DICTIONARY FORM VIEW */
 .x-form-fieldset .x-form-fieldset-inner {
-	border-color: #808284 !important;	
+	border: none !important;	
 }
-
 
 .soundrecordercontainer, div#imagecapturecontainer.x-container.x-unsized {
 	border-bottom:1px solid #000 !important;
@@ -387,9 +381,76 @@ sup {
 	border-color: #808284 !important;
 }
 
+.x-button-round#addImageButton {
+	padding: 0;
+}
+
 /* labels for photo button and photo source selct buttons */
 .x-button-round .x-button-label, .x-button-normal .x-button-label {
 	color: #808284 !important;
+}
+
+.addPhotoButtonHolder
+{
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 58px !important;
+	height: 58px !important;
+	border:0 !important;
+	border-radius:7px !important;
+	overflow: hidden !important;
+}
+
+.addPhotoButtonImage {
+	width: 60px !important;
+    padding: 0;
+}
+
+.deletecontainer {
+	border-top:1px solid #000 !important;
+	margin:15px -20px 20px !important;
+	padding: 15px 20px !important;
+}
+
+
+
+/* metadata button */
+#dicMetadataButton::before, #speakerButton::before {
+	position: absolute;
+	top: -5px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: '!';
+	font-family: 'iOS7';
+	color: #ccc;
+	font-size: 14px;
+	text-align: center;
+	background-color: transparent;
+	line-height: 26px;
+	padding-left: 2px;
+}
+
+
+/* METADATA FORM */
+.x-field .x-input-el {
+	border:1px solid #808284;
+}
+.x-form-fieldset .x-field::before {
+	border-bottom: none !important;	
+}
+#metadataFieldset {
+	border-bottom:1px solid #000 !important;
+	margin:0px -20px 20px -24px !important;
+	padding: 10px 20px !important;
+}
+.x-input-radio:checked + .x-field-mask::after {
+	color: #808284 !important;
+}
+/* allow disabled fields to be visible */
+.x-item-disabled input, .x-item-disabled .x-input-el {
+	color: #808284;	
+	opacity: 0.8 !important;
 }
 
 
