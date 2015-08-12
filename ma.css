@@ -186,13 +186,6 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 	margin: 0 auto !important;
 }
 
-
-.logoButton .x-button-label {
-	color: white !important;
-	display: block !important;
-	font-size: 0.65em !important;
-}
-
 .x-layout-box>.x-layout-box-item.logoButton {
 display: block !important;
 }
@@ -495,11 +488,10 @@ sup {
 }
 
 .infosection {
-    /*font-size: 1.25em;*/
     margin: 6px 7px;
     line-height: 120%;
     letter-spacing: 0em;
-    font-size: 0.8em !important;
+    font-size: 1.2em !important;
 }
 
 .infosection p {
