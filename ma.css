@@ -8,6 +8,11 @@ html, body {
 	color: #777776;
 }
 
+/* LOADING MASK */
+.x-mask .x-mask-inner {
+	background-color: #777776 !important;
+}
+
 
 /* TOOLBAR (TOP) */
 .x-toolbar.x-docked-top {
@@ -204,6 +209,12 @@ display: block !important;
 
 .x-list .x-list-disclosure {
 	margin-top: 22px !important;	
+}
+
+/* increase hit area on disclosure arrow */
+.x-list .x-list-disclosure {
+	width: 30px !important;
+	height: 30px !important;
 }
 
 .audioIcon {

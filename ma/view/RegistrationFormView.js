@@ -64,6 +64,7 @@ Ext.define('Ma.view.RegistrationFormView', {
                     label: 'Birthdate',
                     name: 'birthdate',
                     id: 'birthdateField',
+					labelWidth: this.getCustomLabelWidth(),
                     picker: {
                         yearFrom: 1900
                     }

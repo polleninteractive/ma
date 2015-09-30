@@ -5,6 +5,11 @@
 
 Ext.define('Ma.model.DictionarySourceFiltered', {
     extend: 'Ext.data.Model',
+	
+	requires: [
+        'Ma.util.SQLOverride'
+    ],
+	
     config: {
     	 
         fields: [

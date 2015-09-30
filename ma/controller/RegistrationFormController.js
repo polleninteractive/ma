@@ -38,14 +38,15 @@ Ext.define('Ma.controller.RegistrationFormController', {
 		newUsername = newUsername.replace(/^\s+|\s+$/g,"");
 		
 		// Attempt login if only username and password entered
-		if ( newUsername && newPassword && (!newName || newName=='') && (!newEmail || newEmail=='') && (!newPassword || newPassword=='')  ) {
+		if ( newUsername && newPassword && (!newName || newName=='') && (!newEmail || newEmail=='') ) {
 			navigator.notification.alert(
 				'Insufficient information to register new user. Attempting login instead', 
 				function() {
 					me.getDictionaryEntryButton().hide();
 					me.getMain().setMasked(false);
 					me.getDictionaryNav().pop(); // remove registration form
-					me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
+					//me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
+					Sencha.app.fireEvent('userloginevent');
 				}, 
 				'Logging in' 
 			);
@@ -89,7 +90,7 @@ Ext.define('Ma.controller.RegistrationFormController', {
     								me.getDictionaryNav().pop(); // remove registration form
     								
     								// Login
-    								me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
+									Sencha.app.fireEvent('userloginevent');
     							}, 
     							'Registration complete' 
     						);

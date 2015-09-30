@@ -653,7 +653,11 @@ Ext.define('Ma.controller.DictionaryFormController', {
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
-										//currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
+										// reload stores
+										Ext.getStore("DictionarySources").load();
+       									//Ext.getStore("DictionarySourcesFiltered").load();
+       									Ext.getStore("DictionaryTargets").load();
+										Ext.getStore("Speakers").load();
 										Sencha.app.fireEvent('refreshdictionarylist');
 									},
 									errorCB          
@@ -789,8 +793,12 @@ Ext.define('Ma.controller.DictionaryFormController', {
 											currentObj.moveFileToPersistentStorage(currentObj.getImageURLinTFS(), destDir, newImageFilename, currentObj);
 										}
 										
+										// reload stores
+										Ext.getStore("DictionarySources").load();
+       									//Ext.getStore("DictionarySourcesFiltered").load();
+       									Ext.getStore("DictionaryTargets").load();
+										Ext.getStore("Speakers").load();
 										// refresh ditionary search results to show these changes
-										//currentObj.getApplication().getController('Ma.controller.DictionaryListController').filterDictionarySearch();
 										Sencha.app.fireEvent('refreshdictionarylist');
 									},
 									errorCB          

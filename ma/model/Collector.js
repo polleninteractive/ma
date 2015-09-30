@@ -1,6 +1,10 @@
 Ext.define('Ma.model.Collector', {
     extend: 'Ext.data.Model',
     
+	requires: [
+        'Ma.util.SQLOverride'
+    ],
+	
     config: {
         fields: [
             { name: 'id', type: 'int' },
@@ -11,19 +15,8 @@ Ext.define('Ma.model.Collector', {
             { name: 'username', type: 'string' },
             { name: 'password', type: 'string' },
             { name: 'email', type: 'string' }
-        ],
-        /*
-        proxy: {
-           type: 'sqlitestorage',
-           dbConfig: {
-           		tablename: 'COLLECTOR',
-           		//dbConn: Ext.DbConnection
-           		dbConn: Ma.util.InitSQLite.getConnection()
-           }, 
-           reader: {type:'array'}     
-        }
-        */
-        
+        ], 
+       
         proxy: {
 			type: 'sql'
 		}

@@ -1,6 +1,10 @@
 Ext.define('Ma.model.Speaker', {
     extend: 'Ext.data.Model',
 	
+	requires: [
+        'Ma.util.SQLOverride'
+    ],
+	
     config: {
         fields: [
             { name: 'id', type: 'int' },
