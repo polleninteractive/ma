@@ -126,7 +126,6 @@ div#engDictionaryButtonId1.x-button-round.x-button.x-stretched.engDictionaryButt
 }
 
 .dictionarytab, .informationtab, .pictionarytab {
-	margin-top: 2px !important;
 	background-color: white !important;
     background-repeat:no-repeat !important;
     background-position:center !important; 
@@ -280,6 +279,11 @@ sup {
     font-size: 0.5em;
 }
 
+.x-img.x-img-image img {
+	width: 100% !important;
+	height: auto !important;
+}
+
 .dictImageThumb {
     float: left;
     margin-top: 3px;
@@ -316,6 +320,10 @@ sup {
     padding-bottom: 6px;
 }
 
+.dictionaryDetail {
+	font-size: 1.4em;
+}
+
 .clear {
     clear:both;
 }
@@ -324,12 +332,12 @@ sup {
     font-size: 1.25em;
 }
 
-.dictDetailSourceWord {
+.dictDetailTargetWord {
     font-size: 1.4em;
+	padding: 2px 5px;
 }
 
-.dictDetailTargetWord {
-	font-weight: 900;
+.dictDetailSourceWord {
 	margin-right: 2em;
 }
 

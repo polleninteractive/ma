@@ -27,33 +27,25 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
 		
         items: [
 			{
-                // header container - includes image thumb, target word and speaker button
+				xtype: 'image'
+				//id: 'dictionaryImageButton'
+			},
+			{
+                // header container - includes speaker button and target word
                 xtype: 'container',
                 name: 'newContainerHeader',
                 cls: 'dictionarydetailheader',
                 layout:{
-                   type:'vbox',
+                   type:'hbox',
                    align:'left'
                 },
                 items: [
                     {
                         xtype: 'image',
-                        width: '75px',
-                        height: '65px',
-                        id: 'dictionaryImageButton',
-                        docked: 'left'
-                    },
-                    {
-                        html: ''
-                    },
-                    {
-                        xtype: 'image',
                         text: 'speaker button',
                         cls: 'dictionarySpeakerButton',
                         html: '<img src="images/speaker.png" />',
-                        width: '33px',
-                        height: '24px',
-                        margin: '5 0 0 -1',
+                        width: '24px',
                         // Because there are multiple cards in the carousel, each using the same view we cannot distinguish between
                         // button taps so have to include listener on the view
                         listeners : {
@@ -61,11 +53,15 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
                             	Sencha.app.playAudioAssetAndRelease( this.getParent().getParent().getAudioURL() );
                             }
                         }
+                    },
+					// Used to display translation etc.
+                    {
+                        html: ''
                     }
                 ]
             },
             {
-                // main body text of dictionary entry
+                // main body text of dictionary entry ie. english translation
                 html: ''
             }
         ]
@@ -82,22 +78,27 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
     		return;
     	}
     	 
-    	// Display Header text
+		// Get details to display
 		var inflection = this.getSourceRecord().get('inflection') ? this.getSourceRecord().get('inflection') : '';
-		this.getAt(0).getAt(1).setHtml('<div class=dictDetailHeadline><div class=dictDetailSourceWord>' + this.getSourceRecord().get('sourceWord') + '</div><div class=inflection>' + inflection + '</div></div>');
-                     
-		// Display main dictionary entry text
 		var detailedEntry = ( this.getSourceRecord().get('detailedEntry')!=null && this.getSourceRecord().get('detailedEntry')!=undefined ) ? this.getSourceRecord().get('detailedEntry') : '';
-		var targetWord = ( this.getSourceRecord().get('targetWord')!=null && this.getSourceRecord().get('targetWord')!=undefined ) ? '<span class="dictDetailTargetWord">' + this.getSourceRecord().get('targetWord') + '</span>' : '';
+		var targetWord = ( this.getSourceRecord().get('targetWord')!=null && this.getSourceRecord().get('targetWord')!=undefined ) ? this.getSourceRecord().get('targetWord') : '';
 		var moderatorComments = ( this.getSourceRecord().get('moderatorComments') != null) ? ('Moderator says: '+this.getSourceRecord().get('moderatorComments') ) : '';
 		var status = this.getSourceRecord().get('status');
-		var statusReport = (status==null || status==undefined) ? '' : this.getDictionaryStatus()[status];						
+		var statusReport = (status==null || status==undefined) ? '' : this.getDictionaryStatus()[status];
+		console.log('dialect = ' + this.getSourceRecord().get('dialect') );
+		var targetWordDialectStyling = ( this.getSourceRecord().get('dialect')==2 ) ? '"dictDetailTargetWord dialect"' : 'dictDetailTargetWord';
+		console.log('targetWordDialectStyling = ' + targetWordDialectStyling);
+		 
+    	// Display Header text
+		this.getAt(1).getAt(1).setHtml('<div class=dictDetailHeadline><div class=' + targetWordDialectStyling + '>' + targetWord + '</div><div class=inflection>' + inflection + '</div></div>');
+                     
+		// Display main dictionary entry text				
 		this.setAudioURL( this.getSourceRecord().get('audioURL') ); // Store audioURL for later
-		this.getAt(1).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + targetWord + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
+		this.getAt(2).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + this.getSourceRecord().get('sourceWord') + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
 									
 		// Hide speaker icon if no audio
 		if ( !this.getSourceRecord().get('audioURL') ) {
-			this.getAt(0).getAt(2).setHidden(true);
+			this.getAt(1).getAt(1).setHidden(true);
 		}
 		
 		// display image
@@ -111,10 +112,10 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
 				imageThumbURL = Sencha.app.getAssetsFolder() + this.getSourceRecord().get('imageURL');
 			} 
 
-			this.getAt(0).getAt(0).setHidden(false);
-			this.getAt(0).getAt(0).setHtml('<div class=dictImageThumb><div><img src="' + imageThumbURL + '" /></div></div>');
+			this.getAt(0).setHidden(false);
+			this.getAt(0).setHtml('<div><img src="' + imageThumbURL + '" /></div>');
 		} else {
-			this.getAt(0).getAt(0).setHidden(true); // hide image
+			this.getAt(0).setHidden(true); // hide image
 		}					
     }
       
