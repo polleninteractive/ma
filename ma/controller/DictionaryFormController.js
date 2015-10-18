@@ -154,6 +154,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	// Create video view and play video
 	//
 	showVideo: function(videoURL) {
+		console.log('showing video... ' + videoURL);
+		
 		this.getMain().push({
 			xtype: 'videoview'
 		});	
@@ -612,7 +614,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 						}
                           
                         dictionaryTargetQuery = 'INSERT INTO DICTIONARYTARGET (id, speakerId, collectorId, targetWord, audioURL, imageURL, comments, commentsURL, commentsMediaType, savedDate, latitude, longitude, recordingDevice) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
-						dictionaryTargetParams = [null, dictionarySpeakerId, dictionaryCollectorId, targetWord, newAudioURL, newImageURL, "yoyo", newCommentsURL, currentObj.getCommentsMediaType(), currentObj.getCurrentDate(), currentObj.getCurrentLatitude(), currentObj.getCurrentLongitude(), currentObj.getRecordingDevice() ];
+						dictionaryTargetParams = [null, dictionarySpeakerId, dictionaryCollectorId, targetWord, newAudioURL, newImageURL, comments, newCommentsURL, currentObj.getCommentsMediaType(), currentObj.getCurrentDate(), currentObj.getCurrentLatitude(), currentObj.getCurrentLongitude(), currentObj.getRecordingDevice() ];
 						tx.executeSql(
 							dictionaryTargetQuery,
 							dictionaryTargetParams,

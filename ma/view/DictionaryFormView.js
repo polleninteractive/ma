@@ -228,11 +228,11 @@ Ext.define('Ma.view.DictionaryFormView', {
 			items:[
 				{
 					xtype: 'button',
+					ui: 'round',
 					cls: 'addImageButtonCls',
 					id: 'addImageButton',
-					padding:0,
-					id: 'addImageButton',
-					html: '<p>Add photo</p>',
+					html: 'Add<br />photo',
+					/*text: 'Add photo',*/
 					margin: '7',
 					width: '60px',
 					height: '60px'
@@ -250,12 +250,13 @@ Ext.define('Ma.view.DictionaryFormView', {
 					id: 'deletebutton',
 					xtype: 'button',
 					text: 'Delete Entry',
+					ui: 'decline',
 					margin: '7',
 					flex: 1,
 					height: '40px'
 				}
 			]
-		};
+		}; 
            
 		//this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, metadataContainer, deleteContainer]);
 		this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, deleteContainer]);

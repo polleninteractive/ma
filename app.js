@@ -41,6 +41,11 @@ Ext.application({
     iOSfilestorePrefix: 'file://', // Prefix required for window.resolvelocalfilesystemURL to work on iOS on audio captured with media plugin
 	dictionaryWordsFolderName: 'words/', // sub-folder where dictionary words are stroed
 	imagesFolderName: 'images/', // sub-folder where images are stored
+	moreTabURL: 'http://www.iwaidja.org/', // URL to open when more tab tapped
+	firstLanguageName: 'English', // used in add/edit entry form, typically this is the source language
+	secondLanguageName: 'Iwaidja', //  used in add/edit entry form, typically this is the target language
+	firstLanguageAbbreviation: 'EN', // used on toggle buttons, typically this is the source language
+	secondLanguageAbbreviation: 'IW', // used on toggle buttons, typically this is the target language
                 
     // Global variables
     persistentFileStoreVar : "",
@@ -50,8 +55,8 @@ Ext.application({
 
     controllers: ['Ma.controller.DictionaryNavigationController', 'Ma.controller.DictionaryListController', 'Ma.controller.PhotoSourceSelectController', 'Ma.controller.DictionaryFormController', 'Ma.controller.RegistrationFormController', 'Ma.controller.DictionarySyncController', 'Ma.controller.DictionaryDetailController', 'Ma.controller.TabBarController', 'Ma.controller.InformationListController'],
     views: ['Ma.view.VideoView', 'Ma.view.PhotoSourceSelectView', 'Ma.view.RegistrationFormView', 'Ma.view.DictionarySyncConfirmationView', 'Ma.view.DictionaryContainerList', 'Ma.view.DictionaryFormView', 'Ma.view.DictionaryListView', 'Ma.view.DictionaryNavigationView', 'Ma.view.DictionaryTargetDetailView', 'Ma.view.TabView', 'Ma.view.SoundRecorder', 'Ma.view.MetadataFormView', 'Ma.view.SpeakerFormView', 'Ma.view.DictionaryDetailPageView', 'Ma.view.ImageView', 'Ma.view.InformationNavigationView', 'Ma.view.InformationListView', 'Ma.view.HowToUseAppInfoView', 'Ma.view.AboutThisAppInfoView', 'Ma.view.LanguageFootprintInfoView', 'Ma.view.SoundsOfIwaidjaInfoView' ],
-    stores: ['Ma.store.SystemStates', 'Ma.store.Collectors', 'Ma.store.DictionarySourcesFiltered'], 
-    models: ['Ma.model.DictionarySourceFiltered', 'Ma.model.SystemState', 'Ma.model.Collector'],
+    stores: ['Ma.store.SystemStates', 'Ma.store.DictionarySources', 'Ma.store.DictionaryTargets', 'Ma.store.Collectors', 'Ma.store.DictionarySourcesFiltered'], 
+    models: ['Ma.model.DictionarySourceFiltered', 'Ma.model.DictionarySource', 'Ma.model.DictionaryTarget', 'Ma.model.SystemState', 'Ma.model.Collector'],
   
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -112,6 +117,31 @@ Ext.application({
             }
         );
     },
+	
+	
+	// Getters for language names
+	getFirstLanguageName: function() {
+        return this.firstLanguageName;
+    },
+	
+	getSecondLanguageName: function() {
+        return this.secondLanguageName;
+    },
+	
+	// Getters for language abbreviations
+	getFirstLanguageAbbreviation: function() {
+        return this.firstLanguageAbbreviation;
+    },
+	
+	getSecondLanguageAbbreviation: function() {
+        return this.secondLanguageAbbreviation;
+    },
+	
+	// Getter for moreTabURL
+	getMoreTabURL: function() {
+        return this.moreTabURL;
+    },
+	
 
 
     // Getter for dictionaryWordsFolder

@@ -97,8 +97,10 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
 		this.getAt(2).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + this.getSourceRecord().get('sourceWord') + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
 									
 		// Hide speaker icon if no audio
+		console.log('audioURL = ' + this.getSourceRecord().get('audioURL') );
 		if ( !this.getSourceRecord().get('audioURL') ) {
-			this.getAt(1).getAt(1).setHidden(true);
+			console.log('detecter null');
+			this.getAt(1).getAt(0).setHidden(true);
 		}
 		
 		// display image

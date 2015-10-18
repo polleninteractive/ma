@@ -320,26 +320,18 @@ sup {
     padding-bottom: 6px;
 }
 
-.dictionaryDetail {
-	font-size: 1.4em;
+.dictionaryDetail, .dictDetailTargetWord {
+	font-size: 1.5em;
+}
+
+.EntryParagraph {
+    padding-top: 1.5em;
 }
 
 .clear {
     clear:both;
 }
 
-.EntryParagraph, .BlockParagraph {
-    font-size: 1.25em;
-}
-
-.dictDetailTargetWord {
-    font-size: 1.4em;
-	padding: 2px 5px;
-}
-
-.dictDetailSourceWord {
-	margin-right: 2em;
-}
 
 .Lexeme {   
     font-weight: 900;
@@ -360,7 +352,7 @@ sup {
 	border: none !important;	
 }
 
-.soundrecordercontainer, div#imagecapturecontainer.x-container.x-unsized {
+.soundrecordercontainer {
 	border-bottom:1px solid #000 !important;
 	margin:0px -20px 20px !important;
 	padding: 10px 20px !important;
