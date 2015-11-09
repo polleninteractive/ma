@@ -74,7 +74,7 @@ Ext.define('Ma.controller.DictionaryListController', {
     //
     startSynchronisation: function() {
     	if ( this.getApplication().getController('Ma.controller.DictionarySyncController').isSynchronising() == true ) {
-    		this.getPullToRefresh().setPullRefreshText('Synchronising...');
+    		this.getPullToRefresh().setPullText('Synchronising...');
     	} else { 
     		this.getDictionarySyncConfirmationView().show();
     	}

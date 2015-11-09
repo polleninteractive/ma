@@ -425,11 +425,17 @@ sup {
 }
 
 
+/* Expand hit area for button */
+div#dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, div#speakerButton.x-button-normal.x-button.x-layout-box-item.x-stretched {
+	width: 50px !important;
+	height: 40px !important;
+	top: -10px !important;
+}
 
 /* metadata button */
 #dicMetadataButton::before, #speakerButton::before {
 	position: absolute;
-	top: -5px;
+	top: 5px;
 	right: 0;
 	bottom: 0;
 	left: 0;
