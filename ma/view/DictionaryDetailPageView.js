@@ -82,6 +82,8 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
 		var inflection = this.getSourceRecord().get('inflection') ? this.getSourceRecord().get('inflection') : '';
 		var detailedEntry = ( this.getSourceRecord().get('detailedEntry')!=null && this.getSourceRecord().get('detailedEntry')!=undefined ) ? this.getSourceRecord().get('detailedEntry') : '';
 		var targetWord = ( this.getSourceRecord().get('targetWord')!=null && this.getSourceRecord().get('targetWord')!=undefined ) ? this.getSourceRecord().get('targetWord') : '';
+		console.log('targetWord = ' + this.getSourceRecord().get('targetWord') );
+		console.log('macro targetWord = ' + targetWord );
 		var moderatorComments = ( this.getSourceRecord().get('moderatorComments') != null) ? ('Moderator says: '+this.getSourceRecord().get('moderatorComments') ) : '';
 		var status = this.getSourceRecord().get('status');
 		var statusReport = (status==null || status==undefined) ? '' : this.getDictionaryStatus()[status];
@@ -94,12 +96,10 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
                      
 		// Display main dictionary entry text				
 		this.setAudioURL( this.getSourceRecord().get('audioURL') ); // Store audioURL for later
-		this.getAt(2).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + this.getSourceRecord().get('sourceWord') + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
+		this.getAt(2).setHtml('<div class=dictionaryDetail><div class=dictDetailViewDetailEntry>' + detailedEntry + '</div><div class=contributionStatus>' + statusReport + '</div><div class=moderatorComments>' + moderatorComments + '</div></div>');
 									
 		// Hide speaker icon if no audio
-		console.log('audioURL = ' + this.getSourceRecord().get('audioURL') );
 		if ( !this.getSourceRecord().get('audioURL') ) {
-			console.log('detecter null');
 			this.getAt(1).getAt(0).setHidden(true);
 		}
 		

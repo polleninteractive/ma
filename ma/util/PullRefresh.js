@@ -9,10 +9,15 @@ Ext.define('Ma.util.PullRefresh', {
         'Ext.plugin.PullRefresh'
     ], 
 
-
-    onLatestFetched: function(operation) {
-        this.callParent(arguments);
-        
+	fetchLatest: function() {
 		this.fireEvent('pulled');
-    }
+		
+		this.setState("loaded");
+        //this.fireEvent('latestfetched', this, toInsert);
+        if (this.getAutoSnapBack()) {
+            this.snapBack();
+        }
+	}
+
+	
 });

@@ -492,21 +492,40 @@ Ext.define('Ma.controller.DictionaryFormController', {
         	this.setImageURL(null);
         } 
          
-   		// Set the metadata
-   		this.setCurrentDate( curRecord.get('savedDate') );
-   		this.setCurrentLatitude( curRecord.get('latitude') );
-   		this.setCurrentLongitude( curRecord.get('longitude') );
-   		this.setRecordingDevice( curRecord.get('recordingDevice') );
+		console.log('setting METADATA');
+		// METADATA form
+		// Set current date and time
+    	var d = new Date();
+        this.setCurrentDate( d.getTime() );
+        // Set location 
+        var thisPtr = this;
+        navigator.geolocation.getCurrentPosition(
+            // Success callback
+            function(position) {
+				console.log('success get coords');
+				console.log('position.coords.latitude = ' + position.coords.latitude);
+                thisPtr.setCurrentLatitude( position.coords.latitude );
+                thisPtr.setCurrentLongitude( position.coords.longitude ); 
+            }, 
+            // Error callback
+            function(error) {
+            	console.log('in GPS fail');
+                console.log('code: ' + error.code);
+                thisPtr.setCurrentLatitude('');
+                thisPtr.setCurrentLongitude('');
+            }
+        ); 
+        // set Device
+        this.setRecordingDevice( device.model );
+           		
+   	    // SPEAKER form
+		if (speakerStore != null) {
+        	this.setSpeakerName( speakerStore.get('name') );
+        	this.setSpeakerDOB( speakerStore.get('birthDate') );
+        	this.setSpeakerGender( speakerStore.get('gender') );
+        	this.setSpeakerComment( speakerStore.get('comments') );
+		}
    		
-   	    //speaker form
-   	    if ( speakerStore != null ) { 
-   	    	this.setSpeakerName(speakerStore.get('name'));
-   	    	this.setSpeakerDOB( speakerStore.get('birthDate') );
-   	    	this.setSpeakerGender(speakerStore.get('gender'));
-   	    	this.setSpeakerComment(speakerStore.get('comments'));
-   	    }  
-   		
-		/*
    		// if this is not an editable record, then disable all fields except comments
    		if ( curRecord.get('isEditable')==0 || curRecord.get('isEditable')==null ) {
    			this.getDictionarySourceWordForm().getComponent('sourceWordField').disable();
@@ -517,7 +536,6 @@ Ext.define('Ma.controller.DictionaryFormController', {
    		} else {
 			this.getDictionaryDeleteButton().show();
 		}
-		*/
    	},
    	
    	
@@ -705,7 +723,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
         var sourceWord = this.getDictionarySourceWordForm().getComponent('sourceWordField').getValue();
         var targetWord = this.getDictionaryTargetWordForm().getComponent('targetWordField').getValue();
         var comments = this.getDictionaryCommentsForm().getComponent('dictionaryCommentsField').getValue(); 
-          
+		  
         var db = window.sqlitePlugin.openDatabase({name: "0000000000000001.db"});
         db.transaction(
             function(tx){
@@ -760,8 +778,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
 							dictionaryTargetParams,
 							function(tx, results) {
 								var dictionaryTargetId = currentObj.getTargetId();
-								var queryDictionarySource = 'UPDATE DICTIONARYSOURCE SET dictionaryTargetId=?, sourceWord=?, sourceWordURL=?, targetWord=?, isEditable=?, status=? WHERE id=?'; 
-								var dictionarySourceParams = [dictionaryTargetId, sourceWord, sourceWordURL, targetWord, 1, currentObj.getAWAITINGUPLOADSTATUS(), currentObj.getSourceId() ];
+								var queryDictionarySource = 'UPDATE DICTIONARYSOURCE SET dictionaryTargetId=?, sourceWord=?, sourceWordURL=?, targetWord=?, status=? WHERE id=?'; 
+								var dictionarySourceParams = [dictionaryTargetId, sourceWord, sourceWordURL, targetWord, currentObj.getAWAITINGUPLOADSTATUS(), currentObj.getSourceId() ];
 								tx.executeSql(
 									queryDictionarySource,
 									dictionarySourceParams,
@@ -903,19 +921,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
         this.getSpeakerNameField().getComponent('speakerNameField').setValue(this.getSpeakerName());
         this.getSpeakerGenderField().setGroupValue(this.getSpeakerGender());
         this.getSpeakerCommentField().getComponent('speakerCommentField').setValue(this.getSpeakerComment());
-        
-        // Disable speaker fields if the dictionary entry this speaker is associated with is not editable
-        // if this is an edit (ie. if dictionaryformview is second item in stack, then we must be adding a new entry)
-        if ( this.getMain().getInnerItems()[1].xtype != "dictionaryformview" ) {
-			var dictionarySourceRecord = Ext.getStore("DictionarySources").getById( this.getSourceId() );
-			if ( dictionarySourceRecord.get('isEditable')==0 || dictionarySourceRecord.get('isEditable')==null ) {
-        		console.log('in speaker, not editable.............');
-				this.getSpeakerNameField().getComponent('speakerNameField').disable();
-				this.getSpeakerNameField().getComponent('speakerDOBField').disable();
-				this.getSpeakerGenderField().disable();
-				this.getSpeakerCommentField().getComponent('speakerCommentField').disable();
-        	}
-        }
+     
     },
            
            
