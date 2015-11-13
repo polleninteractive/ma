@@ -136,7 +136,7 @@ Ext.define('Ma.controller.DictionaryListController', {
         
         // if nothing entered, showing entries starting with 'a'
         if (searchString=='' || searchString==null) {
-			searchString = 'a'; 
+			searchString = ''; 
         } else {
         	// escape apostrophe 
 			var apostropheRegExp = /'/g;

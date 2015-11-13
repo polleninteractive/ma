@@ -18,6 +18,7 @@ Ext.define('Ma.view.DictionaryListView', {
         plugins: [
         	{
             	xclass: 'Ma.util.PullRefresh',
+				autoSnapBack: true,
 				pullText: 'Pull to share and update (requires internet connection)',
 				releaseText: 'Pull to share and update (requires internet connection)',
 				loadingText: 'Initialising synchronisation...',

@@ -84,6 +84,7 @@ Ext.define('Ma.controller.DictionaryDetailController', {
         // and even when leaving the carousel returning to list view. So need to detect these cases 
         var innerItems = this.getMain().getInnerItems();
         var currentItem = innerItems[innerItems.length-1].xtype; 
+		console.log('currentItem = ' + currentItem);
         if (currentItem == "dictionarycontainerlist") {
             return;
         }

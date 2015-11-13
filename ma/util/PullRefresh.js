@@ -10,6 +10,8 @@ Ext.define('Ma.util.PullRefresh', {
     ], 
 
 	fetchLatest: function() {
+		console.log('in fetchLatest()');
+		
 		this.fireEvent('pulled');
 		
 		this.setState("loaded");

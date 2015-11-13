@@ -46,14 +46,24 @@ Ext.application({
 	secondLanguageName: 'Iwaidja', //  used in add/edit entry form, typically this is the target language
 	firstLanguageAbbreviation: 'EN', // used on toggle buttons, typically this is the source language
 	secondLanguageAbbreviation: 'IW', // used on toggle buttons, typically this is the target language
-                
+    dictionaryStatus: [
+        "", 												// 0: no contribution made (isEditable=0)
+		"Contribution not yet uploaded", 					// 1: contribution made but not uploaded yet (isEditable=1)
+		"Contribution uploaded and awaiting moderation",	// 2: contribution uploaded, waiting to be moderated (isEditable=0)
+		"Contribution approved",							// 3: contribution approved (isEditable=0)
+		"Contribution approved with changes",				// 4: contribution approved with changes (isEditable=0)
+		"", // left blank									// 5: blank 
+		"Contribution deleted",								// 6: contribution request for delete approved (isEditable na.)
+		"Contribution declined"								// 7: contribution declined this time (isEditable=1)
+	],
+	            
     // Global variables
     persistentFileStoreVar : "",
     temporaryFileStoreVar : "",
     mediaPtr : null,
     username: null,
 
-    controllers: ['Ma.controller.DictionaryNavigationController', 'Ma.controller.DictionaryListController', 'Ma.controller.PhotoSourceSelectController', 'Ma.controller.DictionaryFormController', 'Ma.controller.RegistrationFormController', 'Ma.controller.DictionarySyncController', 'Ma.controller.DictionaryDetailController', 'Ma.controller.TabBarController', 'Ma.controller.InformationListController'],
+    controllers: ['Ma.controller.DictionaryNavigationController', 'Ma.controller.DictionaryListController', 'Ma.controller.PhotoSourceSelectController', 'Ma.controller.DictionaryFormController', 'Ma.controller.RegistrationFormController', 'Ma.controller.DictionarySyncController', 'Ma.controller.DictionaryDetailController', 'Ma.controller.TabBarController', 'Ma.controller.InformationListController', 'Ma.controller.DictionaryDetailPageViewController'],
     views: ['Ma.view.VideoView', 'Ma.view.PhotoSourceSelectView', 'Ma.view.RegistrationFormView', 'Ma.view.DictionarySyncConfirmationView', 'Ma.view.DictionaryContainerList', 'Ma.view.DictionaryFormView', 'Ma.view.DictionaryListView', 'Ma.view.DictionaryNavigationView', 'Ma.view.DictionaryTargetDetailView', 'Ma.view.TabView', 'Ma.view.SoundRecorder', 'Ma.view.MetadataFormView', 'Ma.view.SpeakerFormView', 'Ma.view.DictionaryDetailPageView', 'Ma.view.ImageView', 'Ma.view.InformationNavigationView', 'Ma.view.InformationListView', 'Ma.view.HowToUseAppInfoView', 'Ma.view.AboutThisAppInfoView', 'Ma.view.LanguageFootprintInfoView', 'Ma.view.SoundsOfIwaidjaInfoView' ],
     stores: ['Ma.store.SystemStates', 'Ma.store.DictionarySources', 'Ma.store.DictionaryTargets', 'Ma.store.Collectors', 'Ma.store.DictionarySourcesFiltered'], 
     models: ['Ma.model.DictionarySourceFiltered', 'Ma.model.DictionarySource', 'Ma.model.DictionaryTarget', 'Ma.model.SystemState', 'Ma.model.Collector'],
@@ -118,6 +128,11 @@ Ext.application({
         );
     },
 	
+	
+	// Getter for dictionaryStatus
+	getDictionaryStatus: function() {
+        return this.dictionaryStatus;
+    },
 	
 	// Getters for language names
 	getFirstLanguageName: function() {
