@@ -43,36 +43,36 @@ Ext.define('Ma.controller.DictionaryFormController', {
         	dictionaryEntryButton: 'dictionarynavigationview button[id=dictionaryEntryButton]',
 			dictionaryDetailView: 'dictionarytargetdetailview',
 			
-			sourceWordRecordButtonRef: 'button[id=sourceWordRecordButton]',
-			sourceWordPlayButtonRef: 'button[id=sourceWordPlayButton]',
-			targetWordRecordButtonRef: 'button[id=targetWordRecordButton]',
-			targetWordPlayButtonRef: 'button[id=targetWordPlayButton]',
-			commentsRecordButtonRef: 'button[id=dictionaryCommentsRecordButton]',
-			commentsPlayButtonRef: 'button[id=dictionaryCommentsPlayButton]',
-			commentsVideoToggleRef: 'togglefield[id=dictionaryCommentsVideoToggle]',
+			sourceWordRecordButtonRef: 'dictionarynavigationview #sourceWordRecordButton',
+			sourceWordPlayButtonRef: 'dictionarynavigationview #sourceWordPlayButton',
+			targetWordRecordButtonRef: 'dictionarynavigationview #targetWordRecordButton',
+			targetWordPlayButtonRef: 'dictionarynavigationview #targetWordPlayButton',
+			commentsRecordButtonRef: 'dictionarynavigationview #dictionaryCommentsRecordButton',
+			commentsPlayButtonRef: 'dictionarynavigationview #dictionaryCommentsPlayButton',
+			commentsVideoToggleRef: 'dictionarynavigationview #dictionaryCommentsVideoToggle',
 			 
-			dictionarySourceWordForm: 'fieldset[id=dictionarySourceFormFieldSet]', 
-			dictionaryTargetWordForm: 'fieldset[id="dictionaryTargetFormFieldSet"]',
-			dictionaryCommentsForm: 'fieldset[id="dictionaryCommentsFormFieldSet"]',
-			addImageButtonRef: 'button[id=addImageButton]',
+			dictionarySourceWordForm: 'dictionarynavigationview #dictionarySourceFormFieldSet', 
+			dictionaryTargetWordForm: 'dictionarynavigationview #dictionaryTargetFormFieldSet',
+			dictionaryCommentsForm: 'dictionarynavigationview #dictionaryCommentsFormFieldSet',
+			addImageButtonRef: 'dictionarynavigationview #addImageButton',
 			
 			photoSourceSelectView: 'photosourceselectview',
-			dictionaryDeleteButton: 'button[id=deletebutton]',
-			dictionaryDeleteContainer: 'container #deletecontainer', 
-			dictionaryMetadataContainer: 'dictionarynavigationview container[cls=metadatacontainer]',
-			dictionaryMetadataButton: 'button[id=dicMetadataButton]',
+			dictionaryDeleteButton: 'dictionarynavigationview #deletebutton',
+			dictionaryDeleteContainer: 'dictionarynavigationview container #deletecontainer', 
+			dictionaryMetadataContainer: 'dictionarynavigationview dictionarynavigationview container[cls=metadatacontainer]',
+			dictionaryMetadataButton: 'dictionarynavigationview #dicMetadataButton',
 			
 			/* metadata form */
 			dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
 			
 			//speaker
-			speakerFieldSet: 'fieldset[id="speakerFieldset"]',
+			speakerFieldSet: 'dictionarynavigationview fieldset[id="speakerFieldset"]',
 			speakerNameField: 'dictionarynavigationview textfield[id="speakerNameField"]',
 			speakerGenderField: 'dictionarynavigationview radiofield[name="speakerGender"]',
 			speakerCommentField: 'dictionarynavigationview textfield[id="speakerCommentField"]',
 			speakerDOBField: 'dictionarynavigationview datepickerfield[id="speakerDOBField"]',
            
-			videoPlayerRef: 'video[id="videoPlayer"]'
+			videoPlayerRef: 'dictionarynavigationview #videoPlayer'
         },
         control: {
 			'sourceWordRecordButtonRef':{
@@ -143,7 +143,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
             	scope: this
         	},
 			{
-            	event: 'addimage',
+            	event: 'addDictionaryImage',
             	fn: this.addImage,
             	scope: this
         	}
@@ -199,12 +199,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	// then play that, else use respective URL in store
     //
     prepareMedia: function(button) {
+		console.log('preparing...');
     	// get audioURL depending on play button pressed
     	var audioURLinTFS = null;
     	var audioURLinDb = null;
     	
     	// get URL of media to play
-    	switch ( button.getId() ) {
+    	switch ( button.getItemId() ) {
     		case "sourceWordPlayButton":
     			audioURLinTFS = this.getSourceWordURLinTFS(); // Plan A: get URL in temporary fiel system
     			audioURLinDb = this.getSourceWordURL();  // Plan B: get URL in database
@@ -218,7 +219,9 @@ Ext.define('Ma.controller.DictionaryFormController', {
     			audioURLinDb = this.getCommentsURL();
     			break;
     	}
-    	
+    	console.log('button.getItemId() = ' + button.getItemId());
+		console.log('audioURLinTFS = ' + audioURLinTFS);
+		
         var audioURL = null;
         // If there's a (new) audio file in TFS then play it, otherwise try to play from db
         if ( audioURLinTFS ) {
@@ -263,7 +266,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
     //
     recordMedia: function(button) {
     	// remember which button pressed (used in callback to assign audio to respective parameter)
-    	this.setLastButtonPressedId( button.getId() );
+    	this.setLastButtonPressedId( button.getItemId() );
     	var me = this; // remember me
     
     	// filesystem error callback
@@ -543,6 +546,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
    	// a confirmation alert displayed
    	//
    	validateForm: function() {
+		console.log('this.getDictionarySourceWordForm() = ' + this.getDictionarySourceWordForm() );
 		var newSourceWord = this.getDictionarySourceWordForm().getComponent('sourceWordField').getValue();
 		var newTargetWord = this.getDictionaryTargetWordForm().getComponent('targetWordField').getValue();
         newSourceWord = newSourceWord.replace(/^\s+|\s+$/g,""); // remove leading spaces
@@ -625,7 +629,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 						}
                                      
 						//Save imageURL 
-						var newImageURL = '';
+						var newImageURL = null;
 						if ( currentObj.getImageURLinTFS() ) {
 							var d4 = new Date();
 							newImageURL = Sencha.app.getImagesFolderName() + Sencha.app.getUsername() + d4.getTime() + 'img' + '.jpg';
@@ -980,7 +984,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
     // Displays actionsheet to either take photo or choose photo from gallery
     // 
     onAddImageTap: function() {
-		this.getPhotoSourceSelectView().show();  
+		Sencha.app.fireEvent('showPhotoSourceSelectView', 'addDictionaryImage');
 	},
     
 

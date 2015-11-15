@@ -384,7 +384,7 @@ sup {
 }
 
 /* photo button, and photo source select buttons */
-.x-button-round#addImageButton, .x-button-normal#choosePhotoButton, .x-button-normal#takePhotoButton {
+.x-button-round#addImageButton, div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item, .x-button-normal#choosePhotoButton, .x-button-normal#takePhotoButton {
 	border-color: #808284 !important;
 }
 

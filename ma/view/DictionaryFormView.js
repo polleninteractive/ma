@@ -14,7 +14,7 @@ Ext.define('Ma.view.DictionaryFormView', {
         styleHtmlContent: true,
         scrollable: 'vertical',
         cls: 'formview',
-        id: 'dictformview',
+        itemId: 'dictformview',
         customLabelWidth: '40%'
     },   
 	
@@ -24,13 +24,13 @@ Ext.define('Ma.view.DictionaryFormView', {
         // Form for entering source word text
         var sourceFormFieldSet = {
 	        xtype: 'fieldset',
-	        id: 'dictionarySourceFormFieldSet',
+	        itemId: 'dictionarySourceFormFieldSet',
 	        items: [
 	            {
 	                xtype: 'textfield',
 	                name : 'sourceword',
 	                placeHolder: Sencha.app.getFirstLanguageName(),
-                    id: 'sourceWordField',
+                    itemId: 'sourceWordField',
                     value: '',
                     autoCapitalize: false
 	            }
@@ -55,7 +55,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioRecordButtonCls',
-							id: 'sourceWordRecordButton',
+							itemId: 'sourceWordRecordButton',
 							flex: 1
 						},
 						{
@@ -66,7 +66,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioPlayButtonCls',
-							id: 'sourceWordPlayButton',
+							itemId: 'sourceWordPlayButton',
 							flex: 1
 						}
 					]
@@ -77,13 +77,13 @@ Ext.define('Ma.view.DictionaryFormView', {
         // target word/translation text
 		var targetFormFieldSet = {
 	        xtype: 'fieldset', 
-	        id: 'dictionaryTargetFormFieldSet',
+	        itemId: 'dictionaryTargetFormFieldSet',
 	        items: [
 				{
 	                xtype: 'textfield',
 	                name : 'targetword',
 	                placeHolder: Sencha.app.getSecondLanguageName(),
-	                id: 'targetWordField',
+	                itemId: 'targetWordField',
                     value: '',
                     autoCapitalize: false
 				}
@@ -98,7 +98,7 @@ Ext.define('Ma.view.DictionaryFormView', {
            items:[
 				{
 					xtype: 'container',
-					id: 'audiobuttonscontainer',
+					itemId: 'audiobuttonscontainer',
 					margin: '0px 10px 7px 10px',
 					layout: {
 						type: 'hbox',
@@ -109,7 +109,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioRecordButtonCls',
-							id: 'targetWordRecordButton',
+							itemId: 'targetWordRecordButton',
 							flex: 1
 						},
 						{
@@ -120,7 +120,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioPlayButtonCls',
-							id: 'targetWordPlayButton',
+							itemId: 'targetWordPlayButton',
 							flex: 1
 						}
 					]
@@ -131,12 +131,12 @@ Ext.define('Ma.view.DictionaryFormView', {
         // Form for entering comments text
         var commentsFormFieldSet = {
 	        xtype: 'fieldset',
-	        id: 'dictionaryCommentsFormFieldSet',
+	        itemId: 'dictionaryCommentsFormFieldSet',
 	        items: [
 	            {
 	                xtype: 'textfield',
 	                name : 'sourceword',
-                    id: 'dictionaryCommentsField',
+                    itemId: 'dictionaryCommentsField',
 					placeHolder: 'Comments',
                     value: '',
                     autoCapitalize: false
@@ -169,7 +169,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioRecordButtonCls',
-							id: 'dictionaryCommentsRecordButton',
+							itemId: 'dictionaryCommentsRecordButton',
 							flex: 1
 						},
 						{
@@ -180,7 +180,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioPlayButtonCls',
-							id: 'dictionaryCommentsPlayButton',
+							itemId: 'dictionaryCommentsPlayButton',
 							flex: 1
 						}
 					]
@@ -188,7 +188,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 				{
                		xtype: 'togglefield',
     				label: 'Use video',
-    				id: 'dictionaryCommentsVideoToggle',
+    				itemId: 'dictionaryCommentsVideoToggle',
     				labelWidth: this.getCustomLabelWidth()
 					//margin: '6px 0 0 7px'
 				}
@@ -207,14 +207,14 @@ Ext.define('Ma.view.DictionaryFormView', {
        				xtype: 'label',
        				html: 'Metadata',
                     margin: '0 0 0 7px',
-                    id: 'metadataformtitle'
+                    itemId: 'metadataformtitle'
        			},
        			{
        				xtype: 'spacer'
        			},
        			{
        				xtype: 'button',
-       				id: 'dicMetadataButton',
+       				itemId: 'dicMetadataButton',
                     margin: '0 6px 0 0'
        			}
        		]
@@ -224,13 +224,13 @@ Ext.define('Ma.view.DictionaryFormView', {
 		var imageCapture = {
 			xtype: 'container',
 			layout: 'hbox',
-			id: 'imagecapturecontainer',
+			itemId: 'imagecapturecontainer',
 			items:[
 				{
 					xtype: 'button',
 					ui: 'round',
 					cls: 'addImageButtonCls',
-					id: 'addImageButton',
+					itemId: 'addImageButton',
 					html: 'Add<br />photo',
 					/*text: 'Add photo',*/
 					margin: '7',
@@ -247,7 +247,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 			itemId: 'deletecontainer',
 			items:[
 				{
-					id: 'deletebutton',
+					itemId: 'deletebutton',
 					xtype: 'button',
 					text: 'Delete Entry',
 					ui: 'decline',

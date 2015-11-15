@@ -5,7 +5,12 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
     extend: 'Ext.app.Controller',
 
     config: {
+		// properties
+		addImageEventToFire: null,
+		
+		
         refs: {
+			main: 'yytabview',
         	photoSourceSelect: 'photosourceselectview',
             takePhotoButton: 'button[id=takePhotoButton]',
             choosePhotoButton: 'button[id=choosePhotoButton]',
@@ -24,13 +29,34 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
             }
         }
     },
+	
+	init: function (application) {
+ 		// listen for fired events (from DictionaryFormController)
+        
+		application.on([
+			{
+            	event: 'showPhotoSourceSelectView',
+            	fn: this.showSelector,
+            	scope: this
+        	}
+		]);
+    },
     
-    
+	
+    // Show photoSourceSelectView and 
+	//
+	showSelector: function(addImageEvent) {
+		this.getPhotoSourceSelect().show();	
+		this.setAddImageEventToFire(addImageEvent);
+	},
+	
 	// Take photo with camera
 	//
 	takePhoto: function() {
 		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
-		Sencha.app.fireEvent('addimage', Camera.PictureSourceType.CAMERA);
+		console.log('activeitem = ' + this.getMain().getActiveItem() );
+		
+		Sencha.app.fireEvent(this.getAddImageEventToFire(), Camera.PictureSourceType.CAMERA);
 	},
 	
 	
@@ -38,13 +64,14 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 	//
 	choosePhoto: function() {
 		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
-		Sencha.app.fireEvent('addimage', Camera.PictureSourceType.PHOTOLIBRARY);
+		Sencha.app.fireEvent(this.getAddImageEventToFire(), Camera.PictureSourceType.PHOTOLIBRARY);
 	},    
 	
     
     // Cancel (hide action sheet)
     //       
     cancelPhotoSourceSelect: function() {
+		this.setAddImageEventToFire(null)
     	this.getPhotoSourceSelect().hide();
     }
     
