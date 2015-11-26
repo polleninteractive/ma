@@ -284,7 +284,12 @@ Ext.application({
     	return Sencha.app.getAssetsFolder() + Sencha.app.getImagesFolderName();
     },
     
-    
+	//	Stop temporary media (audio or video) just recorded
+	//
+	stopMedia: function(button, mediaURL) {
+		Sencha.app.stopAudioAndRelease();
+	},
+	
     // Utility method for playing audio asset file and cleanup afterwards using Cordova media plugin
     // Audio is played is several places throughout the app. This convenience method is used to play audio asset files 
     // and cleanup afterwards. 

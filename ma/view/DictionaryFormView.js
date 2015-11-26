@@ -61,6 +61,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioStopButtonCls',
+							itemId: 'sourceWordStopButton',
 							flex: 1
 						},
 						{
@@ -115,6 +116,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioStopButtonCls',
+							itemId: 'targetWordStopButton',
 							flex: 1
 						},
 						{
@@ -175,6 +177,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 						{
 							xtype: 'soundrecorder',
 							cls: 'audioStopButtonCls',
+							itemId: 'dictionaryCommentsStopButton',
 							flex: 1
 						},
 						{

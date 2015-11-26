@@ -44,10 +44,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			dictionaryDetailView: 'dictionarytargetdetailview',
 			
 			sourceWordRecordButtonRef: 'dictionarynavigationview #sourceWordRecordButton',
+			sourceWordStopButtonRef: 'dictionarynavigationview #sourceWordStopButton',
 			sourceWordPlayButtonRef: 'dictionarynavigationview #sourceWordPlayButton',
 			targetWordRecordButtonRef: 'dictionarynavigationview #targetWordRecordButton',
+			targetWordStopButtonRef: 'dictionarynavigationview #targetWordStopButton',
 			targetWordPlayButtonRef: 'dictionarynavigationview #targetWordPlayButton',
 			commentsRecordButtonRef: 'dictionarynavigationview #dictionaryCommentsRecordButton',
+			commentsStopButtonRef: 'dictionarynavigationview #dictionaryCommentsStopButton',
 			commentsPlayButtonRef: 'dictionarynavigationview #dictionaryCommentsPlayButton',
 			commentsVideoToggleRef: 'dictionarynavigationview #dictionaryCommentsVideoToggle',
 			 
@@ -78,11 +81,17 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			'sourceWordRecordButtonRef':{
 				tap:'recordMedia'
 			},
+			'sourceWordStopButtonRef':{
+				tap:'stopMedia'
+			},
 			'sourceWordPlayButtonRef':{
 				tap:'prepareMedia'
 			},
 			'targetWordRecordButtonRef':{
 				tap:'recordMedia'
+			},
+			'targetWordStopButtonRef':{
+				tap:'stopMedia'
 			},
 			'targetWordPlayButtonRef':{
 				tap:'prepareMedia'
@@ -92,6 +101,9 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			},
 			'commentsRecordButtonRef':{
 				tap:'recordMedia'
+			},
+			'commentsStopButtonRef':{
+				tap:'stopMedia'
 			},
 			'addImageButtonRef':{
 				tap:'onAddImageTap'
@@ -166,6 +178,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
 		if ( device.platform == "iOS" ) { 
 			this.getVideoPlayerRef().setEnableControls(true);
 		}
+	},
+	
+	
+	//	Stop temporary media (audio or video) just recorded
+	//
+	stopMedia: function(button, mediaURL) {
+		Sencha.app.stopAudioAndRelease();
 	},
 	
 	
@@ -339,9 +358,13 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			}                              
 		} // end of successCB
     
+	
 		// if recording a comment, need to check toggle to see if it's a video comment
-		if ( button.getId() == "dictionaryCommentsRecordButton" ) {
+		console.log('button.getItemId() = ' + button.getItemId() );
+		if ( button.getItemId() == "dictionaryCommentsRecordButton" ) {
+			console.log('2 = ' + this.getCommentsVideoToggleRef().getValue() );
 			if ( this.getCommentsVideoToggleRef().getValue() == 1 ) {
+				console.log('3');
 				// launch devices video recording application
 				console.log('launching video recorder...');
 				

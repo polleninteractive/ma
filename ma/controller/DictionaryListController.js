@@ -148,10 +148,10 @@ Ext.define('Ma.controller.DictionaryListController', {
         // Define select statement
         var whereClause = '';
         if ( doEnglishSearch ) {
-        	whereClause = "DICTIONARYSOURCE.sourceWord LIKE '%" + searchString + "%' ORDER BY DICTIONARYSOURCE.sourceWord";
+        	whereClause = "DICTIONARYSOURCE.sourceWord LIKE '%" + searchString + "%' ORDER BY DICTIONARYSOURCE.sourceWord COLLATE NOCASE ASC;";
         } 
         if ( doIwaidjaSearch ) {
-        	whereClause = "DICTIONARYSOURCE.targetWord LIKE '%" + searchString + "%' ORDER BY DICTIONARYSOURCE.targetWord";
+        	whereClause = "DICTIONARYSOURCE.targetWord LIKE '%" + searchString + "%' ORDER BY DICTIONARYSOURCE.targetWord COLLATE NOCASE ASC;";
         }         
 
         db.transaction(
