@@ -51,7 +51,17 @@ Ext.define('Ma.view.DictionaryDetailPageView', {
             },
             {
                 // main body text of dictionary entry ie. english translation
-                html: ''
+                html: '',
+				// override link taps so that they use Cordova inappbrowser plugin instead
+				listeners: [{
+            		element: 'element',
+            		delegate: 'a',
+            		event: 'tap',
+            		fn: function(evt, el) {
+						evt.stopEvent();
+						window.open(el.getAttribute('href'), '_system');
+            		}
+        		}]
             }
         ]
     }

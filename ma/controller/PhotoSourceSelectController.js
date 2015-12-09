@@ -10,7 +10,6 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 		
 		
         refs: {
-			main: 'yytabview',
         	photoSourceSelect: 'photosourceselectview',
             takePhotoButton: 'button[id=takePhotoButton]',
             choosePhotoButton: 'button[id=choosePhotoButton]',
@@ -53,9 +52,6 @@ Ext.define('Ma.controller.PhotoSourceSelectController', {
 	// Take photo with camera
 	//
 	takePhoto: function() {
-		//this.getApplication().getController('Ma.controller.DictionaryFormController').addImage(navigator.camera.PictureSourceType.CAMERA);
-		console.log('activeitem = ' + this.getMain().getActiveItem() );
-		
 		Sencha.app.fireEvent(this.getAddImageEventToFire(), Camera.PictureSourceType.CAMERA);
 	},
 	

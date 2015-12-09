@@ -27,6 +27,27 @@ Ext.define('Ma.controller.DictionaryDetailController', {
             }
         }
     },
+	
+	
+	// show/hide EDIT button depending on status of dictionary entry in currently displayed card in carousel
+    //
+	setDictionaryEntryButtonVisibility: function(carousel) {
+		console.log('in setDictionaryEntryButtonVisibility');
+		// get record of entry currently displayed in carousel
+		var currentRecord = carousel.getListView().getStore().getAt( carousel.getCurrentListItem() );
+		
+		// check there is a record
+		if (currentRecord) {
+			console.log('get status');
+			console.log('record status = ' + currentRecord.get('status') );
+			if ( currentRecord.get('status') == Sencha.app.AWAITING_MODERATION_STATUS ) {
+				console.log('not awaiting moderation...');
+				this.getDictionaryEntryButton().hide(); 
+			} else {
+				this.getDictionaryEntryButton().show();
+			}
+		}
+	},
 
                
     // Create infinite carousel of dictionary detail views
@@ -74,6 +95,8 @@ Ext.define('Ma.controller.DictionaryDetailController', {
         this.getDictionaryDetailView().setActiveItem(activeItemIndex);
         // Set the list pointer - used to keep track of which item in the list is displayed in carousel
         this.getDictionaryDetailView().setCurrentListItem( this.getDictionaryDetailView().getSelectedItem() );
+		
+		this.setDictionaryEntryButtonVisibility(carousel);
     },
     
    
@@ -152,30 +175,8 @@ Ext.define('Ma.controller.DictionaryDetailController', {
            
         // store current active item for comparison next time
         carousel.setActiveItemTemp( carousel.getActiveIndex() );
+		
+		this.setDictionaryEntryButtonVisibility(carousel);
     },    
-           
-           
-    // Show full screen view of image in new container
-    //
-    onDictionaryImageButtonTap : function() {
-        this.getDictionaryEntryButton().hide(); // hide edit button - we don't want to edit from image
-        
-        if ( device.platform != "Android" ) {
-           this.getMain().getLayout().setAnimation('flip'); // set animation
-        }
-          
-        var curRecord = this.getDictionaryDetailView().getListView().getStore().getAt( this.getDictionaryDetailView().getCurrentListItem() );
-        if ( device.platform == "Android" ) {
-        	imageDetailURL = Sencha.app.getAssetsFolder() + curRecord.get('imageURL');
-    	}  
-       	// else iOS
-       	else {
-       		imageDetailURL = Sencha.app.getPersistentFileStoreVar() + '/assets/' + curRecord.get('imageURL');
-       	}
-        
-        var newImageView = Ext.create('Ma.view.ImageView');
-        this.getMain().add(newImageView);
-        this.getImageContainer().setHtml('<div class=dictImage><img src="' + imageDetailURL + '" /></div>');
-    }
            
 });

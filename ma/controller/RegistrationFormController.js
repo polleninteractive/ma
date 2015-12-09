@@ -112,6 +112,9 @@ Ext.define('Ma.controller.RegistrationFormController', {
   		}  
   		
   		// Submit registration form (registration requires name, username and password; email, birthdate and gender optional)
+		console.log('POSTING to ' + Sencha.app.API_URL+'register_user' );
+		console.log("UserName=" + newUsername + "&Password=" + newPassword + "&FirstName=" + newName + "&Email=" + newEmail + "&BirthDate=" + newBirthdate + "&Gender=" + newGender);
+		
   		xmlhttp.open("POST", Sencha.app.API_URL+'register_user', true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("UserName=" + newUsername + "&Password=" + newPassword + "&FirstName=" + newName + "&Email=" + newEmail + "&BirthDate=" + newBirthdate + "&Gender=" + newGender);

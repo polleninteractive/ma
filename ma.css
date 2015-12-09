@@ -1,4 +1,15 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext);
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(font/Lato-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url(font/Lato-Black.woff) format('woff');
+}
 
 html, body {
     font-family: 'Lucida Sans Unicode',  'Lucida Grande', 'Lucida Sans', 'Lato', sans-serif; !important;
@@ -250,7 +261,8 @@ display: block !important;
 /* DICTIONARY DETAIL VIEW */
 .dictionarySpeakerButton {
 	width: 24px !important;
-	/*margin-right: 8px !important;*/
+	margin-right: 8px !important;
+	top: -2px !important;
 }
 
 .dictionarySpeakerButton img {
@@ -420,6 +432,13 @@ sup {
 }
 
 
+.metadatacontainer {
+	border-top:1px solid #000 !important;
+	margin:15px -20px 20px !important;
+	padding: 15px 20px !important;
+}
+
+
 /* Expand hit area for button */
 div#dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, div#speakerButton.x-button-normal.x-button.x-layout-box-item.x-stretched {
 	width: 50px !important;
@@ -431,7 +450,7 @@ div#dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, di
 #dicMetadataButton::before, #speakerButton::before {
 	position: absolute;
 	top: 5px;
-	right: 0;
+	right: -5px;
 	bottom: 0;
 	left: 0;
 	content: '!';
