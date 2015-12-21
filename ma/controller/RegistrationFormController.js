@@ -46,6 +46,11 @@ Ext.define('Ma.controller.RegistrationFormController', {
 					me.getMain().setMasked(false);
 					me.getDictionaryNav().pop(); // remove registration form
 					//me.getApplication().getController('Ma.controller.DictionarySyncController').userLogin();
+					
+					var collectorRecord = Ext.getStore("Collectors").getById(1);
+					collectorRecord.set('username', newUsername);
+    				collectorRecord.set('password', newPassword);
+					
 					Sencha.app.fireEvent('userloginevent');
 				}, 
 				'Logging in' 

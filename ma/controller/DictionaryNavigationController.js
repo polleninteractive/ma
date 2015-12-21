@@ -61,18 +61,27 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
                 
             // if this is the metadata form then remember metadata details
             case "metadataformview":
-				Sencha.app.fireEvent('remembernewmetadataformdetails');
-            	//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewMetaData();
-            	this.getDictionaryEntryButton().setText('DONE');
-            	this.getMain().pop();
+				var parentContainerList = innerItems[currentItemIndex-2].xtype;
+                console.log('parentContainerList = ' + parentContainerList);
+                // Make sure this is the Dictionary metadata form (not the Pictionary metadata form)
+                if (parentContainerList == "dictionarycontainerlist") {
+					Sencha.app.fireEvent('remembernewdictionarymetadataformdetails');
+            		//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewMetaData();
+            		this.getDictionaryEntryButton().setText('DONE');
+            		this.getMain().pop();
+				}
             	break;
             
             // if this is the speaker form view, remember speaker details
             case "speakerformview":
-				Sencha.app.fireEvent('remembernewspeakerformdetails');
-            	//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewSpeakerDetails();
-                this.getDictionaryEntryButton().setText('OK');
-            	this.getMain().pop();
+				var parentContainerList = innerItems[currentItemIndex-3].xtype;
+                
+                // Make sure this is the Pictionary speaker form
+                if (parentContainerList == "dictionarycontainerlist") {
+					Sencha.app.fireEvent('remembernewdictionaryspeakerformdetails');
+                	this.getDictionaryEntryButton().setText('OK');
+            		this.getMain().pop();
+				}
             	break;
             
             // if dictionary form view then could be either an add or edit

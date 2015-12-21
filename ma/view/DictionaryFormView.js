@@ -203,7 +203,6 @@ Ext.define('Ma.view.DictionaryFormView', {
        		xtype: 'container',
        		layout: 'hbox',
             cls: 'metadatacontainer',
-            margin: '0 0 0 0',
            
        		items:[
        			{
@@ -218,7 +217,7 @@ Ext.define('Ma.view.DictionaryFormView', {
        			{
        				xtype: 'button',
        				itemId: 'dicMetadataButton',
-                    margin: '0 6px 0 0'
+					cls: 'dicMetadataButton'
        			}
        		]
        };
@@ -234,9 +233,9 @@ Ext.define('Ma.view.DictionaryFormView', {
 					ui: 'round',
 					cls: 'addImageButtonCls',
 					itemId: 'addImageButton',
-					html: 'Add<br />photo',
-					/*text: 'Add photo',*/
-					margin: '7',
+					html: '<span class="textLabel">Add<br />photo</span>',
+					/*text: 'Add photo',
+					margin: '7',*/
 					width: '60px',
 					height: '60px'
 				}
@@ -261,8 +260,7 @@ Ext.define('Ma.view.DictionaryFormView', {
 			]
 		}; 
            
-		//this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, metadataContainer, deleteContainer]);
-		this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, deleteContainer]);
+		this.add([targetFormFieldSet, soundRecorder, sourceFormFieldSet, sourceSoundRecorder, commentsFormFieldSet, commentsSoundRecorder, imageCapture, metadataContainer, deleteContainer]);
 	}
 
 });

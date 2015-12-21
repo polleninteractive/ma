@@ -23,13 +23,14 @@ Ext.define('Ma.view.MetadataFormView', {
         // Form for entering meta data
         var fieldSet = {
 	        xtype: 'fieldset',
-	        id: 'metadataFieldset',
+			cls: 'metadataFieldset',
+	        itemId: 'metadataFieldset',
 	        items: [
 	            {
 	                xtype: 'textfield',
 	                name : 'date',
 	                label: 'Date',
-                    id: 'dateField',
+                    itemId: 'dateField',
                     disabled: true,
                     labelWidth: this.getCustomLabelWidth()
 	            },
@@ -37,7 +38,7 @@ Ext.define('Ma.view.MetadataFormView', {
 	                xtype: 'textfield',
 	                name : 'latitude',
 	                label: 'Latitude',
-                    id: 'latitudeField',
+                    itemId: 'latitudeField',
                     disabled: true,
                     labelWidth: this.getCustomLabelWidth()
 	            },
@@ -45,7 +46,7 @@ Ext.define('Ma.view.MetadataFormView', {
 	                xtype: 'textfield',
 	                name : 'longitude',
 	                label: 'Longitude',
-	                id: 'longitudeField',
+	                itemId: 'longitudeField',
 	                disabled: true,
                     labelWidth: this.getCustomLabelWidth()
 	            },
@@ -53,7 +54,7 @@ Ext.define('Ma.view.MetadataFormView', {
 	                xtype: 'textfield',
 	                name : 'recordingdevice',
 	                label: 'Device',
-	                id: 'recordingDeviceField',
+	                itemId: 'recordingDeviceField',
 	                disabled: true,
                     labelWidth: this.getCustomLabelWidth()
 	            }
@@ -69,7 +70,7 @@ Ext.define('Ma.view.MetadataFormView', {
        				xtype: 'label',
        				html: 'Speaker',
                     margin: '0 0 0 7px',
-                    id: 'speakerformtitle'
+                    itemId: 'speakerformtitle'
        			},
        			{
        				xtype: 'spacer'
@@ -77,7 +78,8 @@ Ext.define('Ma.view.MetadataFormView', {
        			{
        				xtype: 'button',
        				margin: '0 6px 0 0',
-       				id: 'speakerButton'
+       				itemId: 'speakerButton',
+					cls: 'speakerButton'
        			}
        		]
        };

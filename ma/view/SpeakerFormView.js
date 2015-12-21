@@ -22,20 +22,20 @@ Ext.define('Ma.view.SpeakerFormView', {
         
    		var fieldSet = {
    	        xtype: 'fieldset',
-   	        id: 'speakerFieldset',
+   	        itemId: 'speakerFieldset',
    	        items: [
    	            {
    	                xtype: 'textfield',
    	                name : 'speakerName',
    	                label: 'Name',
-                    id: 'speakerNameField',
+                    itemId: 'speakerNameField',
                     labelWidth: this.getCustomLabelWidth()
    	            },
    	            {
    	                xtype: 'datepickerfield',
    	                name : 'speakerDOB',
    	                label: 'Birthdate',
-                    id: 'speakerDOBField',
+                    itemId: 'speakerDOBField',
                     labelWidth: this.getCustomLabelWidth(),
                     picker: {
                         yearFrom: 1900
@@ -59,7 +59,7 @@ Ext.define('Ma.view.SpeakerFormView', {
    	   			    xtype: 'textfield',
    	   			    name : 'speakerComment',
    	   			    label: 'Comments',
-   	   			    id: 'speakerCommentField',
+   	   			    itemId: 'speakerCommentField',
                     labelWidth: this.getCustomLabelWidth()
    	   			}
    	        ]

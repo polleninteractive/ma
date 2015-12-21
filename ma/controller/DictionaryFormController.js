@@ -66,14 +66,16 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			dictionaryMetadataButton: 'dictionarynavigationview #dicMetadataButton',
 			
 			/* metadata form */
-			dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
+			//dicMetadaForm: 'dictionarynavigationview fieldset[id="metadataFieldset"]',
+			dicMetadaForm: 'dictionarynavigationview #metadataFieldset',
+			metaDataFormSpeakerButtonRef: 'dictionarynavigationview #speakerButton',
 			
 			//speaker
-			speakerFieldSet: 'dictionarynavigationview fieldset[id="speakerFieldset"]',
-			speakerNameField: 'dictionarynavigationview textfield[id="speakerNameField"]',
+			speakerFieldSet: 'dictionarynavigationview #speakerFieldset',
+			speakerNameField: 'dictionarynavigationview #speakerNameField',
 			speakerGenderField: 'dictionarynavigationview radiofield[name="speakerGender"]',
-			speakerCommentField: 'dictionarynavigationview textfield[id="speakerCommentField"]',
-			speakerDOBField: 'dictionarynavigationview datepickerfield[id="speakerDOBField"]',
+			speakerCommentField: 'dictionarynavigationview #speakerCommentField',
+			speakerDOBField: 'dictionarynavigationview #speakerDOBField',
            
 			videoPlayerRef: 'dictionarynavigationview #videoPlayer'
         },
@@ -111,10 +113,10 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			'dictionaryMetadataButton':{
 				tap:'showMetadataForm'
 			},
-			'dictionarynavigationview button[id=speakerButton]':{
+			'metaDataFormSpeakerButtonRef':{
 				tap:'showSpeakerForm'
 			},
-			'dictionarynavigationview button[id="deletebutton"]':{
+			'dictionaryDeleteButton':{
 				tap:'deleteDictionaryEntry'
 			}
         }
@@ -135,12 +137,12 @@ Ext.define('Ma.controller.DictionaryFormController', {
             	scope: this
         	},
 			{
-            	event: 'remembernewmetadataformdetails',
+            	event: 'remembernewdictionarymetadataformdetails',
             	fn: this.rememberNewMetaData,
             	scope: this
         	},
 			{
-            	event: 'remembernewspeakerformdetails',
+            	event: 'remembernewdictionaryspeakerformdetails',
             	fn: this.rememberNewSpeakerDetails,
             	scope: this
         	},
@@ -513,7 +515,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
         	var fullImagePath = Sencha.app.getAssetsFolder() + imageURL;
  
 			// show it
-			this.getAddImageButtonRef().setHtml('<div class="addPhotoButtonHolder"><img src="' + fullImagePath + '" class="addPhotoButtonImage"/></div>');
+			this.getAddImageButtonRef().setHtml('<div class="addPhotoButtonHolder" style="background:url(' + fullImagePath + '); background-size:cover; background-repeat:no-repeat; background-position:center;">&nbsp;</div>');
         } else {
         	this.setImageURL(null);
         } 
@@ -921,8 +923,9 @@ Ext.define('Ma.controller.DictionaryFormController', {
     },
     
     
-    
+     
     showSpeakerForm: function() {
+		console.log('Hi');
         // Sencha bug allows the disclosure arrow to be clicked more than once, so check for this
         var innerItems = this.getMain().getInnerItems();
         var secondViewInStack = innerItems[1].xtype;
@@ -1021,7 +1024,8 @@ Ext.define('Ma.controller.DictionaryFormController', {
 		  
 		// show image as icon on button
 		function showImageOnButton(uri) {
-           me.getAddImageButtonRef().setHtml('<div class="addPhotoButtonHolder"><img src="' + uri + '" class="addPhotoButtonImage"/></div>');
+           //me.getAddImageButtonRef().setHtml('<div class="addPhotoButtonHolder"><img src="' + uri + '" class="addPhotoButtonImage"/></div>');
+		   me.getAddImageButtonRef().setHtml('<div class="addPhotoButtonHolder" style="background:url(' + uri + '); background-size:cover; background-repeat:no-repeat; background-position:center;">&nbsp;</div>');
 		}
 		
 		// copy photo from gallery to tfs (for iOS)
@@ -1181,7 +1185,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
     														
     														// turn on icon image
 															currentObj.getDictionaryEntryButton().setText('');
-															currentObj.getDictionaryEntryButton().setIconCls('plusSignIcon'); 
+															currentObj.getDictionaryEntryButton().setIconCls('plusSignIcon');
            
 															currentObj.getMain().pop(2);
                 

@@ -409,21 +409,33 @@ sup {
 	color: #808284 !important;
 }
 
+/* get rid of side padding */
+div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item {
+    padding: 0;	
+}
+
+/* Make spn thgat holds image full stretch */
+div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item span.x-button-label {
+	width: 100%;
+	height: 100%;	
+}
+
+div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item span.x-button-label span.textLabel {
+	position: relative;
+	top: 20%;	
+}
+
+/* image holder */
 .addPhotoButtonHolder
 {
 	padding: 0 !important;
 	margin: 0 !important;
-	width: 58px !important;
-	height: 58px !important;
+	width: 100%;
+	height: 100%;
 	border:0 !important;
-	border-radius:7px !important;
 	overflow: hidden !important;
 }
 
-.addPhotoButtonImage {
-	width: 60px !important;
-    padding: 0;
-}
 
 .deletecontainer {
 	border-top:1px solid #000 !important;
@@ -440,14 +452,14 @@ sup {
 
 
 /* Expand hit area for button */
-div#dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, div#speakerButton.x-button-normal.x-button.x-layout-box-item.x-stretched {
+div.dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, div.speakerButton.x-button-normal.x-button.x-layout-box-item.x-stretched {
 	width: 50px !important;
 	height: 40px !important;
 	top: -10px !important;
 }
 
 /* metadata button */
-#dicMetadataButton::before, #speakerButton::before {
+.dicMetadataButton::before, .speakerButton::before {
 	position: absolute;
 	top: 5px;
 	right: -5px;
@@ -471,7 +483,7 @@ div#dicMetadataButton.x-button-normal.x-button.x-layout-box-item.x-stretched, di
 .x-form-fieldset .x-field::before {
 	border-bottom: none !important;	
 }
-#metadataFieldset {
+.metadataFieldset {
 	border-bottom:1px solid #000 !important;
 	margin:0px -20px 20px -24px !important;
 	padding: 10px 20px !important;
