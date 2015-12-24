@@ -387,6 +387,11 @@ sup {
     background-image: url('images/record.png') !important;
 }
 
+/* disabled record button */
+.audioRecordButtonCls.x-item-disabled, .recordButtonCls.x-item-disabled {
+    background-image: url('images/record-disabled.png') !important;
+}
+
 .audioStopButtonCls, .stopButtonCls {
     background-image: url('images/stop.png') !important;
 }
@@ -423,6 +428,14 @@ div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item span.x-b
 div.x-button.x-button-round.x-sized.addImageButtonCls.x-layout-box-item span.x-button-label span.textLabel {
 	position: relative;
 	top: 20%;	
+}
+
+div.addPhotoButtonHolder {
+	-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);	
 }
 
 /* image holder */
