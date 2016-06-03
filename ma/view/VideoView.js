@@ -4,10 +4,10 @@
 Ext.define('Ma.view.VideoView', {
     extend: 'Ext.Container',
     xtype: 'videoview',
+	requires: [
+        'Ext.Video'
+    ],
     config: {
-    	// parameters (passed in)
-        videoURL: null,
-    
         layout:{
             type:'vbox',
             align:'center'
@@ -16,7 +16,7 @@ Ext.define('Ma.view.VideoView', {
         items: [
             {
             	xtype: 'video',
-            	id: 'videoPlayer',
+            	itemId: 'videoPlayer',
             	autoResume: true,
                 autoPause: false,
             	centered: true

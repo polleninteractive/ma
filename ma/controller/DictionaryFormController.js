@@ -168,7 +168,20 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	// Create video view and play video
 	//
 	showVideo: function(videoURL) {
-		console.log('showing video... ' + videoURL);
+		var options = {
+    		successCallback: function() {
+      			console.log("Video was closed without error.");
+    		},
+    		errorCallback: function(errMsg) {
+      			console.log("Error! " + errMsg);
+    		},
+    		orientation: 'landscape'
+  		};
+  		window.plugins.streamingMedia.playVideo(videoURL, options);
+		
+		/*
+		return;
+		console.log('this should NOT appear');
 		
 		this.getMain().push({
 			xtype: 'videoview'
@@ -180,6 +193,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 		if ( device.platform == "iOS" ) { 
 			this.getVideoPlayerRef().setEnableControls(true);
 		}
+		*/
 	},
 	
 	
@@ -193,9 +207,12 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	//	Play temporary media (audio or video) just recorded
 	//
 	playMedia: function(button, mediaURL) {
+		var me = this;
+		
 		// if Comments play button pressed, and current comment is a video
-        if ( button.getId() == "dictionaryCommentsPlayButton" && this.getCommentsMediaType() == 1 ) {
-    		this.showVideo(mediaURL);
+		if ( button.getItemId() == "dictionaryCommentsPlayButton" && this.getCommentsMediaType() == 1 ) {
+			mediaURL = mediaURL.replace("/private", "file://");
+			this.showVideo(mediaURL);
         } else {
         	Sencha.app.playAudioAndRelease(mediaURL);
         }
@@ -205,10 +222,27 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	// Play media (audio or video) already saved to assets folder 
 	//
 	playMediaAsset: function(button, mediaURL) {
-	
+		var me = this;
+		
 		// if Comments play button pressed, and current comment is a video
-        if ( button.getId() == "dictionaryCommentsPlayButton" && this.getCommentsMediaType() == 1 ) {
-    		this.showVideo(mediaURL);
+        if ( button.getItemId() == "dictionaryCommentsPlayButton" && this.getCommentsMediaType() == 1 ) {	
+			mediaURL = Sencha.app.getAssetsFolder()+mediaURL;
+			
+			// Resolve URL not native file path (we're using a plugin here so cordova cdvfile protocol won't work
+			window.resolveLocalFileSystemURL(
+				mediaURL, 
+				function(entry) {
+    				var nativePath = entry.toURL();
+    				
+					//this.showVideo(mediaURL);
+					
+					//mediaURL = "/assets/" + mediaURL;
+					//this.showVideo(Sencha.app.getAssetsFolder()+mediaURL);
+					me.showVideo(nativePath);
+					
+				}
+			);
+	
         } else {
         	Sencha.app.playAudioAssetAndRelease(mediaURL);
         }
@@ -220,7 +254,6 @@ Ext.define('Ma.controller.DictionaryFormController', {
 	// then play that, else use respective URL in store
     //
     prepareMedia: function(button) {
-		console.log('preparing...');
     	// get audioURL depending on play button pressed
     	var audioURLinTFS = null;
     	var audioURLinDb = null;
@@ -248,6 +281,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
         if ( audioURLinTFS ) {
         	this.playMedia(button, audioURLinTFS);
         } else {
+			console.log('1');
            if ( audioURLinDb ) {
         		this.playMediaAsset(button, audioURLinDb);
 			}
@@ -295,7 +329,11 @@ Ext.define('Ma.controller.DictionaryFormController', {
            console.log('An error occurred during media capture');
 		   console.log('An error occurred during media capture: ' + error.code);
            var msg = 'An error occurred during media capture: ' + error.code;
-           navigator.notification.alert(msg, null, 'Capture error');
+		   
+		   // Display notification if this is a real error and user did not just exit without recordihng anything 
+		   if ( error.code != 3 ) {
+			navigator.notification.alert(msg, null, 'Capture error');
+		   }
         }
     
     	// capture success callback
@@ -364,12 +402,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 		// if recording a comment, need to check toggle to see if it's a video comment
 		console.log('button.getItemId() = ' + button.getItemId() );
 		if ( button.getItemId() == "dictionaryCommentsRecordButton" ) {
-			console.log('2 = ' + this.getCommentsVideoToggleRef().getValue() );
 			if ( this.getCommentsVideoToggleRef().getValue() == 1 ) {
-				console.log('3');
-				// launch devices video recording application
-				console.log('launching video recorder...');
-				
 				// Launch device audio recording application
         		navigator.device.capture.captureVideo( 
             		successCB,
@@ -1067,7 +1100,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
                     } else {
                         // in iOS, Phonegap's navigator.camera.getPicture stores photos elsewhere in file://localhost/... so these need to be resolved
 						//window.resolveLocalFileSystemURL(imageURI, setImageURL, fail);
-                                    window.resolveLocalFileSystemURL(imageURI, copyPhoto, fail);
+                        window.resolveLocalFileSystemURL(imageURI, copyPhoto, fail);
                     }
             	
             	// if new photo taken
@@ -1081,6 +1114,7 @@ Ext.define('Ma.controller.DictionaryFormController', {
 			},
             { 
             	quality: 50, 
+				correctOrientation: true,
             	destinationType: Camera.DestinationType.FILE_URI,
             	sourceType: source 
             }

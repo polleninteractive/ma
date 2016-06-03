@@ -62,9 +62,9 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
             // if this is the metadata form then remember metadata details
             case "metadataformview":
 				var parentContainerList = innerItems[currentItemIndex-2].xtype;
-                console.log('parentContainerList = ' + parentContainerList);
+
                 // Make sure this is the Dictionary metadata form (not the Pictionary metadata form)
-                if (parentContainerList == "dictionarycontainerlist") {
+                if (parentContainerList == "dictionarycontainerlist" || parentContainerList == "dictionarytargetdetailview") {
 					Sencha.app.fireEvent('remembernewdictionarymetadataformdetails');
             		//this.getApplication().getController('Ma.controller.DictionaryFormController').rememberNewMetaData();
             		this.getDictionaryEntryButton().setText('DONE');
@@ -76,8 +76,8 @@ Ext.define('Ma.controller.DictionaryNavigationController', {
             case "speakerformview":
 				var parentContainerList = innerItems[currentItemIndex-3].xtype;
                 
-                // Make sure this is the Pictionary speaker form
-                if (parentContainerList == "dictionarycontainerlist") {
+                // Make sure this is the Dictionary speaker form
+                if (parentContainerList == "dictionarycontainerlist" || parentContainerList == "dictionarytargetdetailview") {
 					Sencha.app.fireEvent('remembernewdictionaryspeakerformdetails');
                 	this.getDictionaryEntryButton().setText('OK');
             		this.getMain().pop();
